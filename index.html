@@ -6,26 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Homework with Git</title>
+	<title>Task#1</title>
 </head>
 
 <body>
 	<script>
+		// Задача #1. Дано масив цілих чисел. Кожне відємне число замінити на 0.
+
+		let arr = []
+		for (i = 0; i < 10; i++) {
+			arr[i] = -10 + Math.floor(Math.random() * 21)
+		}
+		document.write(`Before:<br>${arr}<br>`)
+		arr.forEach((value, index, arr) => {
+			if (value < 0)
+				arr[index] = 0
+		})
+		document.write(`After:<br>${arr}`)
 
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-	<script src="script/script.js"></script>
 </body>
 
 </html>
