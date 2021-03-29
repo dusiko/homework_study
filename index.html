@@ -6,20 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#6</title>
+	<title>Task#7</title>
 </head>
 
 <body>
 	<script>
-		//6 Задача. Дано масив цін товарів. Знайти сумарну вартість тих, які знаходяться в межах від 1000 до 2000.
-		let priceList = [500, 1000, 100, 1500, 3000, 3500, 1900, 2900, 3000, 2100,]
-		let sumPrice = 0
-		document.write(`Каталог цін товарів: ${priceList}<br>`)
-		priceList.forEach((value, index, arr) => {
-			if (value >= 1000 && value <= 2000)
-				sumPrice += value
-		})
-		document.write(`Сумарна вартість тих, що в межах від 1000 до 2000: <b>${sumPrice}</b>.`);
+		//Задача 7. Розробити функцію, яка би для довільної кількості переданих символів визначала, кількість букв «а».
+		let text = prompt('ввдеіть набір символів')
+		let count = 0
+		document.write(text)
+		function findA(someText) {
+			someArrText = someText.split('')
+			someArrText.forEach((val, i, arr) => {
+				if (val == 'a' || val == 'а') {
+					count++
+				}
+				return count
+			})
+		}
+
+		findA(text)
+		document.write(`<br>символ "a" зустрічається ${count} раз.`)
 	</script>
 </body>
 
