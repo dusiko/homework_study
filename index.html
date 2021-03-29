@@ -6,21 +6,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#6</title>
+	<title>Task#5</title>
 </head>
 
 <body>
 	<script>
-		// Задача 6. Дано масив, який зберігає кількість відвідувачів протягом тижня. З’ясувати, чи були дні, коли кількість відвідувачів була меншою за 10.
-		let visitors = []
-		for (i = 0; i < 7; i++) {
-			visitors[i] = 0 + Math.floor(Math.random() * 51)
-		}
-		document.write(`${visitors} <br>`)
-		if (visitors.some((visitor) => visitor < 10))
-			document.write('Так')
-		else document.write('Ні')
-
+		// Задача 5. Дано масив цін товарів. Сформувати масив тих, які є меншими за 2000 грн.
+		let priceList = [500, 1000, 100, 1500, 3000, 3500, 1900, 2900, 3000, 2100,]
+		document.write(`Каталог цін товарів: ${priceList}<br>`)
+		let priceList2 = priceList.filter((value, index, arr) => value < 2000)
+		document.write(`Каталог цін товарів з фільтром: < 2000<br>${priceList2}`)
 	</script>
 </body>
 
