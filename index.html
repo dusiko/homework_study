@@ -11,20 +11,15 @@
 
 <body>
 	<script>
-		//Задача 9. Розробити функцію, яка би для довільної кількості чисел знаходила максимальне.
-		let numBox = []
-		for (i = 0; i < 5; i++) {
-			numBox.push(1 + Math.floor(Math.random() * 100))
+		//Задача 2. Дано масив цін. Сформувати новий масив, який містить тільки ті ціни, які менші за задану.
+		let priceList = []
+		for (i = 0; i < 10; i++) {
+			priceList.push(1 + Math.floor(Math.random() * 2000))
 		}
-		document.write(`Массив: ${numBox}<br>`)
+		document.write(`Список цін:<br>${priceList}<br><br>`)
 
-		let max = numBox.reduce((prevMax, val, i, arr) => {
-			if (val > prevMax)
-				return val
-			else
-				return prevMax
-		})
-		document.write(`Найбільше число массиву: ${max}<br>`)
+		let newList = priceList.filter((price, i, arr) => price < 1000)
+		document.write(`Список цін менших за 1000:<br>${newList}<br>`)
 	</script>
 </body>
 
