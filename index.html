@@ -6,21 +6,26 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#4</title>
+	<title>Task#5</title>
 </head>
 
 <body>
 	<script>
-		//Задача 4. Дано масив імен. Сформувати новий масив, який складається з імен, які починаються на задану літеру.
+		//Задача 5. Дано ваги автомобілів на парковці. З’ясувати, чи усі автомобілі є легковими (легшими за 2000 кг).
 
-		let namesList = ['Юра', 'Вітя', 'Света', 'Андрій', 'Коля', 'Наташа', 'Юля', 'Юлій', 'Маряна', 'Марія', 'Катя', 'Тарас', 'Коля',]
-		document.write(`Список імен:<br>${namesList}<br><br>`)
+		let carsWeightList = []
+		for (i = 0; i < 10; i++) {
+			carsWeightList.push(1500 + Math.floor(Math.random() * 600))
+		}
+		document.write(`Список ваги автомобілів:<br>${carsWeightList}<br>`)
 
-		let newNamesList = namesList.filter((val, i, arr) => {
-			if (val[0] === 'Ю')
-				return val
-		})
-		document.write(`Список імен, які починаються на "Ю":<br>${newNamesList}<br>`)
+		function isLightCar(weight) {
+			return weight < 2000
+		}
+		if (carsWeightList.every(isLightCar))
+			document.write(`Так, усі машини легкові.`)
+		else
+			document.write(`Ні, не всі автомобілі легкові.`)
 	</script>
 </body>
 
