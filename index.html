@@ -11,14 +11,13 @@
 
 <body>
 	<script>
-		// Задача 3. Дано масив років народження працівників. Вивести масив тих, які є призовного віку (менше 25 років).
-
-		let agesList = [15, 14, 29, 49, 35, 40, 24, 28, 31, 19, 21, 28, 37, 25]
-		document.write(`Массив віку парцівників:<br>${agesList}<br><br>`)
-		let conscriptionAge = agesList.filter((val, i, arr) => {
-			return val < 25
+		// Задача 4. Дано масив показників гемоглобіну (масив чисел). Сформувати масив тих, які є меншими за 115.
+		let hemoglobinList = [89, 110, 90, 123, 145, 131, 111, 117, 99, 98, 101, 141, 154, 123, 130, 89]
+		document.write(`Список показників гемоглобіну:<br>${hemoglobinList}<br><br>`)
+		let hemoglobinListUnder115 = hemoglobinList.filter((val, i, arr) => {
+			return val < 115
 		})
-		document.write(`Массив призовного віку:<br>${conscriptionAge}`)
+		document.write(`Список показників гемоглобіну ниже 115:<br>${hemoglobinListUnder115}`)
 
 	</script>
 </body>
