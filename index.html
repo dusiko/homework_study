@@ -6,16 +6,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#1</title>
+	<title>Task#3</title>
 </head>
 
 <body>
 	<script>
-		// Задача 2. Заполнить массив нулями и единицами, при этом данные значения чередуются, начиная с нуля.
+		// Задача 3. Заполнить массив последовательными нечетными числами, начиная с единицы.
 		let arr = []
-		for (i = 0; i < 10; i++) {
-			if (i % 2 == 0) arr.push(0)
-			else arr.push(1)
+		for (i = 1; i < 15; i++) {
+			if (i % 2 != 0) arr.push(i)
 		}
 		document.write(arr)
 
