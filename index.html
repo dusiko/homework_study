@@ -6,24 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#1</title>
+	<title>Task#2</title>
 </head>
 
 <body>
 	<script>
-		//Задача 1. Відсортувати масив імен за останньою літерою.
-		let namesList = ['Юра', 'Вітя', 'Света', 'Андрій', 'Коля', 'Наташа',
-			'Юля', 'Юлій', 'Маряна', 'Марія', 'Катя', 'Тарас', 'Коля',]
-		document.write(`Список імен:<br>${namesList}<br><br>`)
+		// Задача 2. Дано масив цін. Для усіх товарів, 
+		//           які дорожчі за 1000грн дати знижку 20% (помножити на 0.8), 
+		//           а для усіх інших товарів – надати 5 % знижки (помножити на 0.95).
 
-		namesList.sort((a, b) => {
-			if (a[a.length - 1] > b[b.length - 1]) {
-				return 1
-			} if (a[a.length - 1] < b[b.length - 1]) {
-				return -1
-			} else return a
+		let priceList = []
+		for (i = 0; i < 10; i++) {
+			priceList.push(500 + Math.floor(Math.random() * 800))
+		}
+		document.write(`Даний масив цін:<br>${priceList}<br><br>`)
+		let newPriceList = priceList.forEach((val, i, arr) => {
+			if (val > 1000)
+				arr[i] = Math.round(arr[i] * 0.8)
+			if (val < 1000)
+				arr[i] = Math.round(arr[i] * 0.95)
 		})
-		document.write(`Відсортований список імен за останньою літерою:<br> ${namesList}`)
+		document.write(`Дорожчим за 1000 надали знижку 20%, а дешевшим 5%:<br>${priceList}`)
 
 	</script>
 </body>
