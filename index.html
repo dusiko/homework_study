@@ -6,20 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#8</title>
+	<title>Task#9</title>
 </head>
 
 <body>
 	<script>
-		//Задача 8. Розробити функцію, яка би для довільної кількості чисел знаходила добуток чисел.
+		//Задача 9. Розробити функцію, яка би для довільної кількості чисел знаходила максимальне.
 		let numBox = []
-		for (i = 0; i < 3; i++) {
-			numBox.push(parseInt(prompt('Вкажіть число')))
+		for (i = 0; i < 5; i++) {
+			numBox.push(1 + Math.floor(Math.random() * 100))
 		}
-		let prodNumBox = numBox.reduce((prodVal, val, i, arr) => {
-			return prodVal * val
+		document.write(`Массив: ${numBox}<br>`)
+
+		let max = numBox.reduce((prevMax, val, i, arr) => {
+			if (val > prevMax)
+				return val
+			else
+				return prevMax
 		})
-		document.write(`Добуток вказаних чисел массиву: ${prodNumBox}`)
+		document.write(`Найбільше число массиву: ${max}<br>`)
 	</script>
 </body>
 
