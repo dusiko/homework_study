@@ -6,26 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#5</title>
+	<title>Task#1</title>
 </head>
 
 <body>
 	<script>
-		//Задача 5. Дано ваги автомобілів на парковці. З’ясувати, чи усі автомобілі є легковими (легшими за 2000 кг).
+		//Задача 1. Відсортувати масив імен за останньою літерою.
+		let namesList = ['Юра', 'Вітя', 'Света', 'Андрій', 'Коля', 'Наташа',
+			'Юля', 'Юлій', 'Маряна', 'Марія', 'Катя', 'Тарас', 'Коля',]
+		document.write(`Список імен:<br>${namesList}<br><br>`)
 
-		let carsWeightList = []
-		for (i = 0; i < 10; i++) {
-			carsWeightList.push(1500 + Math.floor(Math.random() * 600))
-		}
-		document.write(`Список ваги автомобілів:<br>${carsWeightList}<br>`)
+		namesList.sort((a, b) => {
+			if (a[a.length - 1] > b[b.length - 1]) {
+				return 1
+			} if (a[a.length - 1] < b[b.length - 1]) {
+				return -1
+			} else return a
+		})
+		document.write(`Відсортований список імен за останньою літерою:<br> ${namesList}`)
 
-		function isLightCar(weight) {
-			return weight < 2000
-		}
-		if (carsWeightList.every(isLightCar))
-			document.write(`Так, усі машини легкові.`)
-		else
-			document.write(`Ні, не всі автомобілі легкові.`)
 	</script>
 </body>
 
