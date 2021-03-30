@@ -6,27 +6,20 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#7</title>
+	<title>Task#8</title>
 </head>
 
 <body>
 	<script>
-		//Задача 7. Розробити функцію, яка би для довільної кількості переданих символів визначала, кількість букв «а».
-		let text = prompt('ввдеіть набір символів')
-		let count = 0
-		document.write(text)
-		function findA(someText) {
-			someArrText = someText.split('')
-			someArrText.forEach((val, i, arr) => {
-				if (val == 'a' || val == 'а') {
-					count++
-				}
-				return count
-			})
+		//Задача 8. Розробити функцію, яка би для довільної кількості чисел знаходила добуток чисел.
+		let numBox = []
+		for (i = 0; i < 3; i++) {
+			numBox.push(parseInt(prompt('Вкажіть число')))
 		}
-
-		findA(text)
-		document.write(`<br>символ "a" зустрічається ${count} раз.`)
+		let prodNumBox = numBox.reduce((prodVal, val, i, arr) => {
+			return prodVal * val
+		})
+		document.write(`Добуток вказаних чисел массиву: ${prodNumBox}`)
 	</script>
 </body>
 
