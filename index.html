@@ -6,27 +6,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#2</title>
+	<title>Task#3</title>
 </head>
 
 <body>
 	<script>
-		// Задача 2. Дано масив цін. Для усіх товарів, 
-		//           які дорожчі за 1000грн дати знижку 20% (помножити на 0.8), 
-		//           а для усіх інших товарів – надати 5 % знижки (помножити на 0.95).
+		// Задача 3. Дано масив років народження працівників. Вивести масив тих, які є призовного віку (менше 25 років).
 
-		let priceList = []
-		for (i = 0; i < 10; i++) {
-			priceList.push(500 + Math.floor(Math.random() * 800))
-		}
-		document.write(`Даний масив цін:<br>${priceList}<br><br>`)
-		let newPriceList = priceList.forEach((val, i, arr) => {
-			if (val > 1000)
-				arr[i] = Math.round(arr[i] * 0.8)
-			if (val < 1000)
-				arr[i] = Math.round(arr[i] * 0.95)
+		let agesList = [15, 14, 29, 49, 35, 40, 24, 28, 31, 19, 21, 28, 37, 25]
+		document.write(`Массив віку парцівників:<br>${agesList}<br><br>`)
+		let conscriptionAge = agesList.filter((val, i, arr) => {
+			return val < 25
 		})
-		document.write(`Дорожчим за 1000 надали знижку 20%, а дешевшим 5%:<br>${priceList}`)
+		document.write(`Массив призовного віку:<br>${conscriptionAge}`)
 
 	</script>
 </body>
