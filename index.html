@@ -6,18 +6,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#3</title>
+	<title>Task#1</title>
 </head>
 
 <body>
 	<script>
-		// Задача 4. Дано масив показників гемоглобіну (масив чисел). Сформувати масив тих, які є меншими за 115.
-		let hemoglobinList = [89, 110, 90, 123, 145, 131, 111, 117, 99, 98, 101, 141, 154, 123, 130, 89]
-		document.write(`Список показників гемоглобіну:<br>${hemoglobinList}<br><br>`)
-		let hemoglobinListUnder115 = hemoglobinList.filter((val, i, arr) => {
-			return val < 115
-		})
-		document.write(`Список показників гемоглобіну ниже 115:<br>${hemoglobinListUnder115}`)
+		// Задача 1. Заполнить массив нулями, кроме первого и последнего элементов, которые должны быть равны единице.
+		let arr = []
+		for (i = 0; i < 10; i++) {
+			if (i == 0 || i == 9) arr.push(1)
+			else arr.push(0)
+		}
+		document.write(arr)
 
 	</script>
 </body>
