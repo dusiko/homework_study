@@ -6,18 +6,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#4</title>
+	<title>Task#12</title>
 </head>
 
 <body>
 	<script>
-		// Задача 4. Сформировать массив из элементов арифметической прогрессии с заданным первым элементом x и разностью d.
-		let first = 0
-		let different = 5
+		// Задача 12. Создать массив, который одинаково читается как слева направо, так и справа налево.
+
 		let arr = []
-		for (i = 0; i < 15; i++) {
-			arr.push(first)
-			first += different
+		for (i = 0; i < 10; i++) {
+			arr.push(i)
+			arr.unshift(i)
 		}
 		document.write(arr)
 	</script>
