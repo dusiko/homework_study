@@ -6,23 +6,28 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#2.6</title>
+	<title>Task#2.14</title>
 </head>
 
 <body>
 	<script>
-		// Задача 6. Найдите сумму нечетных чисел массива, которые не превосходят 11.
+		// Задача 14. Найдите сумму наибольшего и наименьшего элементов массива.
 
-		let arrNum = [1, 2, 3, 4, 5, 6, 7, 21, 42]
+		let arrNum = [1, 2, 3, 4, 53, 5, 6, 7, 21, 42]
 		let sum = 0
-		arrNum.forEach((val, i, arr) => {
-			if (val % 2 != 0 && val <= 11) {
-				sum += val
-			}
+		let min = arrNum.reduce((prevMin, val, i, arr) => {
+			if (prevMin < val)
+				return prevMin
+			else return val
 		})
-		document.write(`Найдите сумму нечетных чисел массива, которые не превосходят 11.<br>
-		Список чисел: ${arrNum}<br>
-		Сума чисел: ${sum} `)
+		let max = arrNum.reduce((prevMax, val, i, arr) => {
+			if (prevMax > val)
+				return prevMax
+			else return val
+		})
+		sum = min + max
+		document.write(`Найдите сумму наибольшего и наименьшего элементов массива: ${arrNum}.<br>
+		сума: ${sum}`)
 
 
 	</script>
