@@ -6,23 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#2</title>
+	<title>Task#2.6</title>
 </head>
 
 <body>
 	<script>
-		// Задача 2. Найти количество чисел в массиве, которые делятся на 3, но не делятся на 7.
+		// Задача 6. Найдите сумму нечетных чисел массива, которые не превосходят 11.
 
 		let arrNum = [1, 2, 3, 4, 5, 6, 7, 21, 42]
-		let count = 0
+		let sum = 0
 		arrNum.forEach((val, i, arr) => {
-			if (val % 3 === 0 && val % 7 != 0) {
-				count++
+			if (val % 2 != 0 && val <= 11) {
+				sum += val
 			}
 		})
-		document.write(`Найти количество чисел в массиве, которые делятся на 3, но не делятся на 7.<br>
+		document.write(`Найдите сумму нечетных чисел массива, которые не превосходят 11.<br>
 		Список чисел: ${arrNum}<br>
-		Количество подходящих чисел: ${count}`)
+		Сума чисел: ${sum} `)
 
 
 	</script>
