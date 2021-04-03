@@ -6,25 +6,24 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task#19</title>
+	<title>Task#2</title>
 </head>
 
 <body>
 	<script>
-		// Задача 19. Определить, содержит ли массив данное число x
+		// Задача 2. Найти количество чисел в массиве, которые делятся на 3, но не делятся на 7.
 
-		let arrMass = [1, 2, 3, 4, 5, 6, 7,]
-		document.write(`${arrMass} <br>`)
-		ask = parseInt(prompt('Вкажи число для пошуку'))
-		arrMass.forEach((val, i, arr) => {
-			if (val === ask)
-				return ask = true
+		let arrNum = [1, 2, 3, 4, 5, 6, 7, 21, 42]
+		let count = 0
+		arrNum.forEach((val, i, arr) => {
+			if (val % 3 === 0 && val % 7 != 0) {
+				count++
+			}
 		})
+		document.write(`Найти количество чисел в массиве, которые делятся на 3, но не делятся на 7.<br>
+		Список чисел: ${arrNum}<br>
+		Количество подходящих чисел: ${count}`)
 
-		if (ask == true) {
-			document.write('так є число в списку')
-		} else
-			document.write('ні, нема числа в списку')
 
 	</script>
 </body>
