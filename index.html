@@ -6,24 +6,40 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task# 3.1</title>
+	<title>Task# 3.2</title>
 </head>
 
 <body>
 	<script>
-		// Задача 3.1. Дан массив. Заменить все числа, меньшие последнего элемента массива, на первый элемент.
-		// обираемо кількість гравців
+		// Задача 3.2. Поменять местами наибольший и наименьший элементы массива.
 		let arr = []
+		let maxNum
+		let minNum
 		for (i = 0; i < 10; i++) {
 			arr.push(1 + Math.floor(Math.random() * 100))
 		}
 		document.write(`Массив:<br>${arr}`)
-		arr.forEach((val, i, arr) => {
-			if (val < arr[arr.length - 1]) {
-				arr[i] = arr[0]
-			}
+
+		maxNum = arr.reduce((prevMax, val, i, arr) => {
+			if (val > prevMax)
+				return val
+			else return prevMax
 		})
-		document.write(`<br>Заменить все числа, меньшие последнего элемента массива, на первый элемент:<br>${arr}`)
+
+		minNum = arr.reduce((prevMin, val, i, arr) => {
+			if (val < prevMin)
+				return val
+			else return prevMin
+		})
+
+		arr.forEach((val, i, arr) => {
+			if (val === maxNum)
+				arr[i] = minNum
+			if (val === minNum)
+				arr[i] = maxNum
+		})
+		console.log(`${maxNum} ${minNum}`)
+		document.write(`<br>Поменять местами наибольший и наименьший элементы массива.<br>${arr}`)
 
 	</script>
 </body>
