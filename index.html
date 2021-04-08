@@ -8,97 +8,63 @@
 	<link rel="stylesheet" href="css/style.css">
 	<style>
 		/* 17. ДоступДоЕлементівСторінки / ДЗ_Прості
-		Задача. Розробити калькуляртор */
-		.calc {
+		Задача. Зробити конвертер валют */
+		.currency-converter {
 			max-width: 300px;
 		}
 
-		.enter-form {
-			min-height: 60px;
+		.btn {
+			margin-top: 10px;
+		}
+
+		.show-result {
 			display: flex;
 			flex-direction: column;
 		}
 
-		.enter-num,
-		.result {
+		.label input {
 			float: right;
-		}
-
-		.enter-form__label {
-			margin-bottom: 5px;
-		}
-
-		.get-form {
-			max-width: 300px;
+			margin-bottom: 10px;
 		}
 	</style>
-	<title>Розробити калькуляртор</title>
+	<title>Зробити конвертер валют</title>
 </head>
 
 <body>
 
-	<div class="calc">
+	<div class="currency-converter">
 
 		<!-- Вводимо значення -->
-		<div class="enter-form">
-			<label class="enter-form__label" for="num1">First number:
-				<input class="enter-num" type="number" value="0" id="num1">
+		<div class="enter-block">
+			<label class="label" for="hrn"> Сума в гривнях:
+				<input type="number" value="" id="hrn" placeholder="Введіть суму гривень">
 			</label>
-			<label class="enter-form__label" for="num2">Second number:
-				<input class="enter-num" type="number" value="0" id="num2">
-			</label>
+			<!-- конвертуємо значення -->
+			<button type="button" onclick="getConverter()" class="btn">Конвертувати</button>
 		</div>
-
-		<!-- обираем що потрібно зробити -->
-		<div class="get-form">
-			<button type="button" onclick="getSum()">Додати</button>
-			<button type="button" onclick="getSubtraction()">Відняти</button>
-			<button type="button" onclick="getProduct()">Помножити</button>
-			<button type="button" onclick="getDivision()">Поділити</button>
-			<hr>
-		</div>
+		<hr>
 
 		<!-- Виводимо результат -->
-		<label>Результат:
-			<input class="result" id="result" type="number" value="0" />
-		</label>
-
+		<div class="show-result">
+			<label for="" class="label">Сума в євро:
+				<input type="number" value="0" id="euro">
+			</label>
+			<label for="" class="label">Сума в доларах:
+				<input type="number" value="0" id="dollar">
+			</label>
+		</div>
 	</div>
 
 	<script>
-		// Функция отримання чисел вводимих юзером.
-		function getNumbers() {
-			const inp1 = document.querySelector('#num1')
-			const n1 = parseFloat(inp1.value)
-			const inp2 = document.querySelector('#num2')
-			const n2 = parseFloat(inp2.value)
-			return numbs = [n1, n2]
+		// Функція конвертування валют
+		function getConverter() {
+			const hrnInput = document.querySelector('#hrn')
+			const hrn = parseFloat(hrnInput.value)
+			const result = [(hrn / 33.11).toFixed(2), (hrn / 27.85).toFixed(2)]
+			document.querySelector('#euro').value = result[0];
+			document.querySelector('#dollar').value = result[1];
 		}
 
-		// Функція додавання
-		function getSum() {
-			const userNumbs = getNumbers()
-			const sum = userNumbs[0] + userNumbs[1]
-			document.querySelector('#result').value = sum
-		}
-		// Функція віднімання
-		function getSubtraction() {
-			const userNumbs = getNumbers()
-			const substraction = userNumbs[0] - userNumbs[1]
-			document.querySelector('#result').value = substraction
-		}
-		// Функція множення
-		function getProduct() {
-			const userNumbs = getNumbers()
-			const product = userNumbs[0] * userNumbs[1]
-			document.querySelector('#result').value = product
-		}
-		// Функція ділення
-		function getDivision() {
-			const userNumbs = getNumbers()
-			const division = userNumbs[0] / userNumbs[1]
-			document.querySelector('#result').value = division
-		}
 	</script>
 </body>
 
