@@ -6,23 +6,99 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Task# 1</title>
+	<style>
+		/* 17. ДоступДоЕлементівСторінки / ДЗ_Прості
+		Задача. Розробити калькуляртор */
+		.calc {
+			max-width: 300px;
+		}
+
+		.enter-form {
+			min-height: 60px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.enter-num,
+		.result {
+			float: right;
+		}
+
+		.enter-form__label {
+			margin-bottom: 5px;
+		}
+
+		.get-form {
+			max-width: 300px;
+		}
+	</style>
+	<title>Розробити калькуляртор</title>
 </head>
 
 <body>
+
+	<div class="calc">
+
+		<!-- Вводимо значення -->
+		<div class="enter-form">
+			<label class="enter-form__label" for="num1">First number:
+				<input class="enter-num" type="number" value="0" id="num1">
+			</label>
+			<label class="enter-form__label" for="num2">Second number:
+				<input class="enter-num" type="number" value="0" id="num2">
+			</label>
+		</div>
+
+		<!-- обираем що потрібно зробити -->
+		<div class="get-form">
+			<button type="button" onclick="getSum()">Додати</button>
+			<button type="button" onclick="getSubtraction()">Відняти</button>
+			<button type="button" onclick="getProduct()">Помножити</button>
+			<button type="button" onclick="getDivision()">Поділити</button>
+			<hr>
+		</div>
+
+		<!-- Виводимо результат -->
+		<label>Результат:
+			<input class="result" id="result" type="number" value="0" />
+		</label>
+
+	</div>
+
 	<script>
-		// Задача 1. Клонирование массива. Напишите функцию copyArr(arr), которая копирует массив не изменяя оригинал.
-		let vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
-		document.write(`${vegetables}<br><br>`)
-		function copyArr(arr) {
-			return arr
+		// Функция отримання чисел вводимих юзером.
+		function getNumbers() {
+			const inp1 = document.querySelector('#num1')
+			const n1 = parseFloat(inp1.value)
+			const inp2 = document.querySelector('#num2')
+			const n2 = parseFloat(inp2.value)
+			return numbs = [n1, n2]
 		}
-		let newArr = copyArr(vegetables)
-		document.write(`Копірований массив newArr:<br>${newArr}`)
 
-
-
-
+		// Функція додавання
+		function getSum() {
+			const userNumbs = getNumbers()
+			const sum = userNumbs[0] + userNumbs[1]
+			document.querySelector('#result').value = sum
+		}
+		// Функція віднімання
+		function getSubtraction() {
+			const userNumbs = getNumbers()
+			const substraction = userNumbs[0] - userNumbs[1]
+			document.querySelector('#result').value = substraction
+		}
+		// Функція множення
+		function getProduct() {
+			const userNumbs = getNumbers()
+			const product = userNumbs[0] * userNumbs[1]
+			document.querySelector('#result').value = product
+		}
+		// Функція ділення
+		function getDivision() {
+			const userNumbs = getNumbers()
+			const division = userNumbs[0] / userNumbs[1]
+			document.querySelector('#result').value = division
+		}
 	</script>
 </body>
 
