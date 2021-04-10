@@ -7,62 +7,145 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
 	<style>
-		/* 17. ДоступДоЕлементівСторінки / ДЗ_Прості
-		Задача. Зробити конвертер валют */
-		.currency-converter {
+		/* Задача. Знайти середню оцінку учня. 
+		Кількість та оцінки вводяться користувачем 
+		(використати таблицю з компонентами input). */
+		* {
+			box-sizing: border-box;
+		}
+
+		.mark-block {
 			max-width: 300px;
 		}
 
-		.btn {
-			margin-top: 10px;
+		h3 {
+			text-align: justify;
 		}
 
-		.show-result {
-			display: flex;
-			flex-direction: column;
+		label {
+			display: inline-block;
+			align-items: center;
 		}
 
-		.label input {
-			float: right;
-			margin-bottom: 10px;
+		td,
+		th {
+			text-align: center;
+			font-size: 20px;
+		}
+
+		input {
+			width: 100%;
+			height: 34px;
+			text-align: center;
+		}
+
+		.input-mark {
+			font-size: 20px;
+		}
+
+		button {
+			width: 100%;
+			height: 34px;
+			font-weight: bold;
+		}
+
+		#totalmark {
+			font-weight: bold;
+			font-size: 20px;
+		}
+
+		#totalmark::placeholder {
+			font-size: 20px;
+			font-weight: normal;
 		}
 	</style>
-	<title>Зробити конвертер валют</title>
+	<title>Середня оцінка учня</title>
 </head>
 
 <body>
+	<!--  Задача. Знайти середню оцінку учня. 
+	Кількість та оцінки вводяться користувачем 
+	(використати таблицю з компонентами input). -->
 
-	<div class="currency-converter">
+	<table class="mark-table" id="table" border="1px">
+		<caption>Задача. Знайти середню оцінку учня.
+			Кількість та оцінки вводяться користувачем
+			(використати таблицю з компонентами input)</caption>
+		<tr>
+			<td><label class="label" for="enter-numSubjects"></label>Вкажіть кількість предметів: </td>
+			<td><input type="number" class="input-mark" id="enter-numSubjects" value="0"></td>
+			<td><button class="subjects-btn" type="button" onclick="getSubjects()">Створити список</button></td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				Список предметів
+			</th>
+			<th>
+				Оцінки учня
+			</th>
+		</tr>
+	</table>
 
-		<!-- Вводимо значення -->
-		<div class="enter-block">
-			<label class="label" for="hrn"> Сума в гривнях:
-				<input type="number" value="" id="hrn" placeholder="Введіть суму гривень">
-			</label>
-			<!-- конвертуємо значення -->
-			<button type="button" onclick="getConverter()" class="btn">Конвертувати</button>
-		</div>
-		<hr>
-
-		<!-- Виводимо результат -->
-		<div class="show-result">
-			<label for="" class="label">Сума в євро:
-				<input type="number" value="0" id="euro">
-			</label>
-			<label for="" class="label">Сума в доларах:
-				<input type="number" value="0" id="dollar">
-			</label>
-		</div>
-	</div>
 
 	<script>
-		// Функція конвертування валют
-		function getConverter() {
-			const hrnInput = document.querySelector('#hrn')
-			const hrn = parseFloat(hrnInput.value)
-			const result = [(hrn / 33.11).toFixed(2), (hrn / 27.85).toFixed(2)]
-			document.querySelector('#euro').value = result[0];
-			document.querySelector('#dollar').value = result[1];
+
+		function getSubjects() {
+			const inputSubjectsNum = parseInt(document.querySelector('#enter-numSubjects').value)
+			let subjectsNum = document.querySelector('#enter-numSubjects').setAttribute('readonly', 'readonly')
+			let count = 0
+
+			while (count != inputSubjectsNum) {
+				let subjectLabel = document.createElement('label')
+				let tbody = document.querySelector('tbody')
+				let br = document.createElement('br')
+				let tr = document.createElement('tr')
+				let td1 = document.createElement('td')
+				let td2 = document.createElement('td')
+				let markInp = document.createElement('input')
+
+
+				subjectLabel.innerHTML = (prompt(`Вкажіть назву предмету #${count + 1}`))
+				tbody.appendChild(tr)
+				tr.appendChild(td1)
+				td1.appendChild(subjectLabel)
+				tr.appendChild(td2)
+				td1.setAttribute("colspan", "2")
+				td2.appendChild(markInp)
+				markInp.setAttribute("class", "input-mark")
+				markInp.setAttribute("id", `subjectMark${count + 1}`)
+				markInp.setAttribute("placeholder", "Вкажіть оцінку учня")
+				count++
+			}
+			let tbody = document.querySelector('tbody')
+			let tr = document.createElement('tr')
+			tbody.appendChild(tr)
+			let td = document.createElement('td')
+			tr.appendChild(td)
+			let btnMark = document.createElement('button')
+			td.appendChild(btnMark).innerText = ('Обчислити середню арифметичну оцінку учня')
+			btnMark.setAttribute("type", "button")
+			btnMark.setAttribute("onclick", "getTotalMark()")
+			td.setAttribute("colspan", "2")
+			td = document.createElement('td')
+			markInp = document.createElement('input')
+			tr.appendChild(td)
+			td.appendChild(markInp)
+			markInp.setAttribute("readonly", "readonly")
+			markInp.setAttribute("placeholder", "Cередня оцінка учня");
+			markInp.setAttribute("id", "totalmark")
+			markInp.setAttribute("type", "number")
+		}
+
+		function getTotalMark() {
+			subjectsNum = document.getElementById('enter-numSubjects').value;
+			let markList = []
+			for (i = 0; i < subjectsNum; i++) {
+				markList[i] = parseInt(document.getElementById(`subjectMark${i + 1}`).value)
+			}
+			let totalMark = markList.reduce((sum, val, i, arr) => {
+				return (sum + val)
+			})
+			document.getElementById('totalmark').value = totalMark / subjectsNum
 		}
 
 	</script>
