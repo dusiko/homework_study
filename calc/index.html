@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		* {
+			box-sizing: border-box;
+			font-family: arial;
+
+		}
+
+		.container {
+			width: 90vw;
+			height: 90vh;
+			margin: 0 auto;
+			padding-top: 60px;
+
+		}
+
+		.calc {
+			width: 500px;
+			height: 500px;
+			background-color: #586bb8;
+			margin: 0 auto;
+			padding: 30px;
+			border: 3px solid black;
+			border-radius: 10px;
+			position: relative;
+			user-select: none;
+
+		}
+
+		.logo {
+			position: absolute;
+			top: -10px;
+			left: 30px;
+			font-size: 24px;
+			color: #363945;
+		}
+
+		.display {
+			margin: 5px 0 25px;
+			width: 430px;
+			height: 75px;
+			border: 3px solid #535457;
+			border-radius: 10px;
+			text-align: right;
+			background-color: #dfeef0;
+			outline: none;
+		}
+
+		.display[type="text"] {
+			font-size: 32px;
+
+		}
+
+		.keyboard {
+			display: flex;
+			flex-wrap: wrap;
+			position: relative;
+		}
+
+		.key {
+			width: 65px;
+			height: 65px;
+			border-radius: 10px;
+			margin: 10px;
+			font-size: 30px;
+			background-color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			cursor: pointer;
+			font-weight: bold;
+		}
+
+		.key:hover {
+			border: 3px solid #0bb13d;
+			box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+		}
+
+		.key-zero {
+			width: 150px;
+
+		}
+
+		.key-res {
+			height: 150px;
+			background-color: #3493eb;
+			color: #fff;
+
+		}
+
+		.key-zero,
+		.key-point,
+		.key-sum {
+			position: absolute;
+			bottom: 0;
+		}
+
+		.key-point {
+			left: 170px;
+		}
+
+		.key-sum {
+			left: 255px;
+		}
+
+		.key-c {
+			background-color: #ee6359;
+			color: #fff;
+		}
+	</style>
+	<title>calc</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="calc">
+			<h1 class="logo">calc</h1>
+			<input class="display" type="text" readonly />
+			<section class="keyboard">
+				<div class="key" onclick="insertItem('8')">8</div>
+				<div class="key" onclick="insertItem('7')">7</div>
+				<div class="key" onclick="insertItem('9')">9</div>
+				<div class="key" onclick="back()">&#11013;</div>
+				<div class="key key-c" onclick="clean()">C</div>
+				<div class="key" onclick="insertItem('4')">4</div>
+				<div class="key" onclick="insertItem('5')">5</div>
+				<div class="key" onclick="insertItem('6')">6</div>
+				<div class="key" onclick="insertItem('*')">&#215;</div>
+				<div class="key" onclick="insertItem('/')">&#247;</div>
+				<div class="key" onclick="insertItem('1')">1</div>
+				<div class="key" onclick="insertItem('2')">2</div>
+				<div class="key" onclick="insertItem('3')">3</div>
+				<div class="key" onclick="insertItem('-')">&minus;</div>
+				<div class="key key-res" onclick="res()">&equals;</div>
+				<div class="key key-zero" onclick="insertItem('0')">0</div>
+				<div class="key key-point" onclick="insertItem('.')">.</div>
+				<div class="key key-sum" onclick="insertItem('+')">+</div>
+			</section>
+		</div>
+	</div>
+	<script>
+		function insertItem(item) {
+			document.querySelector('.display').value = document.querySelector('.display').value + item
+		}
+		function clean() {
+			document.querySelector('.display').value = ''
+		}
+
+		function back() {
+			val = document.querySelector('.display').value
+			document.querySelector('.display').value = val.substring(0, val.length - 1);
+		}
+
+		function res() {
+			if (eval(document.querySelector('.display').value) != 'undefined')
+				document.querySelector('.display').value = eval(document.querySelector('.display').value)
+		}
+
+	</script>
+</body>
+
+</html>
