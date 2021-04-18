@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		Задача 4. Визначення вартості замовлення (за допомогою чекбоксів вибирати першу страву, другу і десерт).
+	</title>
+	<style>
+		.order {
+			text-align: center;
+			margin: 0 auto;
+			max-width: 1250px;
+		}
+
+		* {
+			box-sizing: border-box;
+			font-family: tahoma;
+		}
+
+		.choice {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.menu {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+			padding: 10px;
+
+		}
+
+		.totalSection {
+			border: none;
+			outline: none;
+			text-align: right;
+		}
+
+		.totalSection[type=number] {
+			font-size: 18px;
+			font-weight: bold;
+			max-width: 100px;
+			text-align: right;
+		}
+
+		table {
+			border: 1px solid black;
+			max-width: 500px;
+		}
+
+		th {
+			border-bottom: 1px solid black;
+			padding: 10px;
+		}
+
+		td {
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			padding: 10px;
+		}
+
+		td:last-child {
+			border-right: none;
+		}
+
+		tr:last-child td {
+			border-bottom: none;
+		}
+
+		.total {
+			display: flex;
+			flex-direction: column;
+			max-width: 1250px;
+			align-items: flex-start;
+			justify-content: center;
+			padding: 10px;
+		}
+
+		.total input {
+			margin-top: 15px;
+			border: none;
+			outline: none;
+		}
+
+		.total input[type="text"] {
+			font-size: 20px;
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="order">
+		<h1>Меню</h1>
+		<section class="choice">
+			<div class="menu first">
+				<h3>Перші страви</h3>
+				<table>
+					<tr>
+						<th>Назва страви</th>
+						<th>Порція</th>
+						<th>Ціна</th>
+						<th>Вибір</th>
+					</tr>
+
+					<tr>
+						<td><label for="borsch">Борщь</label></td>
+						<td>
+							300 мл.
+						</td>
+						<td>
+							37 грн.
+						</td>
+						<td>
+							<input class="first-dish" name="borsch" type="checkbox" value="37">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="bograch">Бограчь</label></td>
+						<td>
+							300 мл.
+						</td>
+						<td>
+							51 грн.
+						</td>
+						<td>
+							<input class="first-dish" name="bograch" type="checkbox" value="51">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="bulyon">Бульйон</label></td>
+						<td>
+							300 мл.
+						</td>
+						<td>
+							31 грн.
+						</td>
+						<td>
+							<input class="first-dish" name="bulyon" type="checkbox" value="31">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="sgs">Сирно-грибний суп</label></td>
+						<td>
+							300 мл.
+						</td>
+						<td>
+							53 грн.
+						</td>
+						<td>
+							<input class="first-dish" name="sgs" type="checkbox" value="53">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">Загальна вартість</td>
+						<td colspan="2"><input class="totalSection" id='total1' type="number" value="0" readonly>
+							грн.</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="menu second">
+				<h3>Другі страви</h3>
+				<table>
+					<tr>
+						<th>Назва страви</th>
+						<th>Порція</th>
+						<th>Ціна</th>
+						<th>Вибір</th>
+					</tr>
+
+					<tr>
+						<td><label for="kartoplyaPure">Картопля пюре</label></td>
+						<td>
+							200 грм.
+						</td>
+						<td>
+							19 грн.
+						</td>
+						<td>
+							<input class="second-dish" name="kartoplyaPure" type="checkbox" value="19">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="kartoplyaFree">Картопля фрі</label></td>
+						<td>
+							200 грм.
+						</td>
+						<td>
+							45 грн.
+						</td>
+						<td>
+							<input class="second-dish" name="kartoplyaFree" type="checkbox" value="45">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="ris">Рис з овочами</label></td>
+						<td>
+							200 грм.
+						</td>
+						<td>
+							27 грн.
+						</td>
+						<td>
+							<input class="second-dish" name="ris" type="checkbox" value="27">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="kus">Кус-кус з овочами</label></td>
+						<td>
+							200 грм.
+						</td>
+						<td>
+							73 грн.
+						</td>
+						<td>
+							<input class="second-dish" name="kus" type="checkbox" value="73">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">Загальна вартість</td>
+						<td colspan="2"><input class="totalSection" id='total2' type="number" value="0" readonly>
+							грн.</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="menu desert">
+				<h3>Десерти</h3>
+				<table>
+					<tr>
+						<th>Назва страви</th>
+						<th>Порція</th>
+						<th>Ціна</th>
+						<th>Вибір</th>
+					</tr>
+
+					<tr>
+						<td><label for="cheesecake">Чізкейк</label></td>
+						<td>
+							150 грм.
+						</td>
+						<td>
+							90 грн.
+						</td>
+						<td>
+							<input class="desert-dish" name="kartoplyaPure" type="checkbox" value="90">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="tiramisu">Тірамісу</label></td>
+						<td>
+							150 грм.
+						</td>
+						<td>
+							100 грн.
+						</td>
+						<td>
+							<input class="desert-dish" name="tiramisu" type="checkbox" value="100">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="napoleon">Наполеон</label></td>
+						<td>
+							200 грм.
+						</td>
+						<td>
+							85 грн.
+						</td>
+						<td>
+							<input class="desert-dish" name="napoleon" type="checkbox" value="85">
+						</td>
+					</tr>
+
+					<tr>
+						<td><label for="ekler">Еклер</label></td>
+						<td>
+							100 грм.
+						</td>
+						<td>
+							50 грн.
+						</td>
+						<td>
+							<input class="desert-dish" name="ekler" type="checkbox" value="50">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">Загальна вартість</td>
+						<td colspan="2"><input class="totalSection" id='total3' type="number" value="0" readonly>
+							грн.</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+
+		<section class="total">
+			<button onclick="getTotalSum()">Сформувати загальну вартість</button>
+			<label> Загалом:
+				<input id="totalSum" type="text">
+			</label>
+		</section>
+	</div>
+
+
+	<script>
+		function getTotalSum() {
+			const firstDishSection = document.querySelectorAll('.first-dish')
+			const firstDishTotal = getSumOfGroup(firstDishSection)
+			document.querySelector('#total1').value = firstDishTotal
+
+			const secondDishSection = document.querySelectorAll('.second-dish')
+			const secondDishTotal = getSumOfGroup(secondDishSection)
+			document.querySelector('#total2').value = secondDishTotal
+
+			const desertDishSection = document.querySelectorAll('.desert-dish')
+			const desertDishTotal = getSumOfGroup(desertDishSection)
+			document.querySelector('#total3').value = desertDishTotal
+
+
+			document.querySelector('#totalSum').value = firstDishTotal + secondDishTotal + desertDishTotal + ' грн.'
+		}
+
+		function getSumOfGroup(checkboxArr) {
+			sum = 0;
+			for (let i = 0; i < checkboxArr.length; i++) {
+				if (checkboxArr[i].checked) {
+					sum += +checkboxArr[i].value;
+				}
+			}
+			return sum;
+		}
+
+
+	</script>
+</body>
+
+</html>
