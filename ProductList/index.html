@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>productList</title>
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<!-- Задача. Дано списки продуктів. Знайти сумарну вартість -->
+	<div class="product-list">
+		<div class="product-enter">
+			<h1>Список продуктів</h1>
+			<label>Назва <input type="text" placeholder="Вкажіть назву продкукта"></label>
+			<label>Ціна <input type="text" placeholder="Вкажіть ціну"></label>
+			<button onclick="addProd()">добавити</button>
+		</div>
+		<div class="product-res">
+			<ol>
+			</ol>
+			<label>Сформувати загальну вартість продуктів <button onclick="totalPrice()">сформувати</button><input
+					type="text" readonly placeholder="Загальна вартість"></label>
+		</div>
+	</div>
+
+
+
+	<script>
+		function addProd() {
+			// позначаємо данні
+			const prodName = document.querySelectorAll('.product-enter label input')[0].value
+			const prodPrice = document.querySelectorAll('.product-enter label input')[1].value
+			document.querySelectorAll('.product-enter label input')[0].value = ''
+			document.querySelectorAll('.product-enter label input')[1].value = ''
+			// створюемо список
+			const productRes = document.querySelector('.product-res')
+			const ol = document.querySelector('.product-res ol')
+			const li = document.createElement('li')
+			li.innerHTML = `${prodName} - <span class="price"> ${prodPrice} </span> грн.`
+			ol.appendChild(li)
+		}
+		function totalPrice() {
+			const prices = document.querySelectorAll('.price')
+			let total = 0
+			for (const item of prices) {
+				let i = 0; i < prices.length; i++
+				total += +item.innerText
+			}
+			document.querySelector('.product-res label input').value = `${total} грн.`
+		}
+
+	</script>
+</body>
+
+</html>
