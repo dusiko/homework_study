@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		/* Задача. Знайти середню оцінку учня. 
+		Кількість та оцінки вводяться користувачем 
+		(використати таблицю з компонентами input). */
+		* {
+			box-sizing: border-box;
+		}
+
+		.container {
+			max-width: 1024px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			padding-top: 50px;
+		}
+
+		.mark-block {
+			max-width: 300px;
+		}
+
+		h3 {
+			text-align: justify;
+		}
+
+		label {
+			display: inline-block;
+			align-items: center;
+		}
+
+		td,
+		th {
+			text-align: center;
+			font-size: 20px;
+		}
+
+		input {
+			width: 100%;
+			height: 34px;
+			text-align: center;
+		}
+
+		.input-mark {
+			font-size: 20px;
+		}
+
+		button {
+			width: 100%;
+			height: 34px;
+			font-weight: bold;
+		}
+
+		#totalmark {
+			font-weight: bold;
+			font-size: 20px;
+		}
+
+		#totalmark::placeholder {
+			font-size: 20px;
+			font-weight: normal;
+		}
+	</style>
+	<title>Середня оцінка учня</title>
+</head>
+
+<body>
+	<!--  Задача. Знайти середню оцінку учня. 
+	Кількість та оцінки вводяться користувачем 
+	(використати таблицю з компонентами input). -->
+	<div class="container">
+		<table class="mark-table" id="table" border="1px">
+			<caption>Задача. Знайти середню оцінку учня.
+				Кількість та оцінки вводяться користувачем
+				(використати таблицю з компонентами input)</caption>
+			<tr>
+				<td><label class="label" for="enter-numSubjects"></label>Вкажіть кількість предметів: </td>
+				<td><input type="number" class="input-mark" id="enter-numSubjects" value="0"></td>
+				<td><button class="subjects-btn" type="button" onclick="getSubjects()">Створити список</button></td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					Список предметів
+				</th>
+				<th>
+					Оцінки учня
+				</th>
+			</tr>
+		</table>
+	</div>
+
+	<script>
+
+		function getSubjects() {
+			const inputSubjectsNum = parseInt(document.querySelector('#enter-numSubjects').value)
+			let subjectsNum = document.querySelector('#enter-numSubjects').setAttribute('readonly', 'readonly')
+			let count = 0
+
+			while (count != inputSubjectsNum) {
+				let subjectLabel = document.createElement('label')
+				let tbody = document.querySelector('tbody')
+				let br = document.createElement('br')
+				let tr = document.createElement('tr')
+				let td1 = document.createElement('td')
+				let td2 = document.createElement('td')
+				let markInp = document.createElement('input')
+
+
+				subjectLabel.innerHTML = (prompt(`Вкажіть назву предмету #${count + 1}`))
+				tbody.appendChild(tr)
+				tr.appendChild(td1)
+				td1.appendChild(subjectLabel)
+				tr.appendChild(td2)
+				td1.setAttribute("colspan", "2")
+				td2.appendChild(markInp)
+				markInp.setAttribute("class", "input-mark")
+				markInp.setAttribute("id", `subjectMark${count + 1}`)
+				markInp.setAttribute("placeholder", "Вкажіть оцінку учня (1-12)")
+				markInp.setAttribute('type', 'number')
+				markInp.setAttribute('min', '1')
+				markInp.setAttribute('max', '12')
+
+				count++
+			}
+			let tbody = document.querySelector('tbody')
+			let tr = document.createElement('tr')
+			tbody.appendChild(tr)
+			let td = document.createElement('td')
+			tr.appendChild(td)
+			let btnMark = document.createElement('button')
+			td.appendChild(btnMark).innerText = ('Обчислити середню арифметичну оцінку учня')
+			btnMark.setAttribute("type", "button")
+			btnMark.setAttribute("onclick", "getTotalMark()")
+			td.setAttribute("colspan", "2")
+			td = document.createElement('td')
+			markInp = document.createElement('input')
+			tr.appendChild(td)
+			td.appendChild(markInp)
+			markInp.setAttribute("readonly", "readonly")
+			markInp.setAttribute("placeholder", "Cередня оцінка учня");
+			markInp.setAttribute("id", "totalmark")
+			markInp.setAttribute("type", "number")
+		}
+
+		function getTotalMark() {
+			subjectsNum = document.getElementById('enter-numSubjects').value;
+			let markList = []
+			for (i = 0; i < subjectsNum; i++) {
+				markList[i] = parseInt(document.getElementById(`subjectMark${i + 1}`).value)
+			}
+			let totalMark = markList.reduce((sum, val, i, arr) => {
+				return (sum + val)
+			})
+			document.getElementById('totalmark').value = totalMark / subjectsNum
+		}
+
+	</script>
+</body>
+
+</html>
