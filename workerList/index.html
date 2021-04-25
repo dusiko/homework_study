@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		* {
+			font-family: arial;
+		}
+
+		.error {
+			margin: 0;
+			padding: 0;
+			text-align: right;
+			font-size: 12px;
+			color: red;
+			margin-bottom: 10px;
+			display: none;
+			font-style: italic;
+
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		.main {
+			max-width: 1110px;
+			margin: 0 auto;
+		}
+
+		.enter {
+			display: flex;
+			flex-direction: column;
+			max-width: 500px;
+			margin: 0 auto;
+		}
+
+		.enter label input {
+			float: right;
+			width: 250px;
+			margin: 5px 0;
+		}
+
+		.enter button {
+			margin: 10px 0;
+		}
+
+		.res {
+			margin: 0 auto;
+			max-width: 900px;
+		}
+
+		table {
+
+			text-align: center;
+			margin: 10px 0;
+		}
+
+		th {
+			width: 300px;
+			height: auto;
+			border: 2px solid black;
+		}
+
+		td {
+			border: 1px solid black;
+		}
+	</style>
+	<title>WorkersList</title>
+</head>
+
+<body>
+	<!-- Задача. Сформувати список працівників (ПІБ, посада, заробітна плата). По одному додається інформація про працівників у вигляді таблиці (як у попередньому завданні). Потім знайти сумарну заробітну плату працівників, у яких заробітна плата більша за 3000. -->
+	<div class="main">
+		<div class="enter">
+			<h1>Список працівників</h1>
+			<label>Вкажіть ПІБ працівника: <input type="text" placeholder="Жека Юрій Юрійович"></label>
+			<p class="error">Вкажіть імя працівника!</p>
+			<label>Вкажіть посаду: <input type="text" placeholder="Генеральний директор Microsoft corp."></label>
+			<p class="error">Вкажіть посаду працівника!</p>
+			<label>Вкажіть заробітну плату: <input type="number" placeholder="50000000"></label>
+			<p class="error">Вкажіть зарплату працівника!</p>
+			<button onclick="push()">додати працівника</button>
+		</div>
+		<div class="res">
+			<table>
+
+			</table>
+		</div>
+	</div>
+	<script>
+
+
+		function push() {
+			// перевіряємо чи заповнені інпути, якщо ні, виводим текст.
+			if (document.querySelectorAll('.enter label input')[0].value == '') {
+				document.querySelectorAll('.error')[0].style.display = "block"
+			}
+			else {
+				document.querySelectorAll('.error')[0].style.display = "none"
+			}
+			const name = document.querySelectorAll('.enter label input')[0].value
+			if (document.querySelectorAll('.enter label input')[1].value == '') {
+				document.querySelectorAll('.error')[1].style.display = "block"
+			}
+			else {
+				document.querySelectorAll('.error')[1].style.display = "none"
+			}
+			const position = document.querySelectorAll('.enter label input')[1].value
+
+			if (document.querySelectorAll('.enter label input')[2].value == '') {
+				document.querySelectorAll('.error')[2].style.display = "block"
+			}
+			else {
+				document.querySelectorAll('.error')[2].style.display = "none"
+			}
+			const cash = document.querySelectorAll('.enter label input')[2].value
+
+			// створюємо шапку таблиці
+			// перевіряємо чи є хоча б 1 пустий інпут, якщо ні, створюємо таблицю, якщо є нічого не робимо.
+			if (document.querySelectorAll('.enter label input')[0].value == '' || document.querySelectorAll('.enter label input')[1].value == '' || document.querySelectorAll('.enter label input')[2].value == '') {
+
+			} else {
+				document.querySelectorAll('.enter label input')[0].value = ''
+				document.querySelectorAll('.enter label input')[1].value = ''
+				document.querySelectorAll('.enter label input')[2].value = ''
+				const table = document.querySelector('.res table')
+				if (!document.querySelector('table tr th')) {
+					const trHead = document.createElement('tr')
+					table.appendChild(trHead)
+					const thName = document.createElement('th')
+					thName.innerText = 'ПІБ'
+					trHead.appendChild(thName)
+					const thPosition = document.createElement('th')
+					thPosition.innerText = 'Посада'
+					trHead.appendChild(thPosition)
+					const thCash = document.createElement('th')
+					thCash.innerText = 'Посада'
+					trHead.appendChild(thCash)
+				}
+				// створюємо юзер-лист блок
+				const trUser = document.createElement('tr')
+				table.appendChild(trUser)
+				const tdUserName = document.createElement('td')
+				tdUserName.innerText = name
+				trUser.appendChild(tdUserName)
+				const tdUserPosition = document.createElement('td')
+				tdUserPosition.innerText = position
+				trUser.appendChild(tdUserPosition)
+				const tdUserCash = document.createElement('td')
+				tdUserCash.setAttribute('class', 'cash')
+				tdUserCash.innerHTML = `<span>${cash}</span> грн.`
+				trUser.appendChild(tdUserCash)
+				// створюємо підрахуночну секцію
+				if (!document.querySelector('.res .sum-section')) {
+					const sumSection = document.createElement('div')
+					sumSection.setAttribute('class', 'sum-section')
+					const res = document.querySelector('.res')
+					res.appendChild(sumSection)
+					const btnResult = document.createElement('button')
+					btnResult.innerText = "порахувати";
+					btnResult.onclick = sum
+					sumSection.appendChild(btnResult)
+					const totalCash = document.createElement('p')
+					sumSection.appendChild(totalCash)
+				}
+			}
+		}
+
+		// подія сумування зарплат
+		function sum() {
+			let sum = 0
+			const cashList = document.querySelectorAll('.cash span')
+			for (i = 0; i < cashList.length; i++) {
+				if (+cashList[i].innerText > 3000) {
+					sum += +cashList[i].innerText
+					document.querySelectorAll('.cash span')[i].style.color = "#0add1c";
+					document.querySelectorAll('.cash span')[i].style.fontWeight = "bold";
+				} else {
+					document.querySelectorAll('.cash span')[i].style.color = "red";
+					document.querySelectorAll('.cash span')[i].style.fontWeight = "bold";
+				}
+			}
+			document.querySelectorAll('p')[3].innerText = `Загальна сума зарплат працівників у яких зарплата більша ніж 3000 грн. становить: ${sum} грн.`
+		}
+
+	</script>
+</body>
+
+</html>
