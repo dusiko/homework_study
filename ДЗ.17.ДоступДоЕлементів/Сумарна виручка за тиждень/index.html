@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.container {
+			max-width: 1024px;
+			margin: 0 auto;
+		}
+
+		th {
+			border: 1px solid black;
+			width: 150px;
+		}
+
+		table {
+			border: 1px solid black;
+		}
+
+		td {
+			border: 1px solid black;
+			text-align: center;
+		}
+	</style>
+	<title>shop</title>
+</head>
+
+<body>
+	<!-- Задача. Знайти сумарну виручку від діяльності магазину протягом вказаної кількості тижнів (кожного тижня працює 5 днів). -->
+	<div class="container">
+		<div class="main">
+			<fieldset class="enter">
+				<legend>Магазин</legend>
+				<label>Кількість тижнів: <input type="number" placeholder="кількість тижнів" min="1"></label>
+				<button onclick="push()">сформувати виручку</button>
+			</fieldset>
+			<div class="res">
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<script>
+		function push() {
+			// створюємо шапку таблиці, якщо її нема.
+			const table = document.createElement('TABLE')
+			if (!document.querySelector('table')) {
+				document.querySelector('.res').appendChild(table)
+				const tr = document.createElement('TR')
+				table.appendChild(tr)
+				for (i = 1; i < 9; i++) {
+					const th = document.createElement('TH')
+					tr.appendChild(th)
+				}
+				document.querySelectorAll('th')[0].innerText = 'Номер тижня'
+				document.querySelectorAll('th')[1].innerText = 'Понеділок'
+				document.querySelectorAll('th')[2].innerText = 'Вівторок'
+				document.querySelectorAll('th')[3].innerText = 'Середа'
+				document.querySelectorAll('th')[4].innerText = 'Четвер'
+				document.querySelectorAll('th')[5].innerText = 'П\'ятниця'
+				document.querySelectorAll('th')[6].innerText = 'Субота'
+				document.querySelectorAll('th')[7].innerText = 'Неділя'
+			}
+			// формуємо кількість рядків відносно кількості тижнів.
+			let numWeeks = document.querySelector('.enter label input').value;
+			for (i = 1; i <= numWeeks; i++) {
+				const tr = document.createElement('tr')
+				table.appendChild(tr)
+				for (k = 1; k < 9; k++) {
+					const td = document.createElement('td')
+					if (k == 1) {
+						tr.appendChild(td).innerHTML = `#${i}`
+					} else if (k < 7) {
+						const randomCash = 0 + Math.floor(Math.random() * (10001))
+						tr.appendChild(td).innerHTML = `<span>${randomCash}</span> грн. `
+					} else {
+						tr.appendChild(td).innerHTML = `Вихідний`
+					}
+				}
+			}
+			// обчислюемо результат
+			const cashList = document.querySelectorAll('span')
+			let sumCash = 0
+			for (i = 0; i < cashList.length; i++) {
+				sumCash += +cashList[i].innerText;
+			}
+			// виводимо результат
+			const p = document.createElement('p')
+			p.innerHTML = `Загальна сума прибутку за ${numWeeks} тижнів, становить: <b>${sumCash} грн</b>.`;
+			const res = document.querySelector('.res');
+			res.appendChild(p);
+
+		}
+	</script>
+</body>
+
+</html>
