@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		button {
+			cursor: pointer;
+		}
+
+		body {
+			height: 90vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: arial;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.container {
+			width: 500px;
+			text-align: center;
+			background-color: rgba(184, 233, 248, 0.329);
+			padding: 10px;
+			border-radius: 10px;
+		}
+
+		h4 {
+			margin: 2px;
+			font-size: 26px;
+		}
+
+		ol {
+			margin: 5px;
+
+		}
+
+		ol li {
+			padding: 10px 0;
+			width: 430px;
+			position: relative;
+			text-align: left;
+			padding-left: 5px;
+		}
+
+		li button {
+			position: absolute;
+			right: 4px;
+			top: 6px;
+			bottom: 0;
+			height: 25px;
+			background-color: black;
+			color: aliceblue;
+			border: none;
+			border-radius: 5px;
+		}
+
+		li button:hover {
+			background-color: rgba(245, 110, 110, 0.904);
+			transition: .2s;
+		}
+
+		li img {
+			width: 24px;
+			float: right;
+			margin-right: 75px;
+			cursor: pointer;
+		}
+
+		.enter p {
+			color: red;
+			font-style: italic;
+			font-size: 14px;
+			font-weight: bold;
+			margin: 2px 0;
+			display: none;
+			text-align: left;
+		}
+
+		#adding-task {
+			background-color: transparent;
+			border-radius: 5px;
+			width: 300px;
+			height: 50px;
+			float: left;
+			font-size: 16px;
+		}
+
+		#adding-task[type="text"] {
+			padding-left: 15px;
+		}
+
+		#adding-task::placeholder {
+			font-size: 16px;
+		}
+
+		#push-btn {
+			background-color: rgb(184, 184, 228);
+			border-radius: 5px;
+			float: right;
+			height: 50px;
+			font-size: 16px;
+		}
+
+		#push-btn:hover {
+			border: 2px solid rgb(230, 83, 83);
+			transition: .3s;
+		}
+	</style>
+	<title>Сформувати список завдань</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="enter">
+			<h4>do List</h4>
+			<label>
+				<input type="text" placeholder="Введіть завдання" id="adding-task" maxlength="20" onkeyup="limitEr()">
+			</label>
+			<button onclick="pushTask()" id="push-btn">
+				добавити завдання
+			</button>
+			<p id="error-limit">
+				завдання повинне містити до 20 символів!
+			</p>
+		</div>
+		<div class="do-list">
+			<h4>cписок завдань</h4>
+			<ol class="task-list">
+			</ol>
+		</div>
+	</div>
+
+
+
+	<script>
+		// Задача.Сформувати список завдань(з можливістю подальшого вилучення).
+		let pushBtn = document.querySelector('#push-btn')
+		let list = document.querySelector('.task-list')
+		function pushTask() {
+
+			let li = document.createElement('li')
+			let inpVal = document.querySelector('#adding-task').value
+			if (inpVal == '')
+				alert('Вкажіть завдання!')
+			else {
+				li.innerText = (inpVal)
+				list.appendChild(li)
+				document.querySelector('#adding-task').value = '';
+				let delBtn = document.createElement('button')
+				delBtn.innerText = 'удалити'
+				li.appendChild(delBtn)
+				delBtn.onclick = delTask
+				const doneBtn = document.createElement('IMG')
+				doneBtn.setAttribute('src', 'img/done-icon.png')
+				doneBtn.onclick = doneTask
+				li.appendChild(doneBtn)
+
+			}
+		}
+		function delTask() {
+			this.parentElement.remove()
+		}
+		function doneTask() {
+			this.parentElement.style.backgroundColor = "green"
+			this.parentElement.style.borderRadius = "5px"
+		}
+
+		function limitEr() {
+			if (document.querySelector('#adding-task').value.length == 20)
+				document.querySelector('#error-limit').setAttribute('style', 'display:block')
+			else
+				document.querySelector('#error-limit').removeAttribute('style', 'display:block')
+		}
+	</script>
+</body>
+
+</html>
