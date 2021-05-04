@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		* {
+			box-sizing: border-box;
+			font-family: arial;
+		}
+
+		.container {
+			max-width: 1024px;
+			margin: 0 auto;
+		}
+
+		.enter {
+			padding: 10px;
+			border-radius: 10px;
+			border: 1px solid black;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.enter-name {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.form {
+			margin: 10px 0;
+		}
+
+		.carriage label {
+			margin-right: 10px;
+			padding: 2px 10px;
+		}
+	</style>
+	<title>Визначення вартості квитка</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="enter">
+			<h1>Замовлення квитка</h1>
+			<form class="form enter-name">
+				<label>Прізвище <input type="text"></label>
+				<label>Ім'я <input type="text"></label>
+				<label>По батькові <input type="text"></label>
+			</form>
+			<form class="form"><label>Дата відправлення: <input type="date"></label></form>
+			<form class="form route">Оберіть маршрут:
+				<select name="select">
+					<option value="Мукачево">Мукачево</option>
+					<option value="Львів">Львів</option>
+					<option value="Чернігів">Чернігів</option>
+					<option value="Житомир">Житомир</option>
+					<option value="Миколаїв">Миколаїв</option>
+					<option value="Чоп">Чоп</option>
+					<option value="Київ">Київ</option>
+					<option value="Одеса">Одеса</option>
+					<option value="Харків">Харків</option>
+				</select>
+			</form>
+			<form class="form tickets-num">
+				<label>Кількість квитків: <input type="number" value="1" min="1"></label>
+			</form>
+			<form class="form carriage">Тип вагону:
+				<label>Плац-карт<input type="radio" name="carriageType" value='Плац-карт'></label>
+				<label>Купе<input type="radio" name="carriageType" value='Купе'></label>
+				<label>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
+			</form>
+			<button onclick="getTicket()">Сформувати замовлення</button>
+		</div>
+
+	</div>
+
+	<script>
+		function getTicket() {
+			// створюемо res block
+			const container = document.querySelector('.container')
+			const div = document.createElement('div')
+			div.setAttribute('class', 'res')
+			container.appendChild(div)
+			const h2 = document.createElement('h2')
+			h2.innerText = "Ваш білет"
+			div.appendChild(h2)
+			// створюемо блок імя
+			const pName = document.createElement('p')
+			const names = document.querySelectorAll('.enter-name label input')
+			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}.`
+			div.appendChild(pName)
+			// блок дата
+			const pDate = document.createElement('p');
+			const date = document.querySelectorAll('.form label input')[3].value;
+			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}.`
+			div.appendChild(pDate)
+			// блок маршрут
+			const pRoute = document.createElement('p')
+			const routes = document.querySelector('.route select').value
+			pRoute.innerHTML = `<b>Ваш маршрут:</b> Ужгород - ${routes}`
+			div.appendChild(pRoute)
+			// блок Кількість квитків
+			const numTickets = document.querySelector('.tickets-num label input').value
+			const pNumTickets = document.createElement('p')
+			pNumTickets.innerHTML = `<b>Кількість квитків:</b> ${numTickets} шт.`
+			div.appendChild(pNumTickets)
+			// блок Тип Вагону
+			const pCarriage = document.createElement('p')
+			const carriageArr = document.querySelectorAll('.carriage label input')
+			for (i = 0; i < carriageArr.length; i++) {
+				if (carriageArr[i].checked) {
+					pCarriage.innerHTML = `<b>Тип вагону:</b> ${carriageArr[i].value} `
+				}
+			}
+			div.appendChild(pCarriage)
+		}
+	</script>
+</body>
+
+</html>
