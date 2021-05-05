@@ -53,7 +53,8 @@
 			<form class="form"><label>Дата відправлення: <input type="date"></label></form>
 			<form class="form route">Оберіть маршрут:
 				<select name="select">
-					<option value="Мукачево">Мукачево</option>
+					<option disabled="disabled">Куди направляєтесь?</option>
+					<option value="Мукачево" >Мукачево</option>
 					<option value="Львів">Львів</option>
 					<option value="Чернігів">Чернігів</option>
 					<option value="Житомир">Житомир</option>
@@ -68,7 +69,7 @@
 				<label>Кількість квитків: <input type="number" value="1" min="1"></label>
 			</form>
 			<form class="form carriage">Тип вагону:
-				<label>Плац-карт<input type="radio" name="carriageType" value='Плац-карт'></label>
+				<label>Плац-карт<input type="radio" name="carriageType" value='Плац-карт' checked="checked"></label>
 				<label>Купе<input type="radio" name="carriageType" value='Купе'></label>
 				<label>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
 			</form>
@@ -92,21 +93,27 @@
 			const names = document.querySelectorAll('.enter-name label input')
 			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}.`
 			div.appendChild(pName)
+			for (i = 0; i < names.length; i++){
+				document.querySelectorAll('.enter-name label input')[i].value = ''
+			}
 			// блок дата
 			const pDate = document.createElement('p');
 			const date = document.querySelectorAll('.form label input')[3].value;
 			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}.`
 			div.appendChild(pDate)
+			document.querySelectorAll('.form label input')[3].value = '';
 			// блок маршрут
 			const pRoute = document.createElement('p')
 			const routes = document.querySelector('.route select').value
 			pRoute.innerHTML = `<b>Ваш маршрут:</b> Ужгород - ${routes}`
+			document.querySelector('.route select').value = 'Мукачево'
 			div.appendChild(pRoute)
 			// блок Кількість квитків
 			const numTickets = document.querySelector('.tickets-num label input').value
 			const pNumTickets = document.createElement('p')
 			pNumTickets.innerHTML = `<b>Кількість квитків:</b> ${numTickets} шт.`
 			div.appendChild(pNumTickets)
+			document.querySelector('.tickets-num label input').value = 1
 			// блок Тип Вагону
 			const pCarriage = document.createElement('p')
 			const carriageArr = document.querySelectorAll('.carriage label input')
