@@ -37,6 +37,39 @@
 			margin-right: 10px;
 			padding: 2px 10px;
 		}
+
+		.res {
+			border: 1px solid black;
+			border-radius: 10px;
+			margin: 10px;
+			padding: 10px;
+			width: 328px;
+			text-align: center;
+
+		}
+
+		#pAgree {
+			text-align: center;
+		}
+
+		.agreeded {
+			border: 1px solid black;
+			border-radius: 10px;
+			margin: 10px;
+			padding: 10px;
+			width: 328px;
+			text-align: center;
+			transition: 2s;
+			background-color: green;
+		}
+
+		.tickets {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0 -10px;
+			align-items: center;
+
+		}
 	</style>
 	<title>Визначення вартості квитка</title>
 </head>
@@ -53,7 +86,7 @@
 			<form class="form"><label>Дата відправлення: <input type="date" value="2021-06-01"></label></form>
 			<form class="form route">Оберіть маршрут:
 				<select onchange="getPrice()">
-					<option value="Мукачево">Мукачево</option>
+					<option value="Мукачево" title="100 грн.">Мукачево</option>
 					<option value="Львів">Львів</option>
 					<option value="Чернігів">Чернігів </option>
 					<option value="Житомир">Житомир </option>
@@ -79,15 +112,22 @@
 	</div>
 
 	<script>
+		let ticketsNumberCount = 1
 		function getTicket() {
 			// створюемо res block
 			const container = document.querySelector('.container')
+			if (!document.querySelector('.tickets')) {
+				const tickets = document.createElement('div')
+				tickets.setAttribute('class', 'tickets')
+				container.appendChild(tickets)
+			}
 			if (!document.querySelector('.res')) {
+				const tickets = document.getElementsByClassName('tickets')[0]
 				const div = document.createElement('div')
 				div.setAttribute('class', 'res')
-				container.appendChild(div)
+				tickets.prepend(div)
 				const h2 = document.createElement('h2')
-				h2.innerText = "Ваш білет"
+				h2.innerText = `Ваш квиток #${ticketsNumberCount}`
 				div.appendChild(h2)
 			}
 			// створюемо блок імя
@@ -99,7 +139,10 @@
 			}
 			const pName = document.querySelectorAll('.info')[0]
 			const names = document.querySelectorAll('.enter-name label input')
-			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}`
+			pName.innerHTML = `<b>Замовник:</b><br>
+			${names[0].value}<br>
+			${names[1].value}<br>
+			${names[2].value}`
 
 			// блок дата
 			if (!document.querySelectorAll('.info')[1]) {
@@ -155,7 +198,8 @@
 			if (!document.querySelectorAll('.info')[6]) {
 				const pSum2 = document.createElement('p')
 				pSum2.setAttribute('class', 'info')
-				div.appendChild(pSum2)
+				pSum1.after(pSum2)
+
 			} if (numTickets > 1 && numTickets < 5) {
 				const pSum2 = document.querySelectorAll('.info')[6]
 				pSum2.innerHTML = `<b>Сума за ${numTickets} білета:</b> ${getPrice() * numTickets} грн.`
@@ -166,7 +210,32 @@
 			if (document.querySelectorAll('.info')[6] && numTickets == 1) {
 				document.querySelectorAll('.info')[6].remove()
 			}
+
+
+
+
+
+
+			// agree ticket
+			if (!document.querySelector('#btn-agree')) {
+				const pAgree = document.createElement('p');
+				pAgree.setAttribute('id', `pAgree${ticketsNumberCount}`)
+				const agreeBtn = document.createElement('button')
+				agreeBtn.innerText = 'Придбати замовлення'
+				agreeBtn.setAttribute('onclick', 'agreeTicket()')
+				agreeBtn.setAttribute('id', 'btn-agree')
+				pAgree.appendChild(agreeBtn)
+				div.appendChild(pAgree)
+			}
+
+
+
+
+
+
 		}
+
+
 		// get прайз
 		function getPrice() {
 			// get price from city
@@ -219,6 +288,18 @@
 			} else {
 				btn.setAttribute('disabled', 'disabled')
 			}
+		}
+		function agreeTicket() {
+			document.querySelector('#btn-agree').remove()
+			const pAgree = document.querySelector(`#pAgree${ticketsNumberCount}`).innerHTML = `Вітаємо!</br>Ви придбали квиток!`
+			const res = document.querySelector('.res')
+			res.removeAttribute('class', 'res')
+			res.setAttribute('class', 'agreeded')
+			const info = document.querySelectorAll('.info')
+			for (i = 0; i < info.length; i++) {
+				info[i].removeAttribute('class', 'info')
+			}
+			ticketsNumberCount++
 		}
 
 
