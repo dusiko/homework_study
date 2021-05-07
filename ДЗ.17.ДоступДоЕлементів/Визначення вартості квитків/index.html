@@ -46,77 +46,188 @@
 		<div class="enter">
 			<h1>Замовлення квитка</h1>
 			<form class="form enter-name">
-				<label>Прізвище <input type="text"></label>
-				<label>Ім'я <input type="text"></label>
-				<label>По батькові <input type="text"></label>
+				<label>Прізвище <input type="text" onchange="isNamesInputed()"></label>
+				<label>Ім'я <input type="text" onchange="isNamesInputed()"></label>
+				<label>По батькові <input type="text" onchange="isNamesInputed()"></label>
 			</form>
-			<form class="form"><label>Дата відправлення: <input type="date"></label></form>
+			<form class="form"><label>Дата відправлення: <input type="date" value="2021-06-01"></label></form>
 			<form class="form route">Оберіть маршрут:
-				<select name="select">
+				<select onchange="getPrice()">
 					<option value="Мукачево">Мукачево</option>
 					<option value="Львів">Львів</option>
-					<option value="Чернігів">Чернігів</option>
-					<option value="Житомир">Житомир</option>
-					<option value="Миколаїв">Миколаїв</option>
+					<option value="Чернігів">Чернігів </option>
+					<option value="Житомир">Житомир </option>
+					<option value="Миколаїв">Миколаїв </option>
 					<option value="Чоп">Чоп</option>
-					<option value="Київ">Київ</option>
-					<option value="Одеса">Одеса</option>
-					<option value="Харків">Харків</option>
+					<option value="Київ">Київ </option>
+					<option value="Одеса">Одеса </option>
+					<option value="Харків">Харків </option>
 				</select>
 			</form>
 			<form class="form tickets-num">
 				<label>Кількість квитків: <input type="number" value="1" min="1"></label>
 			</form>
 			<form class="form carriage">Тип вагону:
-				<label>Плац-карт<input type="radio" name="carriageType" value='Плац-карт'></label>
-				<label>Купе<input type="radio" name="carriageType" value='Купе'></label>
-				<label>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
+				<label title='100 грн.'>Плац-карт<input type="radio" name="carriageType" value='Плац-карт'
+						checked="checked"></label>
+				<label title='200 грн.'>Купе<input type="radio" name="carriageType" value='Купе'></label>
+				<label title='300 грн.'>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
 			</form>
-			<button onclick="getTicket()">Сформувати замовлення</button>
+			<button disabled="disabled" onclick="getTicket()">Сформувати замовлення</button>
 		</div>
 
 	</div>
 
 	<script>
+
+
+
+
 		function getTicket() {
 			// створюемо res block
 			const container = document.querySelector('.container')
-			const div = document.createElement('div')
-			div.setAttribute('class', 'res')
-			container.appendChild(div)
-			const h2 = document.createElement('h2')
-			h2.innerText = "Ваш білет"
-			div.appendChild(h2)
+			if (!document.querySelector('.res')) {
+				const div = document.createElement('div')
+				div.setAttribute('class', 'res')
+				container.appendChild(div)
+				const h2 = document.createElement('h2')
+				h2.innerText = "Ваш білет"
+				div.appendChild(h2)
+			}
 			// створюемо блок імя
-			const pName = document.createElement('p')
+			const div = document.querySelector('.res')
+			if (!document.querySelectorAll('.info')[0]) {
+				const pName = document.createElement('p')
+				pName.setAttribute('class', 'info')
+				div.appendChild(pName)
+			}
+			const pName = document.querySelectorAll('.info')[0]
 			const names = document.querySelectorAll('.enter-name label input')
-			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}.`
-			div.appendChild(pName)
+			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}`
+
 			// блок дата
-			const pDate = document.createElement('p');
+			if (!document.querySelectorAll('.info')[1]) {
+				const pDate = document.createElement('p');
+				pDate.setAttribute('class', 'info')
+				div.appendChild(pDate)
+			}
+
+
+			const pDate = document.querySelectorAll('.info')[1]
 			const date = document.querySelectorAll('.form label input')[3].value;
-			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}.`
-			div.appendChild(pDate)
+			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}`
+
 			// блок маршрут
-			const pRoute = document.createElement('p')
+			if (!document.querySelectorAll('.info')[2]) {
+				const pRoute = document.createElement('p')
+				pRoute.setAttribute('class', 'info')
+				div.appendChild(pRoute)
+			}
+			const pRoute = document.querySelectorAll('.info')[2]
 			const routes = document.querySelector('.route select').value
 			pRoute.innerHTML = `<b>Ваш маршрут:</b> Ужгород - ${routes}`
-			div.appendChild(pRoute)
+
 			// блок Кількість квитків
+			if (!document.querySelectorAll('.info')[3]) {
+				const pNumTickets = document.createElement('p')
+				pNumTickets.setAttribute('class', 'info')
+				div.appendChild(pNumTickets)
+			}
+			const pNumTickets = document.querySelectorAll('.info')[3]
 			const numTickets = document.querySelector('.tickets-num label input').value
-			const pNumTickets = document.createElement('p')
 			pNumTickets.innerHTML = `<b>Кількість квитків:</b> ${numTickets} шт.`
-			div.appendChild(pNumTickets)
+
 			// блок Тип Вагону
-			const pCarriage = document.createElement('p')
+			if (!document.querySelectorAll('.info')[4]) {
+				const pCarriage = document.createElement('p')
+				pCarriage.setAttribute('class', 'info')
+				div.appendChild(pCarriage)
+			}
+			const pCarriage = document.querySelectorAll('.info')[4]
 			const carriageArr = document.querySelectorAll('.carriage label input')
 			for (i = 0; i < carriageArr.length; i++) {
 				if (carriageArr[i].checked) {
 					pCarriage.innerHTML = `<b>Тип вагону:</b> ${carriageArr[i].value} `
 				}
 			}
-			div.appendChild(pCarriage)
+			// price sum
+			if (!document.querySelectorAll('.info')[5]) {
+				const pSum1 = document.createElement('p')
+				pSum1.setAttribute('class', 'info')
+				div.appendChild(pSum1)
+			}
+			const pSum1 = document.querySelectorAll('.info')[5]
+			pSum1.innerHTML = `<b>Вартість квитка:</b> ${getPrice()} грн.`
+			if (!document.querySelectorAll('.info')[6]) {
+				const pSum2 = document.createElement('p')
+				pSum2.setAttribute('class', 'info')
+				div.appendChild(pSum2)
+			} if (numTickets > 1 && numTickets < 5) {
+				const pSum2 = document.querySelectorAll('.info')[6]
+				pSum2.innerHTML = `<b>Сума за ${numTickets} білета:</b> ${getPrice() * numTickets} грн.`
+			} if (numTickets > 4) {
+				const pSum2 = document.querySelectorAll('.info')[6]
+				pSum2.innerHTML = `<b>Сума за ${numTickets} білетів:</b> ${getPrice() * numTickets} грн.`
+			}
+			if (document.querySelectorAll('.info')[6] && numTickets == 1) {
+				document.querySelectorAll('.info')[6].remove()
+			}
 		}
+		// get прайз
+		function getPrice() {
+			// get price from city
+			const currentCity = document.querySelector('.route select').value
+			let sum = 0
+			let cityPrice
+			switch (currentCity) {
+				case 'Мукачево': cityPrice = 100
+					break;
+				case 'Львів': cityPrice = 150
+					break;
+				case 'Чернігів': cityPrice = 200
+					break;
+				case 'Житомир': cityPrice = 250
+					break;
+				case 'Миколаїв': cityPrice = 300
+					break;
+				case 'Чоп': cityPrice = 50
+					break;
+				case 'Київ': cityPrice = 350
+					break;
+				case 'Одеса': cityPrice = 400
+					break;
+				case 'Харків': cityPrice = 450
+					break;
+			}
+			// get price from type
+			let typePrice
+			const carriageArr = document.querySelectorAll('.carriage label input')
+			for (i = 0; i < carriageArr.length; i++) {
+				if (carriageArr[0].checked) {
+					typePrice = 0
+				}
+				if (carriageArr[1].checked) {
+					typePrice = 150
+				}
+				if (carriageArr[2].checked) {
+					typePrice = 300
+				}
+			}
+			// return ticketPrice
+			return cityPrice + typePrice
+		}
+		function isNamesInputed() {
+			// names
+			const names = document.querySelectorAll('.enter-name label input')
+			const btn = document.querySelector('.enter button')
+			if (names[0].value != '' && names[1].value != '' && names[2].value != '') {
+				btn.removeAttribute('disabled', 'disabled')
+			} else {
+				btn.setAttribute('disabled', 'disabled')
+			}
+		}
+
+
 	</script>
 </body>
 
