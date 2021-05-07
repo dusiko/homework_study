@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+
+
+	<script>
+		function Range(pstart, pend) {
+			//Ті властивості, які у об"єктів можуть бути різні
+			this.start = pstart
+			this.end = pend
+		}
+		//----------- Описуємо властивості, які у всіх об"єктів однакові
+		Range.prototype.includes = function (mum) {
+			return num >= this.start && num <= this.end
+		}
+		Range.prototype.getRandNum = function () {
+			return Math.floor(this.start + Math.random() * (this.end - this.start + 1))
+		}
+		Range.prototype.f1 = function () {
+			alert("----- Range  -----")
+		}
+
+
+
+	</script>
+</body>
+
+</html>
