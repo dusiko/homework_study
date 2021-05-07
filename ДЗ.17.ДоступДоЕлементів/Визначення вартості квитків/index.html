@@ -52,14 +52,8 @@
 			</form>
 			<form class="form"><label>Дата відправлення: <input type="date" value="2021-06-01"></label></form>
 			<form class="form route">Оберіть маршрут:
-<<<<<<< HEAD
 				<select onchange="getPrice()">
 					<option value="Мукачево">Мукачево</option>
-=======
-				<select name="select">
-					<option disabled="disabled">Куди направляєтесь?</option>
-					<option value="Мукачево" >Мукачево</option>
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 					<option value="Львів">Львів</option>
 					<option value="Чернігів">Чернігів </option>
 					<option value="Житомир">Житомир </option>
@@ -74,16 +68,10 @@
 				<label>Кількість квитків: <input type="number" value="1" min="1"></label>
 			</form>
 			<form class="form carriage">Тип вагону:
-<<<<<<< HEAD
 				<label title='100 грн.'>Плац-карт<input type="radio" name="carriageType" value='Плац-карт'
 						checked="checked"></label>
 				<label title='200 грн.'>Купе<input type="radio" name="carriageType" value='Купе'></label>
 				<label title='300 грн.'>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
-=======
-				<label>Плац-карт<input type="radio" name="carriageType" value='Плац-карт' checked="checked"></label>
-				<label>Купе<input type="radio" name="carriageType" value='Купе'></label>
-				<label>Люкс<input type="radio" name="carriageType" value='Люкс'></label>
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 			</form>
 			<button disabled="disabled" onclick="getTicket()">Сформувати замовлення</button>
 		</div>
@@ -111,16 +99,8 @@
 			}
 			const pName = document.querySelectorAll('.info')[0]
 			const names = document.querySelectorAll('.enter-name label input')
-<<<<<<< HEAD
 			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}`
 
-=======
-			pName.innerHTML = `<b>Замовник:</b> ${names[0].value} ${names[1].value} ${names[2].value}.`
-			div.appendChild(pName)
-			for (i = 0; i < names.length; i++){
-				document.querySelectorAll('.enter-name label input')[i].value = ''
-			}
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 			// блок дата
 			if (!document.querySelectorAll('.info')[1]) {
 				const pDate = document.createElement('p');
@@ -129,14 +109,8 @@
 			}
 			const pDate = document.querySelectorAll('.info')[1]
 			const date = document.querySelectorAll('.form label input')[3].value;
-<<<<<<< HEAD
 			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}`
 
-=======
-			pDate.innerHTML = `<b>Дата відправлення:</b> ${date}.`
-			div.appendChild(pDate)
-			document.querySelectorAll('.form label input')[3].value = '';
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 			// блок маршрут
 			if (!document.querySelectorAll('.info')[2]) {
 				const pRoute = document.createElement('p')
@@ -146,12 +120,7 @@
 			const pRoute = document.querySelectorAll('.info')[2]
 			const routes = document.querySelector('.route select').value
 			pRoute.innerHTML = `<b>Ваш маршрут:</b> Ужгород - ${routes}`
-<<<<<<< HEAD
 
-=======
-			document.querySelector('.route select').value = 'Мукачево'
-			div.appendChild(pRoute)
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 			// блок Кількість квитків
 			if (!document.querySelectorAll('.info')[3]) {
 				const pNumTickets = document.createElement('p')
@@ -161,12 +130,7 @@
 			const pNumTickets = document.querySelectorAll('.info')[3]
 			const numTickets = document.querySelector('.tickets-num label input').value
 			pNumTickets.innerHTML = `<b>Кількість квитків:</b> ${numTickets} шт.`
-<<<<<<< HEAD
 
-=======
-			div.appendChild(pNumTickets)
-			document.querySelector('.tickets-num label input').value = 1
->>>>>>> 1aab96d5d2aca84b1bfd6fac181f8004b1453c6a
 			// блок Тип Вагону
 			if (!document.querySelectorAll('.info')[4]) {
 				const pCarriage = document.createElement('p')
