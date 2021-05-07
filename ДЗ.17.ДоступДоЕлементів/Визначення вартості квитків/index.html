@@ -45,6 +45,7 @@
 			padding: 10px;
 			width: 328px;
 			text-align: center;
+			height: 415px;
 
 		}
 
@@ -61,6 +62,7 @@
 			text-align: center;
 			transition: 2s;
 			background-color: green;
+			height: 415px;
 		}
 
 		.tickets {
@@ -210,12 +212,6 @@
 			if (document.querySelectorAll('.info')[6] && numTickets == 1) {
 				document.querySelectorAll('.info')[6].remove()
 			}
-
-
-
-
-
-
 			// agree ticket
 			if (!document.querySelector('#btn-agree')) {
 				const pAgree = document.createElement('p');
@@ -227,15 +223,7 @@
 				pAgree.appendChild(agreeBtn)
 				div.appendChild(pAgree)
 			}
-
-
-
-
-
-
 		}
-
-
 		// get прайз
 		function getPrice() {
 			// get price from city
@@ -301,7 +289,6 @@
 			}
 			ticketsNumberCount++
 		}
-
 
 	</script>
 </body>
