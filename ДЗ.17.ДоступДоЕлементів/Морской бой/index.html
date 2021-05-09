@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sea Battle</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			font-family: arial;
+
+		}
+
+		.sea-battle {
+			width: 100vw;
+			height: 100vh;
+			background-color: rgb(65, 140, 211);
+		}
+
+		.container {
+			max-width: 1024px;
+			margin: 0 auto;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.start {
+			padding: 10px;
+			margin: 0 10px 10px;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			border: 3px solid black;
+			border-radius: 10px;
+			width: 600px;
+		}
+
+		.start h1 {
+			text-align: center;
+		}
+
+		#rules-btn {
+			cursor: pointer;
+			color: rgba(139, 29, 29, 0.781);
+			margin: 10px 0;
+		}
+
+		#rules-btn:hover {
+			text-decoration: underline;
+		}
+
+		.rules {
+			text-align: center;
+			max-width: 320px;
+			border: 3px solid rgba(0, 0, 0, 0.377);
+			padding: 5px;
+			border-radius: 10px;
+		}
+
+		.rules p {
+			margin-bottom: 5px;
+			padding-bottom: 5px;
+			border-bottom: 1px solid black;
+		}
+
+		.rules p:first-child {
+			font-size: 14px;
+			color: rgb(216, 216, 216);
+			text-align: center;
+			margin-bottom: 10px;
+			border-bottom: none;
+			padding-bottom: 0px
+		}
+
+		.rules p:last-child {
+			border-bottom: none;
+			padding-bottom: 0px;
+		}
+
+		.start__item {
+			margin: 10px 0;
+		}
+
+		#start-btn {
+			padding: 5px 20px;
+			background-color: rgb(243, 169, 84);
+			border: none;
+			cursor: pointer;
+		}
+
+		select {
+			cursor: pointer;
+		}
+
+		.battle-field {
+			display: flex;
+		}
+
+		.ships {
+			width: 65px;
+			height: 65px;
+			background-color: rgb(123, 208, 219);
+			margin: 10px;
+			border: 10px solid black;
+			cursor: pointer;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-weight: bold;
+
+		}
+
+
+		@media screen and (max-width: 640px) {
+			.start {
+				width: 310px;
+			}
+
+			form {
+				font-size: 15px;
+			}
+
+			.battle-field {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="sea-battle">
+		<div class="container">
+			<div class="start">
+				<h1>Морський бій</h1>
+				<p id="rules-btn" onclick="showHideRules()"><span id="showHide">Показати</span> правила гри</p>
+				<div class="rules" style="display: none">
+					<p>"Обери рівень складності та потопи всі ворожі кораблі за визначену кількість спроб!"</p>
+					<p><b>Легкий:</b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
+					<p><b>Нормальний:</b><br>7 кораблів<br>2 ворожих корабля<br> 2 спроби</p>
+					<p><b>Важкий:</b><br>9 кораблів<br>3 ворожих корабля<br> 2 спроби</p>
+				</div>
+				<div class="start__item">
+					<form>Обери рівень складності:
+						<select>
+							<option value="1" title="5 кораблів / 1 ворожий корабель / 3 спроби">Легкий</option>
+							<option value="2" title="7 кораблів / 2 ворожих корабля / 2 спроби">Нормальний</option>
+							<option value="3" title="9 кораблів / 3 ворожих корабля / 2 спроби">Важкий</option>
+						</select>
+					</form>
+				</div>
+				<button id="start-btn" onclick="pushGame()">Погнали!</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let battleFieldArea
+		function showHideRules() {
+			const btn = document.querySelector('rules-btn')
+			const rules = document.querySelector('.rules')
+			if (rules.style.display == "none") {
+				rules.style.display = "block"
+				document.getElementById('showHide').innerText = 'Сховати'
+			} else {
+				rules.style.display = "none"
+				document.getElementById('showHide').innerText = 'Показати'
+			}
+		}
+
+		function pushGame() {
+			let enemyShips = []
+			let mark
+			const battleField = document.createElement('div')
+			battleField.setAttribute('class', 'battle-field')
+			const container = document.querySelector('.container')
+			container.appendChild(battleField)
+			const difficultValue = document.querySelector('select').value
+
+			// формуемо легкий рівень
+			if (difficultValue == 1) {
+				for (i = 0; i < 5; i++) {
+					const ship = document.createElement('div')
+					ship.setAttribute('class', 'ships')
+					ship.setAttribute('onclick', 'hit()')
+					ship.innerText = i + 1
+					battleField.appendChild(ship)
+				}
+				const ships = document.querySelectorAll('.ships')
+				mark = 0 + Math.floor(Math.random() * (5 - 0 + 1))
+				ships[mark].setAttribute('id', 'enemy-ship')
+
+				//формуемо нормальний ривень
+			} else if (difficultValue == 2) {
+				for (i = 0; i < 7; i++) {
+					const ship = document.createElement('div')
+					ship.setAttribute('class', 'ships')
+					ship.setAttribute('onclick', 'hit()')
+					ship.innerText = i + 1
+					battleField.appendChild(ship)
+				}
+				const ships = document.querySelectorAll('.ships')
+				for (i = 0; i < 2; i++) {
+					do {
+						mark = 0 + Math.floor(Math.random() * (6 - 0 + 1))
+					} while (mark == enemyShips[0] || mark == enemyShips[1] || mark == enemyShips[2])
+					enemyShips.push(mark)
+					ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
+				}
+
+				// формуемо важкий ривень
+			} else {
+				for (i = 0; i < 9; i++) {
+					const ship = document.createElement('div')
+					ship.setAttribute('class', 'ships')
+					ship.setAttribute('onclick', 'hit()')
+					ship.innerText = i + 1
+					battleField.appendChild(ship)
+				}
+				const ships = document.querySelectorAll('.ships')
+				for (i = 0; i < 3; i++) {
+					do {
+						mark = 0 + Math.floor(Math.random() * (8 - 0 + 1))
+					} while (mark == enemyShips[0] || mark == enemyShips[1] || mark == enemyShips[2])
+					enemyShips.push(mark)
+					ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
+				}
+			}
+			document.querySelector('.start').remove()
+		}
+
+		function hit() {
+
+		}
+
+	</script>
+</body>
+
+</html>
