@@ -163,7 +163,6 @@
 	</div>
 
 	<script>
-		let battleFieldArea
 		function showHideRules() {
 			const btn = document.querySelector('rules-btn')
 			const rules = document.querySelector('.rules')
@@ -190,7 +189,7 @@
 				for (i = 0; i < 5; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
+					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -203,7 +202,7 @@
 				for (i = 0; i < 7; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
+					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -221,7 +220,7 @@
 				for (i = 0; i < 9; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
+					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -237,8 +236,14 @@
 			document.querySelector('.start').remove()
 		}
 
-		function hit() {
-
+		// Попадания
+		document.querySelector('.container').addEventListener('click', hit)
+		function hit(event){
+			if (event.target.className == 'ships' && event.target.hasAttribute('id')){
+				console.log('popal')
+			} else if (event.target.className == 'ships') {
+				console.log('ne popal')
+			}
 		}
 
 	</script>
