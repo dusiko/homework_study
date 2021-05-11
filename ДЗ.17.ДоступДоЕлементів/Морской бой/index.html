@@ -28,6 +28,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			position: relative;
 		}
 
 		.start {
@@ -101,6 +102,7 @@
 
 		.battle-field {
 			display: flex;
+
 		}
 
 		.ships {
@@ -117,6 +119,22 @@
 			font-weight: bold;
 
 		}
+		.ships:hover{
+			box-shadow:0 0 30px #fff;
+		}
+
+		.info{
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			top: 50px;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+		.info p{
+			margin-bottom: 10px;
+		}
 
 
 		@media screen and (max-width: 640px) {
@@ -131,7 +149,10 @@
 			.battle-field {
 				flex-wrap: wrap;
 				justify-content: center;
+				width: 310px;
 			}
+
+
 		}
 	</style>
 </head>
@@ -145,15 +166,15 @@
 				<div class="rules" style="display: none">
 					<p>"Обери рівень складності та потопи всі ворожі кораблі за визначену кількість спроб!"</p>
 					<p><b>Легкий:</b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
-					<p><b>Нормальний:</b><br>7 кораблів<br>2 ворожих корабля<br> 2 спроби</p>
-					<p><b>Важкий:</b><br>9 кораблів<br>3 ворожих корабля<br> 2 спроби</p>
+					<p><b>Нормальний:</b><br>7 кораблів<br>2 ворожих корабля<br> 3 спроби</p>
+					<p><b>Важкий:</b><br>9 кораблів<br>3 ворожих корабля<br> 3 спроби</p>
 				</div>
 				<div class="start__item">
 					<form>Обери рівень складності:
 						<select>
 							<option value="1" title="5 кораблів / 1 ворожий корабель / 3 спроби">Легкий</option>
-							<option value="2" title="7 кораблів / 2 ворожих корабля / 2 спроби">Нормальний</option>
-							<option value="3" title="9 кораблів / 3 ворожих корабля / 2 спроби">Важкий</option>
+							<option value="2" title="7 кораблів / 2 ворожих корабля / 3 спроби">Нормальний</option>
+							<option value="3" title="9 кораблів / 3 ворожих корабля / 3 спроби">Важкий</option>
 						</select>
 					</form>
 				</div>
@@ -163,6 +184,8 @@
 	</div>
 
 	<script>
+		let tryCount = 3
+		let winCount = 3
 		function showHideRules() {
 			const btn = document.querySelector('rules-btn')
 			const rules = document.querySelector('.rules')
@@ -178,14 +201,27 @@
 		function pushGame() {
 			let enemyShips = []
 			let mark
+			const divInfo = document.createElement('div')
+			divInfo.setAttribute('class','info')
+			const infoTryCount = document.createElement('p')
+			infoTryCount.innerHTML = `У вас залишилось <b>${tryCount}</b> спроби.`
+			const infoShipsCount = document.createElement('p')
+			divInfo.appendChild(infoTryCount)
+			divInfo.appendChild(infoShipsCount)
+
 			const battleField = document.createElement('div')
 			battleField.setAttribute('class', 'battle-field')
 			const container = document.querySelector('.container')
+			container.appendChild(divInfo)
 			container.appendChild(battleField)
 			const difficultValue = document.querySelector('select').value
 
+
+
 			// формуемо легкий рівень
 			if (difficultValue == 1) {
+				winCount = 1
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 5; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
@@ -194,11 +230,13 @@
 					battleField.appendChild(ship)
 				}
 				const ships = document.querySelectorAll('.ships')
-				mark = 0 + Math.floor(Math.random() * (5 - 0 + 1))
+				mark = 0 + Math.floor(Math.random() * (4 - 0 + 1))
 				ships[mark].setAttribute('id', 'enemy-ship')
 
 				//формуемо нормальний ривень
 			} else if (difficultValue == 2) {
+				winCount = 2
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 7; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
@@ -217,6 +255,7 @@
 
 				// формуемо важкий ривень
 			} else {
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 9; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
@@ -240,9 +279,21 @@
 		document.querySelector('.container').addEventListener('click', hit)
 		function hit(event){
 			if (event.target.className == 'ships' && event.target.hasAttribute('id')){
-				console.log('popal')
+				event.target.style.backgroundColor = 'green'
+				winCount--
+				const infoShipsCount = document.querySelectorAll('.info p')[1]
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
+				if (winCount == 0)
+					alert('Ти переміг! :)')
 			} else if (event.target.className == 'ships') {
-				console.log('ne popal')
+				event.target.style.backgroundColor = 'red'
+				tryCount--
+				const infoTryCount = document.querySelectorAll('.info p')[0]
+				infoTryCount.innerHTML = `У вас залишилось <b>${tryCount}</b> спроби.`
+				if(tryCount == 1)
+					document.querySelector('.info > p').innerHTML = `У вас залишилась <b>${tryCount}</b> спроба.`
+				if (tryCount == 0)
+					alert('Ти програв :(')
 			}
 		}
 
@@ -250,3 +301,4 @@
 </body>
 
 </html>
+
