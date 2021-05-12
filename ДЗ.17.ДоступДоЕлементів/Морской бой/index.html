@@ -135,7 +135,9 @@
 		.info p{
 			margin-bottom: 10px;
 		}
-
+		.info span{
+		  color: greenyellow;
+		}
 
 		@media screen and (max-width: 640px) {
 			.start {
@@ -151,6 +153,10 @@
 				justify-content: center;
 				width: 310px;
 			}
+			.info p{
+			  font-size: 18px;
+			}
+			
 
 
 		}
@@ -204,7 +210,7 @@
 			const divInfo = document.createElement('div')
 			divInfo.setAttribute('class','info')
 			const infoTryCount = document.createElement('p')
-			infoTryCount.innerHTML = `У вас залишилось <b>${tryCount}</b> спроби.`
+			infoTryCount.innerHTML = `У вас залишилось <span><b>${tryCount}</b></span> спроби`
 			const infoShipsCount = document.createElement('p')
 			divInfo.appendChild(infoTryCount)
 			divInfo.appendChild(infoShipsCount)
@@ -225,7 +231,6 @@
 				for (i = 0; i < 5; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -240,7 +245,6 @@
 				for (i = 0; i < 7; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -259,7 +263,6 @@
 				for (i = 0; i < 9; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					// ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -276,6 +279,7 @@
 		}
 
 		// Попадания
+		
 		document.querySelector('.container').addEventListener('click', hit)
 		function hit(event){
 			if (event.target.className == 'ships' && event.target.hasAttribute('id')){
@@ -283,22 +287,29 @@
 				winCount--
 				const infoShipsCount = document.querySelectorAll('.info p')[1]
 				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
-				if (winCount == 0)
+				if (winCount == 0){
 					alert('Ти переміг! :)')
+				}
 			} else if (event.target.className == 'ships') {
 				event.target.style.backgroundColor = 'red'
 				tryCount--
 				const infoTryCount = document.querySelectorAll('.info p')[0]
-				infoTryCount.innerHTML = `У вас залишилось <b>${tryCount}</b> спроби.`
-				if(tryCount == 1)
-					document.querySelector('.info > p').innerHTML = `У вас залишилась <b>${tryCount}</b> спроба.`
-				if (tryCount == 0)
+				infoTryCount.innerHTML = `У вас залишилось <b><span>${tryCount}</span></b> спроби`
+				if(tryCount == 2){
+				  let span = document.querySelector('.info span')
+				  span.style.color = 'yellow'
+				}
+				if(tryCount <= 1){
+					document.querySelector('.info > p').innerHTML = `У вас залишилась <span><b>${tryCount}</b></span> спроба`
+					span = document.querySelector('.info span')
+					span.style.color = 'red'
+				}if (tryCount == 0){
 					alert('Ти програв :(')
 			}
 		}
+	}
 
 	</script>
 </body>
 
 </html>
-
