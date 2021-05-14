@@ -138,6 +138,9 @@
 		.info span{
 		  color: greenyellow;
 		}
+		.finish button{
+		 
+		}
 
 		@media screen and (max-width: 640px) {
 			.start {
@@ -156,9 +159,20 @@
 			.info p{
 			  font-size: 18px;
 			}
-			
-
-
+			.finish{
+			  position: absolute;
+			  bottom: 75px;
+			  font-size: 20px;
+			}
+			.finish button{
+		    background-color: #303030;
+		 border-radius: 10px;
+		 padding: 30px;
+		 font-size: 16px;
+		 color: white;
+		 font-weight: bold;
+		 box-shadow: 0 0 50px black;
+			}
 		}
 	</style>
 </head>
@@ -190,7 +204,7 @@
 	</div>
 
 	<script>
-		let tryCount = 3
+		
 		let winCount = 3
 		function showHideRules() {
 			const btn = document.querySelector('rules-btn')
@@ -205,9 +219,10 @@
 		}
 
 		function pushGame() {
+		  this.tryCount = 3
 			let enemyShips = []
 			let mark
-			const divInfo = document.createElement('div')
+			this.divInfo = document.createElement('div')
 			divInfo.setAttribute('class','info')
 			const infoTryCount = document.createElement('p')
 			infoTryCount.innerHTML = `У вас залишилось <span><b>${tryCount}</b></span> спроби`
@@ -217,7 +232,7 @@
 
 			const battleField = document.createElement('div')
 			battleField.setAttribute('class', 'battle-field')
-			const container = document.querySelector('.container')
+			this.container = document.querySelector('.container')
 			container.appendChild(divInfo)
 			container.appendChild(battleField)
 			const difficultValue = document.querySelector('select').value
@@ -259,6 +274,7 @@
 
 				// формуемо важкий ривень
 			} else {
+			  winCount = 3
 				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 9; i++) {
 					const ship = document.createElement('div')
@@ -275,7 +291,7 @@
 					ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
 				}
 			}
-			document.querySelector('.start').remove()
+			document.querySelector('.start').style.display = 'none'
 		}
 
 		// Попадания
@@ -288,7 +304,7 @@
 				const infoShipsCount = document.querySelectorAll('.info p')[1]
 				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				if (winCount == 0){
-					alert('Ти переміг! :)')
+					finish()
 				}
 			} else if (event.target.className == 'ships') {
 				event.target.style.backgroundColor = 'red'
@@ -304,10 +320,44 @@
 					span = document.querySelector('.info span')
 					span.style.color = 'red'
 				}if (tryCount == 0){
-					alert('Ти програв :(')
+					finish()
 			}
 		}
 	}
+	
+	function finish (){
+	 const div = document.createElement('DIV')
+	 div.setAttribute('class','finish')
+	 const span = document.createElement('span')
+	 const btn = document.createElement('button')
+	 btn.setAttribute('type','button')
+	 btn.innerText ='Запустити ще раз'
+	 btn.setAttribute('onclick', 'start()')
+	 this.container.appendChild(div)
+	 this.divInfo.appendChild(span)
+	 div.appendChild(btn)
+	 this.container.removeEventListener('click', hit)
+	 if(winCount == 0){
+	   span.innerHTML = `Вітаємо! <br>Ви перемогли!`
+	   span.style.fontWeight = 'bold'
+	   span.style.fontSize = '24px'
+	   
+	   
+	 } if (tryCount == 0) {
+	   span.innerText = 'ви програли :('
+	   span.style.color = 'red'
+	   span.style.fontWeight = 'bold'
+	   span.style.fontSize = '40px'
+	   
+	}
+}
+function start(){
+ document.querySelector('.battle-field').remove()
+  document.querySelector('.info').remove()
+  document.querySelector('.start').style.display = 'flex'
+  document.querySelector('.finish').remove()
+  this.container.addEventListener('click', hit)
+}
 
 	</script>
 </body>
