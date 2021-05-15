@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Sea Battle</title>
 	<style>
 		* {
@@ -34,23 +35,26 @@
 		.start {
 			padding: 10px;
 			margin: 0 10px 10px;
-			display: flex;
+/*			display: flex;
 			justify-content: center;
 			flex-direction: column;
-			align-items: center;
+			align-items: center;*/
 			border: 3px solid black;
 			border-radius: 10px;
 			width: 600px;
+			text-align: center;
 		}
 
 		.start h1 {
 			text-align: center;
+			font-size: 52px;
 		}
 
 		#rules-btn {
 			cursor: pointer;
 			color: rgba(139, 29, 29, 0.781);
-			margin: 10px 0;
+			margin: 15px 0 25px	;
+			font-size: 20px;
 		}
 
 		#rules-btn:hover {
@@ -63,6 +67,8 @@
 			border: 3px solid rgba(0, 0, 0, 0.377);
 			padding: 5px;
 			border-radius: 10px;
+			margin: 0 auto;
+			margin-bottom: 25px;
 		}
 
 		.rules p {
@@ -70,10 +76,20 @@
 			padding-bottom: 5px;
 			border-bottom: 1px solid black;
 		}
+		.easy{
+			color: rgb(61, 240, 17);
+		}
+		.medium{
+			color: rgb(205, 212, 25);
+		}
+		.hard{
+			color: rgb(161, 40, 40);
+		}
 
 		.rules p:first-child {
-			font-size: 14px;
-			color: rgb(216, 216, 216);
+			font-size: 16px;
+			font-weight: bold;
+			color: rgb(178, 217, 215);
 			text-align: center;
 			margin-bottom: 10px;
 			border-bottom: none;
@@ -86,20 +102,28 @@
 		}
 
 		.start__item {
-			margin: 10px 0;
+			margin: 10px 0 25px;
+		}
+		.start__item form{
+			font-size: 20px;
+		}
+		.start__item select{
+			background-color: rgb(147, 245, 245);
+			font-weight: bold;
+			color: rgb(15, 14, 15);
+			border-radius: 10px;
+			cursor: pointer;
 		}
 
+
 		#start-btn {
-			padding: 5px 20px;
+			padding: 5px 150px;
 			background-color: rgb(243, 169, 84);
 			border: none;
 			cursor: pointer;
+			margin-bottom: 15px;
+			font-weight: bold;
 		}
-
-		select {
-			cursor: pointer;
-		}
-
 		.battle-field {
 			display: flex;
 
@@ -146,6 +170,12 @@
 			.start {
 				width: 310px;
 			}
+			.start h1{
+				font-size: 42px;
+			}
+			#start-btn{
+				padding: 5px 100px;
+			}
 
 			form {
 				font-size: 15px;
@@ -174,6 +204,12 @@
 		 box-shadow: 0 0 50px black;
 			}
 		}
+		@media screen and (max-width: 320px){
+			.start select{
+  			    float: right;
+    			margin: 10px 22px 25px;
+			}
+		}
 	</style>
 </head>
 
@@ -185,9 +221,9 @@
 				<p id="rules-btn" onclick="showHideRules()"><span id="showHide">Показати</span> правила гри</p>
 				<div class="rules" style="display: none">
 					<p>"Обери рівень складності та потопи всі ворожі кораблі за визначену кількість спроб!"</p>
-					<p><b>Легкий:</b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
-					<p><b>Нормальний:</b><br>7 кораблів<br>2 ворожих корабля<br> 3 спроби</p>
-					<p><b>Важкий:</b><br>9 кораблів<br>3 ворожих корабля<br> 3 спроби</p>
+					<p><b><span class='easy'>Легкий:</span></b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
+					<p><b><span class='medium'>Нормальний:</span></b><br>7 кораблів<br>2 ворожих корабля<br> 3 спроби</p>
+					<p><b><span class='hard'>Важкий:</span></b><br>9 кораблів<br>3 ворожих корабля<br> 3 спроби</p>
 				</div>
 				<div class="start__item">
 					<form>Обери рівень складності:
@@ -202,9 +238,8 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
-		
+			
 		let winCount = 3
 		function showHideRules() {
 			const btn = document.querySelector('rules-btn')
@@ -354,12 +389,13 @@
 function start(){
  document.querySelector('.battle-field').remove()
   document.querySelector('.info').remove()
-  document.querySelector('.start').style.display = 'flex'
+  document.querySelector('.start').style.display = 'block'
   document.querySelector('.finish').remove()
   this.container.addEventListener('click', hit)
 }
 
 	</script>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
