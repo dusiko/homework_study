@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<!-- Задача. Користувач вводить номер автомобіля. У наступному полі вводу 
+	автоматично з”являється назва області, де цей автомобіль 
+	зареєстровано та номер обласного ДАІ. -->
+
+<body>
+	<form>
+		<label>Введіть номер авто: <input type="text" onchange="autopass()" placeholder="AO1412"></label>
+		<label>Інформація: <input type="text" style='width: 500px;'></label>
+	</form>
+</body>
+
+<script>
+	class Car {
+		constructor(num, region, daitel) {
+			this.num = num
+			this.region = region
+			this.daitel = daitel
+		}
+	}
+
+	let car1 = new Car('AO1412', 'Закарпатська область', 32286)
+	let car2 = new Car('ВС4410', 'Львівська область', 440022)
+	let car3 = new Car('АА7777', 'Київська область', 112233)
+
+	let cars = [car1, car2, car3]
+
+
+	function autopass() {
+		for (i = 0; i < cars.length; i++) {
+			if (document.querySelectorAll('input')[0].value == cars[i].num) {
+				document.querySelectorAll('input')[1].value = 'Місце реєстрації: ' + cars[i].region + '. Номер даї: ' + cars[i].daitel
+			}
+		}
+	}
+</script>
+</body>
+
+</html>

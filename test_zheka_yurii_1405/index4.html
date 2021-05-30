@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- Задача. Форма офромлення доставки. З клавіатури вводиться вартість товару, 
+		спосіб доставки (поштою - 5% вартості, новою поштою  - 7% вартості, 
+		кур”єром — 10% вартсті), та термін доставки (термінова +5%, звичайна) . 
+		Визначити загальну вартість доставки. -->
+</head>
+
+<body>
+	<fieldset>
+		<legend>Форма оформлення доставки</legend>
+		<form>
+			<label>Вкажіть вартість товару <input id="price-input" type="number" onchange="calc()" value="0"> грн.</label>
+		</form>
+		<form> Спосіб доставки
+			<Select onchange="calc()">
+				<option value="0.05" title="+5%">поштою</option>
+				<option value="0.07" title="+7%">новою Поштою</option>
+				<option value="0.1" title="+10%">кур'єром</option>
+			</Select>
+		</form>
+		<form> Термін доставки
+			<Select onchange="calc()">
+				<option value="0.05" title="+5%">термінова</option>
+				<option value="0" title="0">звичайна</option>
+			</Select>
+		</form>
+		<div>
+			Загальна вартість доставки становитиме: <b><span id="sum"></span></b>
+		</div>
+	</fieldset>
+
+	<script>
+		function calc() {
+			let sum = 0
+			const price = document.querySelector('#price-input').value
+			const delivery = document.querySelectorAll('select')[0].value * price
+			const time = document.querySelectorAll('select')[1].value * price
+			sum = parseFloat(delivery + time)
+			const span = document.querySelector('#sum')
+			span.innerText = `${sum.toFixed(2)} грн.`
+		}
+		calc()
+	</script>
+</body>
+
+</html>

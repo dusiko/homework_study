@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- Задача. У поле вводу вводимо назву предмета і натискаємо на кнопку. 
+		Після цього з”являється зображення цього предмета. -->
+
+	<form>
+		<label>Введіть назву предмета <input type="text" placeholder="html / css / js"></label>
+		<button type="button" onclick="show()">показати</button>
+	</form>
+	<div class='result'></div>
+	<script>
+		function show() {
+			const divResult = document.querySelector('.result')
+			divResult.innerText = ''
+			const img = document.createElement('IMG')
+			img.setAttribute('width', '150px')
+			img.setAttribute('height', '150px')
+			const input = document.querySelector('input').value
+			if (input == 'html') {
+				img.setAttribute('src', 'https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png')
+			} if (input == 'css') {
+				img.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png')
+			} if (input == 'js') {
+				img.setAttribute('src', 'https://www.aritsltd.com/img/app_logos/js.png')
+			}
+			divResult.appendChild(img)
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		class Calc {
+			constructor() {
+			}
+			render() {
+				const crE = document.createElement
+				let div = crE('DIV')
+				const body = document.querySelector('BODY')
+				body.appendChild(div)
+
+				let inp = crE('INPUT')
+				let label = crE('LABEL')
+				label.innerText = 'First number'
+				label.appendChild(inp)
+				div.appendChild(label)
+
+				span.crE('span')
+				label.crE('LABEL')
+				label.innerText = "Operation"
+				label.appendChild(span)
+				div.appendChild(label)
+			}
+		}
+		const calc = new Calc()
+		calc.render()
+	</script>
+</body>
+
+</html>

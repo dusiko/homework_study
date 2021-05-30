@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<form>
+		<label>Логин: <input type="text" onchange="autopass()"></label>
+		<label>Пароль: <input type="password"></label>
+	</form>
+</body>
+
+<script>
+	class Enter {
+		constructor(val, password) {
+			this.name = val
+			this.pass = password
+		}
+	}
+
+	let user1 = new Enter('Zheka', 'password228')
+	let user2 = new Enter('Misha', 'fifa2021')
+	let user3 = new Enter('Makar', 'Makar')
+
+	let users = [user1, user2, user3]
+
+	function autopass() {
+		for (i = 0; i < users.length; i++) {
+			if (document.querySelectorAll('input')[0].value == users[i].name) {
+				document.querySelectorAll('input')[1].value = users[i].pass
+			}
+		}
+	}
+</script>
+</body>
+
+</html>
