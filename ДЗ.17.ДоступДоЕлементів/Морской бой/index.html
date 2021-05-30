@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Sea Battle</title>
 	<style>
 		* {
@@ -28,28 +29,32 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			position: relative;
 		}
 
 		.start {
 			padding: 10px;
 			margin: 0 10px 10px;
-			display: flex;
+/*			display: flex;
 			justify-content: center;
 			flex-direction: column;
-			align-items: center;
+			align-items: center;*/
 			border: 3px solid black;
 			border-radius: 10px;
 			width: 600px;
+			text-align: center;
 		}
 
 		.start h1 {
 			text-align: center;
+			font-size: 52px;
 		}
 
 		#rules-btn {
 			cursor: pointer;
 			color: rgba(139, 29, 29, 0.781);
-			margin: 10px 0;
+			margin: 15px 0 25px	;
+			font-size: 20px;
 		}
 
 		#rules-btn:hover {
@@ -62,6 +67,8 @@
 			border: 3px solid rgba(0, 0, 0, 0.377);
 			padding: 5px;
 			border-radius: 10px;
+			margin: 0 auto;
+			margin-bottom: 25px;
 		}
 
 		.rules p {
@@ -69,10 +76,20 @@
 			padding-bottom: 5px;
 			border-bottom: 1px solid black;
 		}
+		.easy{
+			color: rgb(61, 240, 17);
+		}
+		.medium{
+			color: rgb(205, 212, 25);
+		}
+		.hard{
+			color: rgb(161, 40, 40);
+		}
 
 		.rules p:first-child {
-			font-size: 14px;
-			color: rgb(216, 216, 216);
+			font-size: 16px;
+			font-weight: bold;
+			color: rgb(178, 217, 215);
 			text-align: center;
 			margin-bottom: 10px;
 			border-bottom: none;
@@ -85,22 +102,31 @@
 		}
 
 		.start__item {
-			margin: 10px 0;
+			margin: 10px 0 25px;
+		}
+		.start__item form{
+			font-size: 20px;
+		}
+		.start__item select{
+			background-color: rgb(147, 245, 245);
+			font-weight: bold;
+			color: rgb(15, 14, 15);
+			border-radius: 10px;
+			cursor: pointer;
 		}
 
+
 		#start-btn {
-			padding: 5px 20px;
+			padding: 5px 150px;
 			background-color: rgb(243, 169, 84);
 			border: none;
 			cursor: pointer;
+			margin-bottom: 15px;
+			font-weight: bold;
 		}
-
-		select {
-			cursor: pointer;
-		}
-
 		.battle-field {
 			display: flex;
+
 		}
 
 		.ships {
@@ -117,11 +143,38 @@
 			font-weight: bold;
 
 		}
+		.ships:hover{
+			box-shadow:0 0 30px #fff;
+		}
 
+		.info{
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			top: 50px;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+		.info p{
+			margin-bottom: 10px;
+		}
+		.info span{
+		  color: greenyellow;
+		}
+		.finish button{
+		 
+		}
 
 		@media screen and (max-width: 640px) {
 			.start {
 				width: 310px;
+			}
+			.start h1{
+				font-size: 42px;
+			}
+			#start-btn{
+				padding: 5px 100px;
 			}
 
 			form {
@@ -131,6 +184,30 @@
 			.battle-field {
 				flex-wrap: wrap;
 				justify-content: center;
+				width: 310px;
+			}
+			.info p{
+			  font-size: 18px;
+			}
+			.finish{
+			  position: absolute;
+			  bottom: 75px;
+			  font-size: 20px;
+			}
+			.finish button{
+		    background-color: #303030;
+		 border-radius: 10px;
+		 padding: 30px;
+		 font-size: 16px;
+		 color: white;
+		 font-weight: bold;
+		 box-shadow: 0 0 50px black;
+			}
+		}
+		@media screen and (max-width: 320px){
+			.start select{
+  			    float: right;
+    			margin: 10px 22px 25px;
 			}
 		}
 	</style>
@@ -144,16 +221,16 @@
 				<p id="rules-btn" onclick="showHideRules()"><span id="showHide">Показати</span> правила гри</p>
 				<div class="rules" style="display: none">
 					<p>"Обери рівень складності та потопи всі ворожі кораблі за визначену кількість спроб!"</p>
-					<p><b>Легкий:</b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
-					<p><b>Нормальний:</b><br>7 кораблів<br>2 ворожих корабля<br> 2 спроби</p>
-					<p><b>Важкий:</b><br>9 кораблів<br>3 ворожих корабля<br> 2 спроби</p>
+					<p><b><span class='easy'>Легкий:</span></b><br>5 кораблів<br>1 ворожий корабель<br> 3 спроби</p>
+					<p><b><span class='medium'>Нормальний:</span></b><br>7 кораблів<br>2 ворожих корабля<br> 3 спроби</p>
+					<p><b><span class='hard'>Важкий:</span></b><br>9 кораблів<br>3 ворожих корабля<br> 3 спроби</p>
 				</div>
 				<div class="start__item">
 					<form>Обери рівень складності:
 						<select>
 							<option value="1" title="5 кораблів / 1 ворожий корабель / 3 спроби">Легкий</option>
-							<option value="2" title="7 кораблів / 2 ворожих корабля / 2 спроби">Нормальний</option>
-							<option value="3" title="9 кораблів / 3 ворожих корабля / 2 спроби">Важкий</option>
+							<option value="2" title="7 кораблів / 2 ворожих корабля / 3 спроби">Нормальний</option>
+							<option value="3" title="9 кораблів / 3 ворожих корабля / 3 спроби">Важкий</option>
 						</select>
 					</form>
 				</div>
@@ -161,9 +238,9 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
-		let battleFieldArea
+			
+		let winCount = 3
 		function showHideRules() {
 			const btn = document.querySelector('rules-btn')
 			const rules = document.querySelector('.rules')
@@ -177,33 +254,47 @@
 		}
 
 		function pushGame() {
+		  this.tryCount = 3
 			let enemyShips = []
 			let mark
+			this.divInfo = document.createElement('div')
+			divInfo.setAttribute('class','info')
+			const infoTryCount = document.createElement('p')
+			infoTryCount.innerHTML = `У вас залишилось <span><b>${tryCount}</b></span> спроби`
+			const infoShipsCount = document.createElement('p')
+			divInfo.appendChild(infoTryCount)
+			divInfo.appendChild(infoShipsCount)
+
 			const battleField = document.createElement('div')
 			battleField.setAttribute('class', 'battle-field')
-			const container = document.querySelector('.container')
+			this.container = document.querySelector('.container')
+			container.appendChild(divInfo)
 			container.appendChild(battleField)
 			const difficultValue = document.querySelector('select').value
 
+
+
 			// формуемо легкий рівень
 			if (difficultValue == 1) {
+				winCount = 1
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 5; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
 				const ships = document.querySelectorAll('.ships')
-				mark = 0 + Math.floor(Math.random() * (5 - 0 + 1))
+				mark = 0 + Math.floor(Math.random() * (4 - 0 + 1))
 				ships[mark].setAttribute('id', 'enemy-ship')
 
 				//формуемо нормальний ривень
 			} else if (difficultValue == 2) {
+				winCount = 2
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 7; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -218,10 +309,11 @@
 
 				// формуемо важкий ривень
 			} else {
+			  winCount = 3
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
 				for (i = 0; i < 9; i++) {
 					const ship = document.createElement('div')
 					ship.setAttribute('class', 'ships')
-					ship.setAttribute('onclick', 'hit()')
 					ship.innerText = i + 1
 					battleField.appendChild(ship)
 				}
@@ -234,14 +326,76 @@
 					ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
 				}
 			}
-			document.querySelector('.start').remove()
+			document.querySelector('.start').style.display = 'none'
 		}
 
-		function hit() {
-
+		// Попадания
+		
+		document.querySelector('.container').addEventListener('click', hit)
+		function hit(event){
+			if (event.target.className == 'ships' && event.target.hasAttribute('id')){
+				event.target.style.backgroundColor = 'green'
+				winCount--
+				const infoShipsCount = document.querySelectorAll('.info p')[1]
+				infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
+				if (winCount == 0){
+					finish()
+				}
+			} else if (event.target.className == 'ships') {
+				event.target.style.backgroundColor = 'red'
+				tryCount--
+				const infoTryCount = document.querySelectorAll('.info p')[0]
+				infoTryCount.innerHTML = `У вас залишилось <b><span>${tryCount}</span></b> спроби`
+				if(tryCount == 2){
+				  let span = document.querySelector('.info span')
+				  span.style.color = 'yellow'
+				}
+				if(tryCount <= 1){
+					document.querySelector('.info > p').innerHTML = `У вас залишилась <span><b>${tryCount}</b></span> спроба`
+					span = document.querySelector('.info span')
+					span.style.color = 'red'
+				}if (tryCount == 0){
+					finish()
+			}
 		}
+	}
+	
+	function finish (){
+	 const div = document.createElement('DIV')
+	 div.setAttribute('class','finish')
+	 const span = document.createElement('span')
+	 const btn = document.createElement('button')
+	 btn.setAttribute('type','button')
+	 btn.innerText ='Запустити ще раз'
+	 btn.setAttribute('onclick', 'start()')
+	 this.container.appendChild(div)
+	 this.divInfo.appendChild(span)
+	 div.appendChild(btn)
+	 this.container.removeEventListener('click', hit)
+	 if(winCount == 0){
+	   span.innerHTML = `Вітаємо! <br>Ви перемогли!`
+	   span.style.fontWeight = 'bold'
+	   span.style.fontSize = '24px'
+	   
+	   
+	 } if (tryCount == 0) {
+	   span.innerText = 'ви програли :('
+	   span.style.color = 'red'
+	   span.style.fontWeight = 'bold'
+	   span.style.fontSize = '40px'
+	   
+	}
+}
+function start(){
+ document.querySelector('.battle-field').remove()
+  document.querySelector('.info').remove()
+  document.querySelector('.start').style.display = 'block'
+  document.querySelector('.finish').remove()
+  this.container.addEventListener('click', hit)
+}
 
 	</script>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
