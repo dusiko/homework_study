@@ -1,0 +1,180 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	font-family: arial;
+
+}
+
+.sea-battle {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(65, 140, 211);
+}
+
+.container {
+	max-width: 1024px;
+	margin: 0 auto;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.start {
+	padding: 10px;
+	margin: 0 10px 10px;
+	border: 3px solid black;
+	border-radius: 10px;
+	width: 600px;
+	text-align: center;
+}
+
+.start h1 {
+	text-align: center;
+	font-size: 52px;
+}
+
+#rules-btn {
+	cursor: pointer;
+	color: rgba(139, 29, 29, 0.781);
+	margin: 15px 0 25px	;
+	font-size: 20px;
+}
+
+#rules-btn:hover {
+	text-decoration: underline;
+}
+
+.rules {
+	text-align: center;
+	max-width: 320px;
+	border: 3px solid rgba(0, 0, 0, 0.377);
+	padding: 5px;
+	border-radius: 10px;
+	margin: 0 auto;
+	margin-bottom: 25px;
+}
+
+.rules p {
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid black;
+}
+.easy{
+	color: rgb(61, 240, 17);
+}
+.medium{
+	color: rgb(205, 212, 25);
+}
+.hard{
+	color: rgb(161, 40, 40);
+}
+
+.rules p:first-child {
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(178, 217, 215);
+	text-align: center;
+	margin-bottom: 10px;
+	border-bottom: none;
+	padding-bottom: 0px
+}
+
+.rules p:last-child {
+	border-bottom: none;
+	padding-bottom: 0px;
+}
+
+.start__item {
+	margin: 10px 0 25px;
+}
+.start__item form{
+	font-size: 20px;
+}
+.start__item select{
+	background-color: rgb(147, 245, 245);
+	font-weight: bold;
+	color: rgb(15, 14, 15);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+
+#start-btn {
+	padding: 5px 150px;
+	background-color: rgb(243, 169, 84);
+	border: none;
+	cursor: pointer;
+	margin-bottom: 15px;
+	font-weight: bold;
+}
+.battle-field {
+	display: flex;
+
+}
+
+.ships {
+	width: 65px;
+	height: 65px;
+	background-color: rgb(123, 208, 219);
+	margin: 10px;
+	border: 10px solid black;
+	cursor: pointer;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+}
+.targeted{
+	width: 65px;
+	height: 65px;
+	margin: 10px;
+	background-color: green;
+	border: 10px solid black;
+	cursor: pointer;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	transition: 1s;
+}
+.missed{
+	width: 65px;
+	height: 65px;
+	margin: 10px;
+	border: 10px solid black;
+	background-color: red;
+	cursor: pointer;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	transition: 1s;
+}
+.ships:hover{
+	box-shadow:0 0 30px #fff;
+}
+
+.info{
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+.info p{
+	margin-bottom: 10px;
+}
+.info span{
+  color: greenyellow;
+}
+.finish button{
+ 
+}
