@@ -18,7 +18,11 @@ function pushGame() {
 	this.divInfo = document.createElement('div')
 	divInfo.setAttribute('class', 'info')
 	const infoTryCount = document.createElement('p')
-	infoTryCount.innerHTML = `У вас залишилось <span><b>${tryCount}</b></span> спроби`
+	for (i = 0; i < 3; i++) {
+		const lives = document.createElement('IMG')
+		lives.setAttribute('src', 'img/heart.png')
+		infoTryCount.appendChild(lives)
+	}
 	const infoShipsCount = document.createElement('p')
 	divInfo.appendChild(infoTryCount)
 	divInfo.appendChild(infoShipsCount)
@@ -101,19 +105,11 @@ function hit(event) {
 			finish()
 		}
 	} else if (event.target.className == 'ships' && event.target.className != 'missed') {
-		tryCount--
 		event.target.setAttribute('class', 'missed')
-		const infoTryCount = document.querySelectorAll('.info p')[0]
-		infoTryCount.innerHTML = `У вас залишилось <b><span>${tryCount}</span></b> спроби`
-		if (tryCount == 2) {
-			let span = document.querySelector('.info span')
-			span.style.color = 'yellow'
-		}
-		if (tryCount <= 1) {
-			document.querySelector('.info > p').innerHTML = `У вас залишилась <span><b>${tryCount}</b></span> спроба`
-			span = document.querySelector('.info span')
-			span.style.color = 'red'
-		} if (tryCount == 0) {
+		const hearts = document.querySelectorAll('.info p img')
+		hearts[tryCount - 1].setAttribute('class', 'fade')
+		tryCount--
+		if (tryCount == 0) {
 			finish()
 		}
 	}
@@ -134,7 +130,7 @@ function finish() {
 	if (winCount == 0) {
 		span.innerHTML = `Вітаємо! <br>Ви перемогли!`
 		span.style.fontWeight = 'bold'
-		span.style.fontSize = '24px'
+		span.style.fontSize = '35px'
 
 
 	} if (tryCount == 0) {
