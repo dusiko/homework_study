@@ -54,7 +54,7 @@
 	padding: 5px;
 	border-radius: 10px;
 	margin: 0 auto;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 
 .rules p {
@@ -88,10 +88,10 @@
 }
 
 .start__item {
-	margin: 10px 0 25px;
+	margin: 10px 0 20px;
 }
 .start__item form{
-	font-size: 20px;
+	font-size: 15px;
 }
 .start__item select{
 	background-color: rgb(147, 245, 245);
@@ -111,6 +111,7 @@
 	font-weight: bold;
 }
 .battle-field {
+  margin-top: 10px;
 	display: flex;
 
 }
@@ -183,7 +184,20 @@
 	margin-bottom: 10px;
 }
 .info span{
-  color: greenyellow;
+  position: absolute;;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: green;
+  line-height: 2rem;
+  z-index: 10;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
  
 }
 .finish button{
