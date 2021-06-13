@@ -10,7 +10,7 @@
 	}
 
 	form {
-		font-size: 15px;
+		font-size: 16px;
 	}
 
 	.battle-field {
@@ -20,6 +20,7 @@
 	}
 	.info p{
 	  font-size: 18px;
+	  
 	}
 	.finish{
 	  position: absolute;
