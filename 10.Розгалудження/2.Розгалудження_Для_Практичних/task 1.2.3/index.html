@@ -7,7 +7,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>task 1.2.3</title>
 	<style>
+		.main {
+			max-width: 400px;
 
+		}
+
+		input {
+			float: right;
+			width: 240px;
+		}
+
+		label {
+			margin-bottom: 10px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+
+		}
 	</style>
 </head>
 
@@ -27,17 +45,37 @@
 
 	<script>
 		// 1.2. З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
-
-
 		document.querySelector('.main').addEventListener('click', buy)
 		function buy(event) {
+			// перевіряем умову клика на кнопку
 			if (event.target == document.querySelector('button')) {
-				if (document.querySelectorAll('input')[0].value > document.querySelectorAll('input')[1].value) {
-					let difference = document.querySelectorAll('input')[0].value - document.querySelectorAll('input')[1].value
+				// отримуемо нехватку грошей
+				let difference = Math.abs(document.querySelectorAll('input')[0].value - document.querySelectorAll('input')[1].value)
+				if (!document.querySelector('p')) {
 					let p = document.createElement('p')
-					p.innerHTML = `Вибачте вам не хватає ${difference} грн. В покупці відмовлено.`
 					let main = document.querySelector('.main')
 					main.appendChild(p)
+				}
+				if (+document.querySelectorAll('input')[0].value > +document.querySelectorAll('input')[1].value) {
+					p = document.querySelector('p')
+					p.innerHTML = `Вибачте вам не хватає ${difference} грн. В покупці відмовлено.`
+
+				} else if (+document.querySelectorAll('input')[1].value - 3 <= +document.querySelectorAll('input')[0].value) {
+					p = document.querySelector('p')
+					p.innerHTML = `Вітаємо! Ви придбали товар за ` + document.querySelectorAll('input')[0].value + ` грн!`
+
+				} else {
+					if (!document.querySelector('p')[1]) {
+						let numTickets = Math.floor(difference / 4)
+						p = document.querySelector('p')
+						p.innerHTML = `Вітаємо! Ви придбали товар за ` + document.querySelectorAll('input')[0].value + ` грн! Та залишилось у вас ${difference} грн.`
+						p = document.createElement('p')
+						p.innerHTML = `Пропонуємо вам придбати лотерейні білети, по ціні 4 грн = 1 шт. Ви можете придбати ${numTickets} шт. Бажаєте придбати?`
+						main = document.querySelector('.main')
+						main.appendChild(p)
+
+					}
+
 				}
 			}
 		}
