@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,7 @@
 
 		input {
 			float: right;
-			width: 240px;
+			width: 200px;
 		}
 
 		label {
@@ -24,9 +25,15 @@
 		form {
 			display: flex;
 			flex-direction: column;
-
 		}
-	</style>
+		button:nth-child(2),
+		button:nth-child(3){
+		  width: 100px;
+		}
+		button:nth-child(2){
+		  margin-right: 10px;
+		}
+</style>
 </head>
 
 <body>
@@ -45,37 +52,68 @@
 
 	<script>
 		// 1.2. З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
+		
+	function offer(btn){
+	if (btn.target == document.querySelectorAll('.offer-btn')[0] || btn.target == document.querySelectorAll('.offer-btn')[1] ){
+	console.log('lol')
+	}
+	}
+		
 		document.querySelector('.main').addEventListener('click', buy)
 		function buy(event) {
 			// перевіряем умову клика на кнопку
 			if (event.target == document.querySelector('button')) {
+			
 				// отримуемо нехватку грошей
 				let difference = Math.abs(document.querySelectorAll('input')[0].value - document.querySelectorAll('input')[1].value)
 				if (!document.querySelector('p')) {
 					let p = document.createElement('p')
 					let main = document.querySelector('.main')
 					main.appendChild(p)
+					
 				}
 				if (+document.querySelectorAll('input')[0].value > +document.querySelectorAll('input')[1].value) {
 					p = document.querySelector('p')
 					p.innerHTML = `Вибачте вам не хватає ${difference} грн. В покупці відмовлено.`
+					if(document.querySelector('.offer')){
+					document.querySelector('.offer').remove()
+					}
 
 				} else if (+document.querySelectorAll('input')[1].value - 3 <= +document.querySelectorAll('input')[0].value) {
 					p = document.querySelector('p')
 					p.innerHTML = `Вітаємо! Ви придбали товар за ` + document.querySelectorAll('input')[0].value + ` грн!`
+					if(document.querySelector('.offer')){
+					document.querySelector('.offer').remove()
+					}
 
 				} else {
-					if (!document.querySelector('p')[1]) {
 						let numTickets = Math.floor(difference / 4)
 						p = document.querySelector('p')
 						p.innerHTML = `Вітаємо! Ви придбали товар за ` + document.querySelectorAll('input')[0].value + ` грн! Та залишилось у вас ${difference} грн.`
+						
+						if (!document.querySelector('.offer')){
+				    let div = document.createElement('div')
+				    div.setAttribute('class','offer')
+				    main = document.querySelector('.main')
+						main.appendChild(div)
 						p = document.createElement('p')
-						p.innerHTML = `Пропонуємо вам придбати лотерейні білети, по ціні 4 грн = 1 шт. Ви можете придбати ${numTickets} шт. Бажаєте придбати?`
-						main = document.querySelector('.main')
-						main.appendChild(p)
-
-					}
-
+						div.appendChild(p)
+						
+						let btn = document.createElement('button')
+						btn.innerText = 'Так'
+						btn.setAttribute('class','offer-btn')
+						div.appendChild(btn)
+						
+						btn = document.createElement('button')
+						btn.innerText = 'Ні'
+						btn.setAttribute('class','offer-btn')
+						div.appendChild(btn)
+						}
+					document.querySelector('.offer p').innerHTML = `Пропонуємо вам придбати лотерейні білети, по ціні 4 грн = 1 шт.<br>
+					  Ви можете придбати ${numTickets} шт.<br>
+					  Бажаєте придбати?`
+					  
+		document.querySelector('.offer').addEventListener('click', offer)
 				}
 			}
 		}
