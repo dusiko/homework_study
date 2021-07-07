@@ -53,11 +53,12 @@
 	<script>
 		// 1.2. З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
 		
-	function offer(btn){
-	if (btn.target == document.querySelectorAll('.offer-btn')[0] || btn.target == document.querySelectorAll('.offer-btn')[1] ){
-	console.log('lol')
-	}
-	}
+		function clearOffer(){
+		  let offer = document.querySelector('.offer')
+		  offer.innerHTML =``
+		}
+		
+	
 		
 		document.querySelector('.main').addEventListener('click', buy)
 		function buy(event) {
@@ -65,7 +66,7 @@
 			if (event.target == document.querySelector('button')) {
 			
 				// отримуемо нехватку грошей
-				let difference = Math.abs(document.querySelectorAll('input')[0].value - document.querySelectorAll('input')[1].value)
+			  let difference = findDifference()
 				if (!document.querySelector('p')) {
 					let p = document.createElement('p')
 					let main = document.querySelector('.main')
@@ -87,7 +88,7 @@
 					}
 
 				} else {
-						let numTickets = Math.floor(difference / 4)
+						let numTickets = findNumTickets()
 						p = document.querySelector('p')
 						p.innerHTML = `Вітаємо! Ви придбали товар за ` + document.querySelectorAll('input')[0].value + ` грн! Та залишилось у вас ${difference} грн.`
 						
@@ -99,6 +100,7 @@
 						p = document.createElement('p')
 						div.appendChild(p)
 						
+						
 						let btn = document.createElement('button')
 						btn.innerText = 'Так'
 						btn.setAttribute('class','offer-btn')
@@ -108,7 +110,8 @@
 						btn.innerText = 'Ні'
 						btn.setAttribute('class','offer-btn')
 						div.appendChild(btn)
-						}
+				}
+						
 					document.querySelector('.offer p').innerHTML = `Пропонуємо вам придбати лотерейні білети, по ціні 4 грн = 1 шт.<br>
 					  Ви можете придбати ${numTickets} шт.<br>
 					  Бажаєте придбати?`
@@ -117,6 +120,29 @@
 				}
 			}
 		}
+		function offer(btn){
+	if (btn.target == document.querySelectorAll('.offer-btn')[0]){
+	clearOffer();
+	let p = document.createElement('p')
+	let offer = document.querySelector('.offer')
+	let difference = findDifference()
+	let numTickets = findNumTickets()
+	p.innerHTML = `Вітаємо! Ви придбали ${numTickets} білетів.`
+	
+	offer.appendChild(p)
+	}
+	}
+	
+	
+	// functions
+	
+	function findDifference(){
+	  return Math.abs(document.querySelectorAll('input')[0].value - document.querySelectorAll('input')[1].value)
+	}
+	function findNumTickets(){
+	 return Math.floor(findDifference() / 4)
+	}
+	  
 
 	</script>
 </body>
