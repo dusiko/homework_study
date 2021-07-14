@@ -8,12 +8,16 @@ document.querySelector('.start').addEventListener('click', generate)
 function generate(){
   let container = document.querySelector('.container')
   container.innerHTML = ''
-  
+  let h1 = document.createElement('h1')
+  h1.innerText = 'Ебашь Дюсия!!'
+  h1.style.width = '100%'
+  h1.style.textAlign = 'center'
+  container.appendChild(h1)
   // створюемо кораблі
   
   for(i = 0; i < 6; i++){
     let div = document.createElement('div')
-    div.innerText = `${i}`
+ // div.innerText = `${i+1}`
     div.classList.add('ship')
     container.appendChild(div)
     shipsArr.push(document.querySelectorAll('.ship')[i])
@@ -26,15 +30,7 @@ function generate(){
     } while (enemyShipsArr[0] == enemy || enemyShipsArr[1] == enemy || enemyShipsArr[2] == enemy )
         enemyShipsArr.push(enemy)
   }
- 
-  //
-  
-  let btn = document.createElement('BUTTON')
-  btn.innerText = 'restart'
-  btn.classList.add('restart')
-  container.appendChild(btn)
   document.querySelector('.container').addEventListener('click', hit)
-  btn.addEventListener('click', restart)
 }
 
 function restart(){
@@ -48,7 +44,6 @@ function restart(){
   btn.classList.add('start')
   container.appendChild(btn)
   document.querySelector('.start').addEventListener('click', generate)
-  
     container.style.opacity = '1';
      container.style.backgroundColor = 'white';
   document.querySelector('.win').remove()
@@ -73,12 +68,13 @@ function hit(event){
      document.querySelector('.win').addEventListener('click', restart)
     }
   } else if( shipsArr[shipsArr.indexOf(event.target)].innerText == 'missed' || shipsArr[shipsArr.indexOf(event.target)].innerText == 'killed'){
-      alert('Ти вже сюда пуляв! мудак.')
+      allreadyHit()
     } else {
        let indx = shipsArr.indexOf(event.target)
        let missed = enemyShipsArr.indexOf(indx)
        enemyShipsArr[missed] = 'missed'
        shipsArr[indx].innerText = 'missed'
+       shipsArr[indx].style.color = 'black'
   shipsArr[indx].classList.add('not-killed')
   count--
   if(count == 0){
@@ -94,3 +90,21 @@ function hit(event){
     }
   }
 } 
+
+function allreadyHit(){
+  let div = document.createElement('DIV')
+    div.classList.add('win')
+    div.innerText = 'Ти вже сюда пуляв! мудак.'
+    document.querySelector('.main').appendChild(div)
+    let container = document.querySelector('.container')
+    container.style.opacity = '0.3';
+     container.style.backgroundColor = 'black';
+     document.querySelector('.win').addEventListener('click', hide)
+}
+
+function hide(){
+    let container = document.querySelector('.container')
+    container.style.opacity = '1';
+     container.style.backgroundColor = 'white';
+     document.querySelector('.win').remove()
+}
