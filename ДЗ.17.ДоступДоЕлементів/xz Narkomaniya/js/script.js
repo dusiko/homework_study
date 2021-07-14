@@ -1,8 +1,7 @@
 let shipsArr = []
 let enemyShipsArr = []
 let enemy
-
-
+let count = 3
 
 document.querySelector('.start').addEventListener('click', generate)
 
@@ -27,7 +26,7 @@ function generate(){
     } while (enemyShipsArr[0] == enemy || enemyShipsArr[1] == enemy || enemyShipsArr[2] == enemy )
         enemyShipsArr.push(enemy)
   }
-  console.log(enemyShipsArr)
+ 
   //
   
   let btn = document.createElement('BUTTON')
@@ -41,6 +40,7 @@ function generate(){
 function restart(){
   enemyShipsArr = []
   shipsArr = []
+  count = 3
  let container = document.querySelector('.container')
  container.innerHTML='';
  let btn = document.createElement('BUTTON')
@@ -71,15 +71,26 @@ function hit(event){
     container.style.opacity = '0.3';
      container.style.backgroundColor = 'black';
      document.querySelector('.win').addEventListener('click', restart)
-  
-    
-  }
+    }
+  } else if( shipsArr[shipsArr.indexOf(event.target)].innerText == 'missed' || shipsArr[shipsArr.indexOf(event.target)].innerText == 'killed'){
+      alert('Ти вже сюда пуляв! мудак.')
     } else {
        let indx = shipsArr.indexOf(event.target)
        let missed = enemyShipsArr.indexOf(indx)
        enemyShipsArr[missed] = 'missed'
        shipsArr[indx].innerText = 'missed'
   shipsArr[indx].classList.add('not-killed')
+  count--
+  if(count == 0){
+    let div = document.createElement('DIV')
+    div.classList.add('win')
+    div.innerText = 'Проебав!!!'
+    document.querySelector('.main').appendChild(div)
+    let container = document.querySelector('.container')
+    container.style.opacity = '0.3';
+     container.style.backgroundColor = 'black';
+     document.querySelector('.win').addEventListener('click', restart)
+  }
     }
   }
 } 
