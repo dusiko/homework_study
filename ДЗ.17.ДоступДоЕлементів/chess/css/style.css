@@ -1,0 +1,30 @@
+*{
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+  margin: 20px auto;
+  text-align: center;
+  position: relative;
+ 
+}
+.chessboard{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+}
+.chessboard__item{
+   border: 1px solid black;
+   width: 40px;
+   height: 40px;
+}
+.start{
+  width: 150px;
+  height: 100px;
+  font-size: 24px;
+  top: 0;
+  bottom: 0;
+ 
+}
