@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3.1</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			max-width: 768px;
+			margin: 20px auto;
+			padding: 20px 0;
+		}
+
+		.main {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.btn {
+			background-color: rgb(189, 49, 49);
+			color: black;
+			width: 50px;
+			padding: 20px;
+			width: max-content;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.number {
+			font-size: 86px;
+		}
+
+		h1 {
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<main class="main">
+			<h1>Вгадайте яке наступне число буде випадковим чином згенероване Комп’ютером: більше чи менше? від 0 до 500.
+			</h1>
+			<button class="btn gen">
+				generate number
+			</button>
+		</main>
+	</div>
+
+
+
+
+	<script>
+		/* Комп’ютер випадковим чином генерує число. Вгадати, чи наступне число буде більшим чи меншим. */
+		document.querySelector('.gen').addEventListener('click', startGame)
+
+
+		function startGame() {
+			let btnGen = document.querySelector('.gen')
+			let main = document.querySelector('.main')
+			let numRandom = 0 + Math.floor(Math.random() * (500 - 1))
+			if (!document.querySelector('.btns-block')) {
+				let div = document.createElement('DIV')
+				div.classList.add('btns-block')
+				main.appendChild(div)
+				let btn = document.createElement('BUTTON')
+				btn.classList.add('btn')
+				btn.innerText = 'Менше'
+				btn.addEventListener('click', lower)
+				div.appendChild(btn)
+				btn = document.createElement('BUTTON')
+				btn.classList.add('btn')
+				btn.innerText = 'Більше'
+				btn.addEventListener('click', higher)
+				div.appendChild(btn)
+			} if (!document.querySelector('.number')) {
+				div = document.createElement('div')
+				div.classList.add('number')
+				main.appendChild(div)
+			}
+			div.innerHTML = numRandom
+
+		}
+
+		function lower() {
+			let prevNum = document.querySelector('.number').innerText
+			numRandom = 0 + Math.floor(Math.random() * (500 - 1))
+			div.innerHTML = numRandom
+			if (prevNum > numRandom) {
+				alert('Вітаємо, ти вгадав! Наступне число менше')
+			} else if (prevNum == numRandom) {
+				alert('Печаль, ти не вгадав! Наступне число таке як і попереднє')
+			} else {
+				alert('Печаль, ти не вгадав! Наступне число більше за попереднє')
+			}
+
+		}
+
+		function higher() {
+			let prevNum = document.querySelector('.number').innerText
+			numRandom = 0 + Math.floor(Math.random() * (500 - 1))
+			div.innerHTML = numRandom
+			if (prevNum < numRandom) {
+				alert('Вітаємо, ти вгадав! Наступне число більше')
+			} else if (prevNum == numRandom) {
+				alert('Печаль, ти не вгадав! Наступне число таке як і попереднє')
+			} else {
+				alert('Печаль, ти не вгадав! Наступне число менше за попереднє')
+			}
+		}
+
+
+	</script>
+
+</body>
+
+</html>
