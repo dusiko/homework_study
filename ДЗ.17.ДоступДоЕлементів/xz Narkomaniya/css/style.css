@@ -20,9 +20,9 @@
   font-weight: bold;
 }
 .ship{
-  width: 125px;
-  height: 150px;
-  background-image: url('/img/3.jpg');
+  width: 250px;
+  height: 300px;
+  background-image: url('../img/3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   margin: 10px;
@@ -36,6 +36,7 @@
 }
 .ship:hover{
    box-shadow:0 0 10px darkblue;
+   cursor: pointer;
 }
 
 .restart{
@@ -46,10 +47,10 @@
 }
 
 .killed{
-    background-image: url('/img/2.jpg');
+    background-image: url('../img/2.jpg');
 }
 .not-killed{
-   background-image: url('/img/1.jpg');
+   background-image: url('../img/1.jpg');
 }
 .main{
   width: 100vw;
@@ -70,5 +71,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+h1{
+	color: red;
 }
 
