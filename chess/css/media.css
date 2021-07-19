@@ -1,0 +1,20 @@
+@media(max-width: 425px){
+	.container{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.chessboard__item{
+		height: 40px;
+		
+	}
+	.chessboard{
+		width: 300px;
+		
+	}
+	.horse{
+		width: 30px;
+		height: 35px;
+
+	 }
+}

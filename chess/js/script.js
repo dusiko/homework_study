@@ -47,74 +47,47 @@ function genChessboard() {
 	div.classList.add('horse');
 	div.setAttribute('src', 'images/horse.png')
 	document.querySelector('.underboard').appendChild(div)
-	chessboard.addEventListener('click', horseMove)
+	chessboard.addEventListener('click', start)
+}
+
+function start(event) {
+	if (event.target.classList.contains('chessboard__item')) {
+		horseMove(event)
+	}
+	document.querySelector('.chessboard').removeEventListener('click', start)
+	document.querySelector('.chessboard').addEventListener('click', next)
+}
+function next(event) {
+	if (event.target.classList.contains('active')) {
+		horseMove(event)
+	}
 }
 
 function horseMove(event) {
-	if (event.target.classList.contains('chessboard__item')) {
-		let img = document.querySelector('.horse')
-		event.target.appendChild(img)
-		let x = +event.target.dataset.x;
-		let y = +event.target.dataset.y;
-		console.log(`x = ${x} , y = ${y}`)
-
-		let items = document.querySelectorAll('.chessboard__item')
-		for (i = 0; i < items.length; i++) {
-			items[i].classList.remove('active')
-		}
-
-		if (x - 2 >= 1 && y + 1 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y + 1}"]`).classList.add('active')
-		} if (x - 2 >= 1 && y - 1 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y - 1}"]`).classList.add('active')
-		} if (x + 2 <= 8 && y - 1 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y - 1}"]`).classList.add('active')
-		} if (x + 2 <= 8 && y + 1 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y + 1}"]`).classList.add('active')
-		} if (x + 1 <= 8 && y + 2 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y + 2}"]`).classList.add('active')
-		} if (x - 1 >= 1 && y - 2 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y - 2}"]`).classList.add('active')
-		} if (x - 1 >= 1 && y + 2 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y + 2}"]`).classList.add('active')
-		} if (x + 1 <= 8 && y - 2 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y - 2}"]`).classList.add('active')
-		}
+	let img = document.querySelector('.horse')
+	event.target.appendChild(img)
+	let x = +event.target.dataset.x;
+	let y = +event.target.dataset.y;
+	console.log(`x = ${x} , y = ${y}`)
+	let items = document.querySelectorAll('.chessboard__item')
+	for (i = 0; i < items.length; i++) {
+		items[i].classList.remove('active')
 	}
-	document.querySelector('.chessboard').removeEventListener('click', horseMove)
-	document.querySelector('.chessboard').addEventListener('click', horseMoveNext)
-
-}
-
-function horseMoveNext() {
-	if (event.target.classList.contains('active')) {
-		let img = document.querySelector('.horse')
-		event.target.appendChild(img)
-		let x = +event.target.dataset.x;
-		let y = +event.target.dataset.y;
-		console.log(`x = ${x} , y = ${y}`)
-
-		let items = document.querySelectorAll('.chessboard__item')
-		for (i = 0; i < items.length; i++) {
-			items[i].classList.remove('active')
-		}
-
-		if (x - 2 >= 1 && y + 1 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y + 1}"]`).classList.add('active')
-		} if (x - 2 >= 1 && y - 1 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y - 1}"]`).classList.add('active')
-		} if (x + 2 <= 8 && y - 1 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y - 1}"]`).classList.add('active')
-		} if (x + 2 <= 8 && y + 1 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y + 1}"]`).classList.add('active')
-		} if (x + 1 <= 8 && y + 2 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y + 2}"]`).classList.add('active')
-		} if (x - 1 >= 1 && y - 2 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y - 2}"]`).classList.add('active')
-		} if (x - 1 >= 1 && y + 2 <= 8) {
-			document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y + 2}"]`).classList.add('active')
-		} if (x + 1 <= 8 && y - 2 >= 1) {
-			document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y - 2}"]`).classList.add('active')
-		}
+	if (x - 2 >= 1 && y + 1 <= 8) {
+		document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y + 1}"]`).classList.add('active')
+	} if (x - 2 >= 1 && y - 1 >= 1) {
+		document.querySelector(`.chessboard__item[data-x="${+x - 2}"][data-y="${+y - 1}"]`).classList.add('active')
+	} if (x + 2 <= 8 && y - 1 >= 1) {
+		document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y - 1}"]`).classList.add('active')
+	} if (x + 2 <= 8 && y + 1 <= 8) {
+		document.querySelector(`.chessboard__item[data-x="${+x + 2}"][data-y="${+y + 1}"]`).classList.add('active')
+	} if (x + 1 <= 8 && y + 2 <= 8) {
+		document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y + 2}"]`).classList.add('active')
+	} if (x - 1 >= 1 && y - 2 >= 1) {
+		document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y - 2}"]`).classList.add('active')
+	} if (x - 1 >= 1 && y + 2 <= 8) {
+		document.querySelector(`.chessboard__item[data-x="${+x - 1}"][data-y="${+y + 2}"]`).classList.add('active')
+	} if (x + 1 <= 8 && y - 2 >= 1) {
+		document.querySelector(`.chessboard__item[data-x="${+x + 1}"][data-y="${+y - 2}"]`).classList.add('active')
 	}
 }
