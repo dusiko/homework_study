@@ -17,8 +17,12 @@
 }
 .chessboard__item{
    border: 1px solid black;
-   width: 40px;
+   width: 12%;
    height: 40px;
+   display: flex;
+   align-items: flex-end;
+   justify-content: center;
+   text-align: center;
 }
 .start{
   width: 150px;
@@ -26,5 +30,15 @@
   font-size: 24px;
   top: 0;
   bottom: 0;
+}
+.horse{
+  width: 30px;
+  height: 35px;
+ background-color: transparent;
+ margin-bottom: 1px;
  
+}
+
+.active{
+  border: 3px dashed green;
 }
