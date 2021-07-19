@@ -54,8 +54,8 @@ function horseMove(event){
   if(event.target.classList.contains('chessboard__item')){
     let img = document.querySelector('.horse')
     event.target.appendChild(img)
-    let x = event.target.dataset.x;
-    let y = event.target.dataset.y;
+    let x = +event.target.dataset.x;
+    let y = +event.target.dataset.y;
     console.log(`x = ${x} , y = ${y}`)
     
     let items = document.querySelectorAll('.chessboard__item')
@@ -63,8 +63,22 @@ function horseMove(event){
       items[i].classList.remove('active')
     }
     
-    if(x-2 >= 1 && y-1 >= 1){
-      document.querySelector(`.chessboard__item[data-x="${x-2}"][data-y="${y-1}"]`).classList.add('active')
+    if(x-2 >= 1 && y+1 <=8){
+      document.querySelector(`.chessboard__item[data-x="${+x-2}"][data-y="${+y+1}"]`).classList.add('active')
+    } if (x - 2 >= 1 && y - 1 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x-2}"][data-y="${+y-1}"]`).classList.add('active')
+    } if (x + 2 <= 8 && y - 1 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x+2}"][data-y="${+y-1}"]`).classList.add('active')
+    } if (x + 2 <= 8 && y + 1 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x+2}"][data-y="${+y+1}"]`).classList.add('active')
+    } if (x + 1 <= 8 && y + 2 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x+1}"][data-y="${+y+2}"]`).classList.add('active')
+    } if (x - 1 >= 1 && y - 2 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x-1}"][data-y="${+y-2}"]`).classList.add('active')
+    } if (x - 1 >= 1 && y + 2 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x-1}"][data-y="${+y+2}"]`).classList.add('active')
+    } if (x + 1 <= 8 && y - 2 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x+1}"][data-y="${+y-2}"]`).classList.add('active')
     }
   }
   document.querySelector('.chessboard').removeEventListener('click', horseMove)
@@ -76,8 +90,8 @@ function horseMoveNext(){
   if(event.target.classList.contains('active')){
     let img = document.querySelector('.horse')
     event.target.appendChild(img)
-    let x = event.target.dataset.x;
-    let y = event.target.dataset.y;
+    let x = +event.target.dataset.x;
+    let y = +event.target.dataset.y;
     console.log(`x = ${x} , y = ${y}`)
     
     let items = document.querySelectorAll('.chessboard__item')
@@ -85,8 +99,22 @@ function horseMoveNext(){
       items[i].classList.remove('active')
     }
     
-    if(x-2 >= 1 && y-1 >= 1){
-      document.querySelector(`.chessboard__item[data-x="${x-2}"][data-y="${y-1}"]`).classList.add('active')
-    } 
+     if(x-2 >= 1 && y+1 <=8){
+      document.querySelector(`.chessboard__item[data-x="${+x-2}"][data-y="${+y+1}"]`).classList.add('active')
+    } if (x - 2 >= 1 && y - 1 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x-2}"][data-y="${+y-1}"]`).classList.add('active')
+    } if (x + 2 <= 8 && y - 1 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x+2}"][data-y="${+y-1}"]`).classList.add('active')
+    } if (x + 2 <= 8 && y + 1 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x+2}"][data-y="${+y+1}"]`).classList.add('active')
+    } if (x + 1 <= 8 && y + 2 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x+1}"][data-y="${+y+2}"]`).classList.add('active')
+    } if (x - 1 >= 1 && y - 2 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x-1}"][data-y="${+y-2}"]`).classList.add('active')
+    } if (x - 1 >= 1 && y + 2 <= 8) {
+      document.querySelector(`.chessboard__item[data-x="${+x-1}"][data-y="${+y+2}"]`).classList.add('active')
+    } if (x + 1 <= 8 && y - 2 >= 1) {
+      document.querySelector(`.chessboard__item[data-x="${+x+1}"][data-y="${+y-2}"]`).classList.add('active')
+    }
   }
 }
