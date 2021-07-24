@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 1</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача . Вивести привітання декількома мовами (створити функцію: мова задається (ua,ru,en),
+			 а виводиться привітання на потрібній мові (привіт, привет, hello))
+		*/
+
+		function getGreating(lang) {
+			switch (lang) {
+				case "ua": return "Привіт"
+				case "ru": return "Нехай щастить"
+				case "en": return "Hello"
+
+				default: return "Error"
+			}
+		}
+
+		let userLang = prompt("Your native language:")
+		let message = getGreating(userLang)
+		document.write(message)
+
+
+	</script>
+
+
+</body>
+
+</html>

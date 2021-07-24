@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 5</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача. Дано назви та ціни 4 товарів. 
+			Вивести назви товарів, ціна яких не перевищує 1000грн.
+		*/
+
+		let priceList = [
+			product1 = {
+				name: 'rice',
+				price: 500,
+			},
+			product2 = {
+				name: 'potatos',
+				price: 1200,
+			},
+			product3 = {
+				name: 'beers',
+				price: 900,
+			},
+			product4 = {
+				name: 'fish',
+				price: 1500,
+			},
+		]
+
+		function showGoodsWithPriceLower1000(arr) {
+			arr.filter(function (val, i, array) {
+				if (val.price < 1000) console.log(val.name)
+			})
+		}
+
+		showGoodsWithPriceLower1000(priceList)
+
+
+	</script>
+
+
+</body>
+
+</html>
