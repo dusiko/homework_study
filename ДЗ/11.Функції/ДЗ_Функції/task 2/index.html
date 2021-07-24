@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 2</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 2. Створити функцію, яка за номером тижня повертає кількість уроків(так, як у вас було у школі).
+		*/
+		let num = 1 + Math.floor(Math.random() * 8);
+
+		function whatMonth(num) {
+			switch (num) {
+				case 1: return 6
+					break;
+				case 2: return 5
+					break;
+				case 3: return 5
+					break;
+				case 4: return 6
+					break;
+				case 5: return 7
+					break;
+				case 6: return 'нема уроків. Вихідний!'
+					break;
+				case 7: return 'нема уроків. Вихідний!'
+					break;
+				default: return 'Помилка! Ви ввели не правельний номер дня неділі!'
+			}
+		}
+
+		if (num >= 1 && num <= 5)
+			console.log(`${num} дня неділі, було ${whatMonth(num)} уроків. `)
+		else if (num >= 6 && num <= 7)
+			console.log(`${num} дня неділі ${whatMonth(num)}`)
+		else
+			console.log(`${whatMonth(num)} ${num} номер дня неділі не існує!`)
+	</script>
+
+
+</body>
+
+</html>

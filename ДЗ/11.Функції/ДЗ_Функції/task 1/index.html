@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 1</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 1. Створити функцію, яка за номером місяця повертає його назву.
+		*/
+		function whatMonth(num) {
+			switch (num) {
+				case 1: return 'Січень'
+					break;
+				case 2: return 'Лютий'
+					break;
+				case 3: return 'Березень'
+					break;
+				case 4: return 'Квітень'
+					break;
+				case 5: return 'Травень'
+					break;
+				case 6: return 'Червень'
+					break;
+				case 7: return 'Липень'
+					break;
+				case 8: return 'Серпень'
+					break;
+				case 9: return 'Вересень'
+					break;
+				case 10: return 'Жовтень'
+					break;
+				case 11: return 'Листопад'
+					break;
+				case 12: return 'Грудень'
+					break;
+				default: return 'Помилка! Ви ввели не правельний номер місяця!'
+			}
+		}
+		let num = 12;
+		console.log(`${num} номер місяця: ${whatMonth(num)}`)
+	</script>
+
+
+</body>
+
+</html>

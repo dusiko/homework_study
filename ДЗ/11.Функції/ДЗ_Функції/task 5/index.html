@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 4</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 5. Створити функції, які переводять:
+							Сантиметри у дюйми; 2,54 см = 1 дюйм 
+							Кілограми у фунти; 1 кг = 2.2 фунта
+							Кілометри у милі. 1 км = 0.6 мили
+
+
+		*/
+		function сmToD(cm) {
+			return (cm * 2.54).toFixed(2)
+		}
+		function kgToF(kg) {
+			return (kg * 2.2).toFixed(2)
+		}
+		function kmToMiles(km) {
+			return (km * 0.6).toFixed(2)
+		}
+		console.log(сmToD(120) + ' дюймів.')
+		console.log(kgToF(120) + ' фунтів.')
+		console.log(kmToMiles(120) + ' милів.')
+
+
+	</script>
+
+
+</body>
+
+</html>

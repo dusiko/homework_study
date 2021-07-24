@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 3</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 3. Створити окремі функції, які для 4 чисел знаходять:
+				1)суму;
+				2)добуток;
+				3)середнє арифметичне;
+				4)мінімальне значення.
+
+		*/
+		function sum(a, b, c, d) {
+			return a + b + c + d
+		}
+
+		function product(a, b, c, d) {
+			return a * b * c * d
+		}
+		function arithmetic(a, b, c, d) {
+			return (sum(a, b, c, d)) / 4
+		}
+		function minVal(a, b, c, d) {
+			let min
+			if (a < b)
+				min = a
+			else min = b
+			if (min > c)
+				min = c
+			if (min > d)
+				min = d
+			return min
+		}
+		console.log('Numbers: 44, 22, 4, 2')
+		console.log('Sum: ' + sum(44, 22, 4, 2))
+		console.log('Product: ' + product(44, 22, 4, 2))
+		console.log('arithmetic: ' + arithmetic(44, 22, 4, 2))
+		console.log('MinValue: ' + minVal(44, 22, 4, 2))
+
+
+	</script>
+
+
+</body>
+
+</html>
