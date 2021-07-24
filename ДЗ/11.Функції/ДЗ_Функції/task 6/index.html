@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 6</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 6. Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців
+		*/
+
+		function createTable(rows, columns) {
+			const table = document.createElement('TABLE')
+			table.style.border = 5 + 'px solid black'
+			for (i = 0; i < rows; i++) {
+				const tr = document.createElement('TR')
+				for (k = 0; k < columns; k++) {
+					const td = document.createElement('TD')
+					td.style.width = 50 + 'px'
+					td.style.height = 50 + 'px'
+					td.style.backgroundColor = 'red'
+					tr.appendChild(td)
+				}
+				table.appendChild(tr)
+			}
+			return table
+		}
+		let body = document.querySelector('body')
+		body.appendChild(createTable(20, 10))
+
+
+	</script>
+
+
+</body>
+
+</html>

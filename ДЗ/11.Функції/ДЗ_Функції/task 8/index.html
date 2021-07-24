@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 8</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача 8. Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, 
+			куди переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: <a> <img src=”шлях”> </a>
+		*/
+
+		function showRandImg(h, image, link) {
+			const BANNER = document.createElement('DIV')
+			BANNER.style.width = 250 + 'px'
+			BANNER.style.height = 400 + 'px'
+			const IMG = document.createElement('IMG')
+			IMG.setAttribute('src', image)
+			IMG.style.height = 400 + 'px'
+			IMG.style.width = 250 + 'px'
+			IMG.style.cursor = 'pointer'
+			const A = document.createElement('A')
+			A.setAttribute('href', link)
+			A.innerText = h
+			A.style.textDecoration = 'none'
+			A.style.fontSize = 20 + 'px'
+			A.style.color = 'black'
+			A.appendChild(IMG)
+			BANNER.appendChild(A)
+			BANNER.style.textAlign = 'center'
+			return BANNER
+		}
+		let body = document.querySelector('body')
+		body.appendChild(showRandImg('BeerParty', 'https://oboi-vsem.com.ua/image/catalog/S1410.jpg', 'https://oboi-vsem.com.ua/beer-party'))
+
+	</script>
+
+
+</body>
+
+</html>
