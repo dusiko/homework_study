@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 1</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Задача1. Відсортувати масив імен за останньою літерою.
+		*/
+
+		const namesArr = ['Yurii', 'Yulik', 'Taras', 'Ivan', 'Lena', 'Maryana', 'Kurva']
+		console.log(namesArr)
+		console.log(namesArr.sort(function (a, b) {
+			if (a[a.length - 1] > b[b.length - 1])
+				return 1
+			if ((a[a.length - 1] < b[b.length - 1]))
+				return -1
+			else
+				return 0
+		}))
+
+	</script>
+
+</body>
+
+</html>

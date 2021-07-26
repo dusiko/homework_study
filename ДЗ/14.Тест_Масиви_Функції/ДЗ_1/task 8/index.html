@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 8</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Задача 8. Розробити функцію, яка би для довільної 
+			кількості чисел знаходила добуток чисел.
+		*/
+		const arrSym = parseInt(prompt('Вкажіть довільну кількість чисел'))
+
+		function productNums(num) {
+			const str = num.toString()
+			let product = str[0]
+			for (i = 1; i < str.length; i++) {
+				product *= str[i]
+			}
+			return product
+		}
+
+		console.log(productNums(arrSym))
+
+	</script>
+
+</body>
+
+</html>

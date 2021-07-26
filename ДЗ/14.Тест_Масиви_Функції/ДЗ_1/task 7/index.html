@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 7</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Задача 7. Розробити функцію, яка би для довільної
+			кількості переданих символів визначала, кількість букв «а».
+		*/
+		const arrSym = prompt('Вкажіть символ деякий')
+		function findA(word) {
+			let count = 0;
+			for (i = 0; i < word.length; i++) {
+				if (word[i].toLowerCase() == 'a')
+					count++
+			}
+			return count
+		}
+		console.log(findA(arrSym))
+	</script>
+
+</body>
+
+</html>

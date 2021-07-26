@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 4</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+		Задача 4. Дано масив імен. Сформувати новий масив, 
+					який складається з імен, які починаються на задану літеру.
+		*/
+		let arrNames = ['Yurii', 'Ivan', 'Maryana', 'Yulik', 'Taras', 'Lena', 'Otti', 'Mishanya',]
+		console.log(arrNames)
+		function filterByLetter(arr, letter) {
+			let newArrNames = []
+			for (i = 0; i < arr.length; i++) {
+				if (arr[i][0] == letter.toUpperCase())
+					newArrNames.push(arr[i])
+			}
+			return newArrNames
+		}
+		let newArrNames = filterByLetter(arrNames, 'y')
+		console.log(newArrNames)
+
+	</script>
+
+</body>
+
+</html>

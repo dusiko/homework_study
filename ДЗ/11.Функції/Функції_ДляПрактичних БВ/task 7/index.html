@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 7</title>
+</head>
+
+<body>
+
+
+	<script>
+		/*
+			Задача. Дано ціни 4 товарів. Визначити, 
+			скільки кожного виду товарів може купити користувач за наявну у нього кількість грошей.
+
+		*/
+
+		let priceList = [
+			parseFloat(prompt(`ціна бадвайзера`)),
+			parseFloat(prompt('ціна гамбрінуса')),
+			parseFloat(prompt('ціна стелла')),
+			parseFloat(prompt('ціна хугардена'))
+		]
+		let cash = parseFloat(prompt('скільки в тебе грошей?'))
+
+		function howMuch(price, money) {
+			let newArr = []
+			for (i = 0; i < price.length; i++) {
+				newArr.push(parseFloat(Math.floor((money / price[i]))))
+			}
+			return newArr
+		}
+
+		console.log(`З бюджетом в ${cash} грн. Можна придбати: ${howMuch(priceList, cash)[0]} шт бадвайзерів по ціні ${priceList[0]} грн., або ${howMuch(priceList, cash)[1]} шт гамбринусив по ціні ${priceList[1]} грн., ${howMuch(priceList, cash)[2]} шт стелл по ціні ${priceList[2]} грн., ${howMuch(priceList, cash)[3]} шт хугарденив по ціні ${priceList[3]} грн.,`)
+	</script>
+
+
+</body>
+
+</html>
