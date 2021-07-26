@@ -16,23 +16,25 @@
 			Знайти сумарну вартість тих, які
 			знаходяться в межах від 1000 до 2000.
 
-
-																																	 ДОРОБИТИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		*/
-		let priceList = [1500, 1900, 2300, 4000, 2400, 2000, 1500, 3900, 3100, 1000, 900]
+		let priceList = [1500, 1900, 300, 4000, 2400, 2000, 1500, 3900, 1002, 1000, 900]
 		console.log(priceList)
-		priceList.reduce((acc, val, i, arr) => {
-			if (typeof val === 'number')
-				if (val > 1000 && val < 2000)
-					console.log(acc = acc + val)
-		})
 
-		// function diapazon(prev, val) {
+		// let newArr = priceList.reduce((acc, val, i, arr) => {
 		// 	if (val > 1000 && val < 2000)
-		// 		console.log(prev += val)
-		// }
+		// 		acc += val
+		// 	return acc
+		// })
 
-		// priceList.reduce(diapazon)
+		// console.log(newArr)
+
+		function diapazon(prev, val) {
+			if (val > 1000 && val < 2000)
+				prev += val
+			return prev
+		}
+
+		console.log(priceList.reduce(diapazon))
 
 	</script>
 
