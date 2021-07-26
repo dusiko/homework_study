@@ -15,16 +15,15 @@
 			Задача1. Відсортувати масив імен за останньою літерою.
 		*/
 
-		const namesArr = ['Yurii', 'Yulik', 'Taras', 'Ivan', 'Lena', 'Maryana', 'Kurva']
+		const namesArr = ['Yurii', 'Yulik', 'Taras', 'Ivan', 'Lena', 'Maryana', 'Otto']
 		console.log(namesArr)
 		console.log(namesArr.sort(function (a, b) {
 			if (a[a.length - 1] > b[b.length - 1])
 				return 1
 			if ((a[a.length - 1] < b[b.length - 1]))
 				return -1
-			else
-				return 0
 		}))
+
 
 	</script>
 
