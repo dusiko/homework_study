@@ -12,31 +12,17 @@
 
 	<script>
 		/*
-			Задача 7. Розробити функцію, яка би для довільної
-			кількості переданих символів визначала, кількість букв «а».
+			Задача 7. Дано масив номерів автомобілів. 
+			Сформувати масив тих, 
+			які починаються на літеру «А» і закінчуються на літеру «Р».
 		*/
-let priceArr = []
+		let carsNums = ['AO1540P', 'AO1224A', 'AA4454P', 'BC44556A', 'BC9011B', 'PE3341A']
 
-for (i = 0; i < 10; i++){
-priceArr.push(500 + Math.floor(Math.random() * 1500 - 500 + 1))
-}
-console.log(priceArr)
-
-
-let priceList = {}
-for(i = 0; i < priceArr.length; i++){
-  priceList[`price`+`${i+1}`] = priceArr[i] + ' грн.'
-}
-console.log(priceList)
-
- for (i = 0; i < priceArr.length; i++){
-   let temp = parseInt(priceList[`price`+`${i+1}`])
-   if (temp > 1000 ){
-   priceList[`price`+`${i+1}`] = (temp * 0.80).toFixed(2) + ' грн. Знижка 20%'
-   }
-}
-
-console.log(priceList)
+		let newArr = carsNums.filter((val, i, arr) => {
+			if (val[0].toUpperCase() === 'A' && val[val.length - 1].toUpperCase() === 'P')
+				return val
+		})
+		console.log(newArr)
 	</script>
 
 </body>

@@ -12,11 +12,26 @@
 
 	<script>
 		/*
-			Задача 8. Розробити функцію, яка би для довільної
-			кількості чисел знаходила добуток чисел.
+			Задача 8. Дано масив літер.
+			Сформувати рядок,
+			який складається тільки з голосних літер.
 		*/
+		console.log('Букви:')
+		let lettersArr = ['a', 'b', 's', 'o', 'k', 'e', 'l', 'm', 'M', 'A', 'I', 'Y', 'y']
+		console.log(lettersArr)
+		console.log('Список голосних:')
+		let golosnie = ['a', 'o', 'e', 'i', 'y', 'u',]
+		console.log(golosnie)
 
+		let newArr = lettersArr.filter((val, index, arr) => {
+			for (i = 0; i < golosnie.length; i++) {
+				if (val.toLowerCase() === golosnie[i].toLowerCase())
+					return val
+			}
+		})
 
+		console.log('Витянуті голосні з массива:')
+		console.log(newArr)
 	</script>
 
 </body>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 8</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Дано массив цін.
+			Вивести 
+			ціни > 1000 дати знижку 20%
+			ціни < 1000 дати знижку 5%
+		*/
+		let priceArr = []
+
+		for (i = 0; i < 10; i++) {
+			priceArr.push(500 + Math.floor(Math.random() * (1500 - 500 + 1)))
+		}
+		console.log(priceArr)
+
+		let priceList = {}
+		for (i = 0; i < priceArr.length; i++) {
+			priceList[`price` + `${i + 1}`] = priceArr[i] + ' грн.'
+		}
+
+		for (i = 0; i < priceArr.length; i++) {
+			let temp = parseInt(priceList[`price` + `${i + 1}`])
+			if (temp > 1000) {
+				priceList[`price` + `${i + 1}`] = `Стара ціна: ${temp} грн. Нова ціна: ` + (temp * 0.80).toFixed(2) + ' грн. Знижка 20%'
+			} if (temp < 1000) {
+				priceList[`price` + `${i + 1}`] = `Стара ціна: ${temp} грн. Нова ціна: ` + (temp * 0.95).toFixed(2) + ' грн. Знижка 5%'
+			}
+		}
+		console.log(priceList)
+	</script>
+
+</body>
+
+</html>
