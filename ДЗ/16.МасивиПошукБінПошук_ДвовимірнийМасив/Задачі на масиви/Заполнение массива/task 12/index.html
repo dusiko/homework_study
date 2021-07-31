@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 12</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Создать массив, который одинаково 
+			читается как слева направо, так и справа налево.
+
+		*/
+		let arr1 = []
+		function createrArr(length, arr) {
+			if (length % 2 === 0) {
+				do {
+					let num = 0 + Math.floor(Math.random() * 50)
+					arr.push(num)
+					arr.unshift(num)
+				} while (arr.length < length)
+			} else if (length === 1) {
+				let num = 0 + Math.floor(Math.random() * 50)
+				arr.push(num)
+			} else {
+				if (arr.length === 0) {
+					let num = 0 + Math.floor(Math.random() * 50)
+					arr.push(num)
+				}
+				do {
+					let num = 0 + Math.floor(Math.random() * 50)
+					arr.push(num)
+					arr.unshift(num)
+				} while (arr.length < length)
+			}
+		}
+		createrArr(15, arr1)
+		console.table(arr1)
+	</script>
+</body>
+
+</html>

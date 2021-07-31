@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 14</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Заполните массив случайным образом нулями и единицами так,
+			 чтобы количество единиц было больше количества нулей.
+					if ((Math.ceil(length / 2) - 1) === zeroCount)
+						arr.push(1)
+		*/
+		let arr1 = []
+		function createrArr(length, arr) {
+			for (i = 0; i < length; i++) {
+				let num = 0 + Math.floor(Math.random() * (1 - 0 + 1))
+				if (num === 0) {
+					let zeroCount = 0
+					arr.forEach(val => {
+						if (val === 0) zeroCount++
+					});
+					((Math.ceil(length / 2) - 1) === zeroCount) ? arr.push(1) : arr.push(num)
+				} else
+					arr.push(num)
+			}
+			let a = 0
+			let b = 0
+			arr.forEach((val) => {
+				(val === 0) ? a++ : b++
+			})
+			console.log('0 = ' + a + `\n1 = ` + b)
+			if (a < b)
+				console.log(true)
+			else
+				console.log(false)
+		}
+		createrArr(15, arr1)
+		console.log(arr1)
+	</script>
+</body>
+
+</html>
