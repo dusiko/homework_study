@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 2</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Заполнить массив нулями и единицами, 
+			при этом данные значения чередуются, начиная с нуля.
+		*/
+		let arr1 = []
+		function createrArr(length, arr) {
+			for (i = 0; i < length; i++) {
+				if (i % 2 == 0)
+					arr.push(0)
+				else
+					arr.push(1)
+			}
+		}
+		createrArr(10, arr1)
+
+		console.log(arr1)
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 11</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Создать массив, состоящий из троек подряд идущих одинаковых элементов.
+
+		*/
+		let arr1 = []
+		function createrArr(length, arr) {
+			for (k = 0; k < length; k++) {
+				let num = 0 + Math.floor(Math.random() * 500)
+				for (i = 0; i < 3; i++) {
+					if (arr.length < length) {
+						arr.push(num)
+						k++
+					}
+				} k--
+			}
+		}
+		createrArr(15, arr1)
+		console.log(arr1)
+	</script>
+</body>
+
+</html>
