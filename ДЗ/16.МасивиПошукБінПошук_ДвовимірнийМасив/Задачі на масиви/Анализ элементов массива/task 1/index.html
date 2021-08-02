@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 1</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Определить, содержит ли массив данное число x
+		*/
+		let arr1 = [1, 5, 5, 4, 4, 2, 2, 6, 7]
+		function isThereNum(num, arr) {
+			let answer = arr.some(val => val === num ? true : false)
+			if (answer === true)
+				console.log('Так є число ' + num)
+			else
+				console.log('Ні, нема числа ' + num)
+		}
+		console.log(arr1)
+		isThereNum(10, arr1)
+	</script>
+</body>
+
+</html>
