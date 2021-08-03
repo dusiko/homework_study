@@ -11,7 +11,22 @@
 <body>
 
 	<script>
+		/*
+			Найти количество четных чисел в массиве.
 
+		*/
+		let arr1 = [1, 4, 5, 3, 1, 2, 99, 6, 7, 2]
+		function EvenNums(array) {
+			let evenCount = array.reduce((count, val, i, arr) => {
+				if (val % 2 === 0)
+					return ++count
+				else
+					return count
+			}, 0)
+			console.log('У массиві: ' + arr1 + ' - ' + evenCount + ' парних чисел.')
+
+		}
+		EvenNums(arr1)
 	</script>
 </body>
 
