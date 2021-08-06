@@ -1,5 +1,13 @@
+let gamesParameters = {
+  'difficultValue': null,
+  'winCount': 3,
+  'tryCount': 3,
+  'enemyShips': [],
+  'ships': [],
+  'mark': 0,
+}
 
-let winCount = 3
+
 function showHideRules() {
 	const rules = document.querySelector('.rules')
 	if (rules.style.display == "none") {
@@ -12,9 +20,7 @@ function showHideRules() {
 }
 
 function pushGame() {
-	this.tryCount = 3
-	let enemyShips = []
-	let mark
+  //
 	this.divInfo = document.createElement('div')
 	divInfo.setAttribute('class', 'info')
 	const infoTryCount = document.createElement('p')
@@ -32,60 +38,60 @@ function pushGame() {
 	this.container = document.querySelector('.container')
 	container.appendChild(divInfo)
 	container.appendChild(battleField)
-	const difficultValue = document.querySelector('select').value
-
-
+	gamesParameters.difficultValue = document.querySelector('select').value
 
 	// формуемо легкий рівень
-	if (difficultValue == 1) {
-		winCount = 1
-		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
+	if (gamesParameters.difficultValue == 1) {
+		gamesParameters.winCount = 1
+		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${gamesParameters.winCount}</b> шт.`
 		for (i = 0; i < 5; i++) {
 			const ship = document.createElement('div')
 			ship.setAttribute('class', 'ships')
 			ship.innerText = i + 1
 			battleField.appendChild(ship)
 		}
-		const ships = document.querySelectorAll('.ships')
-		mark = 0 + Math.floor(Math.random() * (4 - 0 + 1))
-		ships[mark].setAttribute('id', 'enemy-ship')
-
-		//формуемо нормальний ривень
-	} else if (difficultValue == 2) {
-		winCount = 2
-		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
+		gamesParameters.ships = document.querySelectorAll('.ships')
+		gamesParameters.mark = 0 + Math.floor(Math.random() * (4 - 0 + 1))
+		
+		gamesParameters.enemyShips.push(gamesParameters.ships[gamesParameters.mark])
+		
+	//формуемо нормальний ривень
+	} else if (gamesParameters.difficultValue == 2) {
+		gamesParameters.winCount = 2
+		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${gamesParameters.winCount}</b> шт.`
 		for (i = 0; i < 7; i++) {
 			const ship = document.createElement('div')
 			ship.setAttribute('class', 'ships')
 			ship.innerText = i + 1
 			battleField.appendChild(ship)
 		}
-		const ships = document.querySelectorAll('.ships')
+		gamesParameters.ships = document.querySelectorAll('.ships')
+
 		for (i = 0; i < 2; i++) {
 			do {
-				mark = 0 + Math.floor(Math.random() * (6 - 0 + 1))
-			} while (mark == enemyShips[0] || mark == enemyShips[1] || mark == enemyShips[2])
-			enemyShips.push(mark)
-			ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
+				gamesParameters.mark = 0 + Math.floor(Math.random() * (6 - 0 + 1))
+			} while (gamesParameters.ships[gamesParameters.mark] == gamesParameters.enemyShips[0] || gamesParameters.ships[gamesParameters.mark] == gamesParameters.enemyShips[1] )
+			
+			gamesParameters.enemyShips.push(gamesParameters.ships[gamesParameters.mark])
 		}
-
+		
 		// формуемо важкий ривень
 	} else {
-		winCount = 3
-		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
+		gamesParameters.winCount = 3
+		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${gamesParameters.winCount}</b> шт.`
 		for (i = 0; i < 9; i++) {
 			const ship = document.createElement('div')
 			ship.setAttribute('class', 'ships')
 			ship.innerText = i + 1
 			battleField.appendChild(ship)
 		}
-		const ships = document.querySelectorAll('.ships')
+		gamesParameters.ships = document.querySelectorAll('.ships')
 		for (i = 0; i < 3; i++) {
 			do {
-				mark = 0 + Math.floor(Math.random() * (8 - 0 + 1))
-			} while (mark == enemyShips[0] || mark == enemyShips[1] || mark == enemyShips[2])
-			enemyShips.push(mark)
-			ships[mark].setAttribute('id', `enemy-ship${i + 1}`)
+			gamesParameters.mark = 0 + Math.floor(Math.random() * (8 - 0 + 1))
+			} while (gamesParameters.ships[gamesParameters.mark] == gamesParameters.enemyShips[0] || gamesParameters.ships[gamesParameters.mark] == gamesParameters.enemyShips[1] || gamesParameters.ships[gamesParameters.mark] == gamesParameters.enemyShips[2])
+			  
+	  gamesParameters.enemyShips.push(gamesParameters.ships[gamesParameters.mark])
 		}
 	}
 	document.querySelector('.start').style.display = 'none'
@@ -95,26 +101,31 @@ function pushGame() {
 
 document.querySelector('.container').addEventListener('click', hit)
 function hit(event) {
-	if (event.target.className == 'ships' && event.target.hasAttribute('id') && event.target.className != 'targeted') {
+
+if (event.target.className == 'ships' && event.target.className != 'targeted'){
+  
+ const areYouKill = gamesParameters.enemyShips.some(val => event.target == val)
+ 
+ if (areYouKill == true){
 		event.target.setAttribute('class', 'targeted')
-		event.target.removeAttribute('id')
-		winCount--
+
+		gamesParameters.winCount--
 		const infoShipsCount = document.querySelectorAll('.info p')[1]
-		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${winCount}</b> шт.`
-		if (winCount == 0) {
+		infoShipsCount.innerHTML = `Залишилось воржих кораблів: <b>${gamesParameters.winCount}</b> шт.`
+		if (gamesParameters.winCount == 0) {
 			finish()
 		}
 	} else if (event.target.className == 'ships' && event.target.className != 'missed') {
 		event.target.setAttribute('class', 'missed')
 		const hearts = document.querySelectorAll('.info p img')
-		hearts[tryCount - 1].setAttribute('class', 'fade')
-		tryCount--
-		if (tryCount == 0) {
+		hearts[gamesParameters.tryCount - 1].setAttribute('class', 'fade')
+		gamesParameters.tryCount--
+		if (gamesParameters.tryCount == 0) {
 			finish()
 		}
 	}
 }
-
+}
 function finish() {
 	const div = document.createElement('DIV')
 	div.setAttribute('class', 'finish')
@@ -127,18 +138,21 @@ function finish() {
 	this.divInfo.appendChild(span)
 	div.appendChild(btn)
 	this.container.removeEventListener('click', hit)
-	if (winCount == 0) {
-		span.innerHTML = `Вітаємо! <br>Ви перемогли!`
+	if (gamesParameters.winCount == 0) {
+		span.innerHTML = `Вітаємо!<br>Ви перемогли!`
 		span.style.fontWeight = 'bold'
 		span.style.fontSize = '35px'
 
 
-	} if (tryCount == 0) {
+	} if (gamesParameters.tryCount == 0) {
 		span.innerText = 'ви програли :('
 		span.style.color = 'red'
 		span.style.fontWeight = 'bold'
 		span.style.fontSize = '40px'
-
+		for (i = 0; i < gamesParameters.enemyShips.length; i++){
+		  if(!gamesParameters.enemyShips[i].classList.contains('targeted'))
+		  gamesParameters.enemyShips[i].style.backgroundColor = 'yellow'
+		 } 
 	}
 }
 function start() {
@@ -149,4 +163,7 @@ function start() {
 	document.querySelector('.start').style.display = 'block'
 	document.querySelector('.finish').remove()
 	this.container.addEventListener('click', hit)
+	gamesParameters.tryCount = 3
+	gamesParameters.enemyShips = []
+	gamesParameters.ships = null
 }
