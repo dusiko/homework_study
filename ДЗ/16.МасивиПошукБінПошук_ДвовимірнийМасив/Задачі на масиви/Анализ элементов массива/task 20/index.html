@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 20</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Дан массив. 
+			Найдите два соседних элемента, сумма которых минимальна.
+		*/
+		let arr1 = [121, 139, 110, 115, 119, 118, 131,]
+		console.log(arr1)
+
+		function findTwoVal(arr) {
+			let sumsArr = []
+			for (i = 0; i < arr.length - 1; i++) {
+				sumsArr.push([arr[i], arr[i + 1]])
+				sumsArr.push(arr[i] + arr[i + 1])
+			}
+			const min = sumsArr.reduce((min, val, i, arr) => {
+				if (i % 2 > 0)
+					(min < val) ? min : min = val
+				return min
+			})
+			let nums = []
+			sumsArr.forEach((val, i, arr) => {
+				if (val == min) {
+					nums.push(arr[i - 1][0])
+					nums.push(arr[i - 1][1])
+				}
+			})
+			return nums
+		}
+
+
+		console.log(findTwoVal(arr1))
+
+	</script>
+</body>
+
+</html>
