@@ -12,7 +12,7 @@
 }
 
 .container {
-	max-width: 1024px;
+	max-width: 320px;
 	margin: 0 auto;
 	height: 100vh;
 	display: flex;
@@ -113,6 +113,9 @@
 .battle-field {
   margin-top: 10px;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 
 }
 
@@ -201,5 +204,12 @@
  
 }
 .finish button{
- 
-}
+	background-color: #303030;
+border-radius: 10px;
+padding: 30px;
+font-size: 16px;
+color: white;
+font-weight: bold;
+box-shadow: 0 0 50px black;
+cursor: pointer;
+  }
