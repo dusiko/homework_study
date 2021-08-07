@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 6</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Найдите сумму нечетных чисел массива, которые не превосходят 11.
+		*/
+		let arr1 = [3, 4, 5, 3, 1, 2, 96, 6, 7, 2, 11, 31]
+		function sumOddLess11(arr) {
+			const sum = arr.reduce((sum, val) => {
+				(val % 2 && val < 11) ? sum += val : sum;
+				return sum
+			}, 0)
+			return sum
+		}
+		console.log(sumOddLess11(arr1) + ' = ' + parseInt(3 + 5 + 3 + 1 + 7))
+	</script>
+</body>
+
+</html>

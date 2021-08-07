@@ -5,39 +5,24 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>task 4</title>
+	<title>task 5</title>
 </head>
 
 <body>
 
 	<script>
 		/*
-			Определите, каких чисел в массиве больше: 
-			которые делятся на первый элемент массива 
-			или которые делятся на последний элемент массива.
+			Найдите сумму четных чисел массива.
 		*/
 		let arr1 = [3, 4, 5, 3, 1, 2, 96, 6, 7, 2]
-		function fu(array) {
-			let first = array.reduce((prev, val, i, arr) => {
-				if (val % arr[0] === 0)
-					return ++prev
-				else
-					return prev
+		function sumEven(arr) {
+			const sum = arr.reduce((sum, val) => {
+				!(val % 2) ? sum += val : sum;
+				return sum
 			}, 0)
-			let last = array.reduce((prev, val, i, arr) => {
-				if (val % arr[arr.length - 1] === 0)
-					return ++prev
-				else
-					return prev
-			}, 0)
-			if (first > last)
-				console.log('В массиві більше елементів що діляться на перший елемент')
-			else if (first < last)
-				console.log('В массиві більше елементів що діляться на останній елемент')
-			else
-				console.log('В массиві порівну елементів що діляться на перший елемент, та що діляться на останній елемент.')
+			return sum
 		}
-		fu(arr1)
+		console.log(sumEven(arr1) + ' = ' + parseInt(4 + 2 + 96 + 6 + 2))
 	</script>
 </body>
 
