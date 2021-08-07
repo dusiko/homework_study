@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 18</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Среди элементов с нечетными номерами 
+			найдите наибольший элемент массива, который делится на 3.
+		*/
+		let arr1 = [121, 111, 110, 115, 119, 118, 131, 11, 3, 0, 3, 3, 0, 300]
+		console.table(arr1)
+
+		function max(arr) {
+			const nums = arr.filter((val, i) => {
+				if (i % 2 && val % 3 == 0)
+					return val
+			})
+			const max = nums.reduce((max, val) => {
+				(max < val) ? max = val : max
+				return max
+			})
+			return max
+		}
+
+		console.log(max(arr1))
+
+	</script>
+</body>
+
+</html>

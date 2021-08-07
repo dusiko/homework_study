@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 16</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Найдите количество элементов массива, 
+			которые отличны от наибольшего элемента не более чем на 10%.
+		*/
+		let arr1 = [120, 120, 110, 115, 119, 118, 1, 11]
+
+		function numsCount(arr) {
+			const max = arr.reduce((max, val) => (max < val) ? max = val : max)
+			const nums = arr.reduce((count, val) => {
+				(val > max * 0.9) ? count++ : count
+				return count
+			}, -1)
+			return nums
+		}
+
+
+		console.log(numsCount(arr1))
+
+	</script>
+</body>
+
+</html>

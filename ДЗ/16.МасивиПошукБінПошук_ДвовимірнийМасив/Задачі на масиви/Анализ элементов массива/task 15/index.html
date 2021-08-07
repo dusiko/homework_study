@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 15</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Найдите сумму наибольшего и наименьшего элементов массива.
+		*/
+		let arr1 = [0, 510, 3, 9, 3, 93, 1, 510]
+
+		function sumMaxMin(arr) {
+			const max = arr.reduce((max, val) => {
+				(max < val) ? max = val : max
+				return max
+			})
+			const min = arr.reduce((min, val) => {
+				(min > val) ? min = val : min
+				return min
+			})
+			return max + min
+		}
+
+		console.log(sumMaxMin(arr1))
+
+	</script>
+</body>
+
+</html>

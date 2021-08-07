@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 14</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Найти наибольший элемент массива.
+		*/
+		let arr1 = [401, 510, 3, 9, 3, 93, 1, 510]
+
+		function max(arr) {
+			const max = arr.reduce((max, val) => {
+				(max < val) ? max = val : max
+				return max
+			})
+			return max
+		}
+
+		console.log(max(arr1))
+
+	</script>
+</body>
+
+</html>
