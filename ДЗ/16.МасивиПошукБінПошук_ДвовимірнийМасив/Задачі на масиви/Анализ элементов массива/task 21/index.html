@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 21</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Дан массив. Найдите три последовательных элемента в массиве, сумма которых максимальна.
+		*/
+		let arr1 = [1, 139, 110, 115, 119, 118, 131, 120, 2, 44]
+		console.log(arr1)
+
+		function findThreeValMax(arr) {
+			let sumsArr = []
+			for (i = 0; i < arr.length - 2; i++) {
+				if (arr[i + 2] !== 'undefined') {
+					sumsArr.push([arr[i], arr[i + 1], arr[i + 2]])
+					sumsArr.push(arr[i] + arr[i + 1] + arr[i + 2])
+				}
+			}
+			const max = sumsArr.reduce((max, val, i, arr) => {
+				if (i % 2 > 0)
+					(max < val) ? max = val : max
+				return max
+			}, arr[1])
+			let nums = []
+			sumsArr.forEach((val, i, arr) => {
+				if (val == max) {
+					nums.push(arr[i - 1][0])
+					nums.push(arr[i - 1][1])
+					nums.push(arr[i - 1][2])
+				}
+			})
+			return nums
+		}
+
+
+		console.log(findThreeValMax(arr1))
+
+	</script>
+</body>
+
+</html>
