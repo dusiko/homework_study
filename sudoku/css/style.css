@@ -1,0 +1,28 @@
+.container{
+  width: 320px;
+  padding: 5px;
+  margin: 0 auto;
+}
+
+#board{
+  max-width: 208px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+.items{
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  background-color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1{
+  text-align: center;
+  margin: 5px 0 5px 0;
+}
