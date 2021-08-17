@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 22</title>
+</head>
+
+<body>
+
+	<script>
+		/* В даном массивеинайдите количество чисел, соседи которих отличаются более чем в 2 раза
+		*/
+
+		const arrayNums = [11, 5, 3, 7, 11, 25, 60, 20, 55, 14, 5, 3]
+		console.log(arrayNums)
+		function findNumsCount(arr) {
+			let count = arr.reduce((count, val, i, arr) => {
+				if (arr.indexOf(val) === 0) {
+					if (Math.abs(arr[1] - val > val || val - arr[1] > arr[1]))
+						if (Math.abs(arr[arr.length - 1] - val > val || val - arr[arr.length - 1] > arr[arr.length - 1])) {
+							count++
+							console.log('if i === 0 |  ' + val)
+							console.log(' ')
+							console.log(arr.indexOf(val))
+						}
+				} else if (arr.indexOf(val) === arr.indexOf(arr[arr.length - 1])) {
+					if (Math.abs(arr[0] - val > val || val - arr[0] > arr[0]))
+						if (Math.abs(arr[i - 1] - val > val || val - arr[i - 1] > arr[i - 1])) {
+							count++
+							console.log('if i=== arr.length-1   |  ' + val)
+						}
+				} else {
+					if (Math.abs(arr[i - 1] - val > val || val - arr[i - 1] > arr[i - 1]))
+						if (Math.abs(arr[i + 1] - val > val || val - arr[i + 1] > arr[i + 1])) {
+							console.log('else norm   |   ' + val)
+							count++
+
+						}
+				}
+				return count
+			}, 0)
+			return count
+		}
+
+		console.log('total nums = ' + findNumsCount(arrayNums))
+
+	</script>
+</body>
+
+</html>

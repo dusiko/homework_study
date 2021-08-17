@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
 	<style>
 		/* Задача. Знайти середню оцінку учня. 
 		Кількість та оцінки вводяться користувачем 
@@ -96,7 +95,7 @@
 	</div>
 
 	<script>
-
+		let inp
 		function getSubjects() {
 			const inputSubjectsNum = parseInt(document.querySelector('#enter-numSubjects').value)
 			let subjectsNum = document.querySelector('#enter-numSubjects').setAttribute('readonly', 'readonly')
@@ -111,7 +110,6 @@
 				let td2 = document.createElement('td')
 				let markInp = document.createElement('input')
 
-
 				subjectLabel.innerHTML = (prompt(`Вкажіть назву предмету #${count + 1}`))
 				tbody.appendChild(tr)
 				tr.appendChild(td1)
@@ -121,11 +119,12 @@
 				td2.appendChild(markInp)
 				markInp.setAttribute("class", "input-mark")
 				markInp.setAttribute("id", `subjectMark${count + 1}`)
+				markInp.setAttribute('maxlength', 2)
 				markInp.setAttribute("placeholder", "Вкажіть оцінку учня (1-12)")
 				markInp.setAttribute('type', 'number')
 				markInp.setAttribute('min', '1')
 				markInp.setAttribute('max', '12')
-
+				console.log(markInp)
 				count++
 			}
 			let tbody = document.querySelector('tbody')
@@ -146,6 +145,8 @@
 			markInp.setAttribute("placeholder", "Cередня оцінка учня");
 			markInp.setAttribute("id", "totalmark")
 			markInp.setAttribute("type", "number")
+			inp = document.queryselector('#subjectMark1')
+			console.log(inp)
 		}
 
 		function getTotalMark() {
