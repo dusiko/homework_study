@@ -1,3 +1,6 @@
+body{
+	position: relative;
+}
 .container{
   width: 320px;
   padding: 5px;
@@ -11,6 +14,7 @@
   padding: 5px;
   margin: 0 auto;
   border: 1px solid black;
+  
 }
 .items{
   width: 50px;
@@ -20,6 +24,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  font-family: arial;
+  font-weight: bold;
+}
+.empty{
+	background-color: #fff;
+	cursor: default;
+	z-index: 1;
 }
 
 h1{
