@@ -17,7 +17,7 @@
 			Если четных чисел в массиве нет, 
 			то найти сумму всех чисел за исключением крайних.
 		*/
-		let arr1 = [4, 1, 3, 6, 3, 93, 1]
+		let arr1 = [1, 3, 3, 3, 3, 93, 1]
 		function sumToFirstEven(arr) {
 			const isEven = arr.some(val => val % 2 == 0)
 			if (isEven === true) {
@@ -37,6 +37,7 @@
 				return sum
 			}
 		}
+		console.log(sumToFirstEven(arr1))
 
 	</script>
 </body>

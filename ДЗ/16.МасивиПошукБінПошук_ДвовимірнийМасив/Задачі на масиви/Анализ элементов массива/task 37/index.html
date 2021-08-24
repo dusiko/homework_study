@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 22</title>
+</head>
+
+<body>
+
+	<script>
+		/* Определите, можно ли вычеркнуть из данного массива одно число так, 
+		чтобы оставшиеся числа оказались упорядоченными по возрастанию.
+		*/
+		const someArr = [1, 2, 2, 5, 6, 7, 8, 9]
+
+		function check(arr) {
+			let count = 0
+			let f = arr.reduce((prev, val, i, arr) => {
+				if (prev >= val) {
+					count++
+					// console.log(prev + ' - ' + val)
+					return prev = val
+				} else
+					// console.log(prev + ' - ' + val)
+					return prev = val
+
+			})
+			return (count <= 1) ? 'Да, можна' : 'Ні, не можна'
+		}
+		console.log(check(someArr))
+	</script>
+</body>
+
+</html>
