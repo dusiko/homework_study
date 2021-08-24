@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 2</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Поменять местами наибольший и наименьший элементы массива.
+		*/
+
+		let arr1 = [6, 3, 6, 4, 4, 5, 6, 9, 5]
+		console.log(arr1)
+
+		function replace(arr) {
+			const max = arr.reduce((max, val) => {
+				if (max < val)
+					max = val
+				return max
+			})
+			const min = arr.reduce((min, val) => {
+				if (min > val)
+					min = val
+				return min
+			})
+			const minInd = arr.indexOf(min)
+			const maxInd = arr.indexOf(max)
+			arr[minInd] = max
+			arr[maxInd] = min
+		}
+
+		replace(arr1)
+		console.log(arr1)
+	</script>
+</body>
+
+</html>

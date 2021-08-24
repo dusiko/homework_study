@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 1</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Дан массив. Заменить все числа, 
+			меньшие последнего элемента массива, на первый элемент.
+		*/
+
+		let arr1 = [2, 3, 6, 4, 4, 5, 5, 6, 9, 5]
+		console.log(arr1)
+		arr1.forEach((val, i, arr) => {
+			if (val < arr[arr.length - 1])
+				arr[i] = arr[0]
+		})
+		console.log(arr1)
+	</script>
+</body>
+
+</html>
