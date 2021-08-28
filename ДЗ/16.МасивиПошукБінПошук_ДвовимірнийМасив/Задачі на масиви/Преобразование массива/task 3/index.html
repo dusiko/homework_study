@@ -15,7 +15,7 @@
 			Найти наибольший четный элемент массива и поменять его местами с наименьшим нечетным элементом. Если одного из таких элементов нет, то всем элементам массива присвоить значение, равное нулю.
 		*/
 
-		let arr1 = [11, 1, 3, 5, 7]
+		let arr1 = [11, 10, 3, 2, 7]
 		console.log(arr1)
 
 		function change(array) {
@@ -28,7 +28,7 @@
 				return (val % 2 != 0)
 			})
 
-			if (isEvenHere === true) {
+			if (isOddHere === true && isEvenHere === true) {
 				max = array.reduce((max, val) => {
 					if (max < val && val % 2 === 0)
 						max = val
@@ -36,8 +36,6 @@
 						max = val
 					return max
 				})
-			}
-			if (isOddHere === true) {
 				min = array.reduce((min, val) => {
 					if (min > val && val % 2 != 0)
 						min = val
@@ -45,9 +43,6 @@
 						min = val
 					return min
 				})
-			}
-
-			if (isOddHere === true && isEvenHere === true) {
 				array.forEach((val, i, arr) => {
 					if (val === max)
 						arr[i] = min
