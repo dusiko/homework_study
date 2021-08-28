@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 100</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB")
+		*/
+		function songDecoder(str) {
+			let test = str.split('WUB')
+			for (i = 0; i < test.length; i++) {
+				if (test[i] == '')
+					test.splice(i, 1)
+			}
+			return test.join(' ')
+		}
+
+		const res = songDecoder('WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB')
+		console.log(res)
+	</script>
+</body>
+
+</html>
