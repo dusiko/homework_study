@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 11</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			В данном массиве найти все нулевые элементы и заменить их вместе с соседними элементами на 3.		
+		*/
+
+		let arr1 = [0, 11, 5, 2, 0, 5, 3, 6, 7, 0, 7, 8, 8, 9,]
+		console.log(arr1)
+
+		function change0(array) {
+			array.forEach((val, i, arr) => {
+				if (val === 0 && i === 0) {
+					array[i + 1] = 3
+					array[i] = 3
+				} else if (val === 0 && i === array.length - 1) {
+					array[i - 1] = 3
+					array[i] = 3
+				} else if (val === 0) {
+					array[i - 1] = 3
+					array[i + 1] = 3
+					array[i] = 3
+				}
+			});
+		}
+		change0(arr1)
+		console.log(arr1)
+
+
+
+	</script>
+</body>
+
+</html>
