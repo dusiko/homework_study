@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 13</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+			Даны два массива. 
+			Сформировать третий массив, состоящий из тех элементов, которые:
+			 а) присутствуют в обоих массивах; б) присутствуют только в одном из массивов.
+		*/
+
+		const array1 = ['0', 0, 11, 5, 2, 0, 5, 3, 6, 7, 19]
+		const array2 = [10, 0, 11, 0, 13, 2, 4, 17, '0', 5, 19]
+		console.log({ array1, array2 })
+
+		function newArr1(arr1, arr2) {
+			const arr3 = []
+			arr1.forEach(val1 => {
+				arr2.forEach(val2 => {
+					if (val1 === val2 && !arr3.includes(val1))
+						arr3.push(val1)
+				})
+			});
+			return arr3
+		}
+
+		const newArray1 = newArr1(array1, array2)
+		console.log({ newArray1 })
+
+
+
+
+	</script>
+</body>
+
+</html>
