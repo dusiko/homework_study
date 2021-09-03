@@ -2,6 +2,13 @@ table td {
 	width: 25px;
 	height: 35px;
 	border: 1px solid black;
+	cursor: default;
+}
+.squere:hover{
+	transform: scale(120%);
+	z-index: 2;
+	background-color: rgba(136, 255, 0, 0.945);
+	transition: .3s;
 	cursor: pointer;
 }
 

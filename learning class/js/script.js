@@ -8,6 +8,7 @@ class Game {
 		let minesArr = []
 		let mine
 		let empty
+		let count = 1
 
 		function createTable() {
 
@@ -21,6 +22,8 @@ class Game {
 				for (let k = 0; k < colm; k++) {
 					const td = document.createElement('td')
 					td.classList.add('squere')
+					td.innerHTML = count
+					count++
 					tableArr.push(td)
 					tr.appendChild(td)
 				}
