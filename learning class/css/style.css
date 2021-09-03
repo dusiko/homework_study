@@ -1,0 +1,23 @@
+table td {
+	width: 25px;
+	height: 35px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+table {
+	width: 280px;
+	align-self: center;
+	border: 3px solid blueviolet;
+}
+
+h2 {
+	margin: 5px;
+}
