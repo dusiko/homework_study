@@ -70,7 +70,6 @@ class Game {
 			}
 
 		}
-
 		container.addEventListener('click', heat)
 	}
 }

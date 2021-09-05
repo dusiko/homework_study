@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>task 14</title>
+</head>
+
+<body>
+
+	<script>
+		/*
+Дан массив. Осуществите циклический сдвиг массив на k единиц вправо, 
+если первый наименьший элемент массива расположен раньше 
+последнего наибольшего элемента массива, и влево, если иначе.
+		*/
+
+		let numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+		console.log(numArr)
+
+		function change(array, k) {
+			const Max = {
+				'index': undefined,
+				'value': undefined
+			}
+			const Min = {
+				'index': undefined,
+				'value': undefined
+			}
+			Max.value = Math.max(...array)
+			Max.index = Math.min(array.indexOf(Max.value))
+			Min.value = Math.min(...array)
+			Min.index = Math.min(array.indexOf(Min.value))
+
+			if (Min.index < Max.index) {
+				let ressArr = []
+				let slised = array.splice(array.length - k, k).reverse()
+				slised.forEach(val => {
+					array.unshift(val)
+				});
+				return (array)
+
+			} else if (Min.index > Max.index) {
+				let ressArr = []
+				let slised = array.splice(0, k)
+				slised.forEach(val => {
+					array.push(val)
+				});
+				return (array)
+			}
+			else
+				return array
+		}
+		console.log(change(numArr, 5))
+
+
+
+	</script>
+</body>
+
+</html>
