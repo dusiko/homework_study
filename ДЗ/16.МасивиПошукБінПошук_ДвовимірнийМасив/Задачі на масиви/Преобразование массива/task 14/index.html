@@ -17,22 +17,22 @@
 последнего наибольшего элемента массива, и влево, если иначе.
 		*/
 
-		let numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+		let numArr = [10, 2, 3, 9, 10].reverse()
 		console.log(numArr)
 
 		function change(array, k) {
 			const Max = {
 				'index': undefined,
-				'value': undefined
+				'value': undefined,
 			}
 			const Min = {
 				'index': undefined,
-				'value': undefined
+				'value': undefined,
 			}
 			Max.value = Math.max(...array)
-			Max.index = Math.min(array.indexOf(Max.value))
+			Max.index = array.indexOf(Max.value)
 			Min.value = Math.min(...array)
-			Min.index = Math.min(array.indexOf(Min.value))
+			Min.index = array.indexOf(Min.value)
 
 			if (Min.index < Max.index) {
 				let ressArr = []
@@ -53,7 +53,8 @@
 			else
 				return array
 		}
-		console.log(change(numArr, 5))
+		let lol = change(numArr, 5)
+
 
 
 
