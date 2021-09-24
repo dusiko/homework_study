@@ -1,30 +1,170 @@
-table td {
-	width: 25px;
-	height: 35px;
-	border: 1px solid black;
-	cursor: default;
-}
-.squere:hover{
-	transform: scale(120%);
-	z-index: 2;
-	background-color: rgba(136, 255, 0, 0.945);
-	transition: .3s;
-	cursor: pointer;
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
+
+
+
+
+
+
+
+
+.pop-up{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pop-up__inner{
+  background-color: #fff;
+  width: 250px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: black;
+  box-shadow: 0 0 2px 2px seagreen;
+  position: relative;
+  padding: 0 15px;
+}
+.pop-up--open{
+  opacity: .9;
+  z-index: 2;
 }
 
-table {
-	width: 280px;
-	align-self: center;
-	border: 3px solid blueviolet;
+.pop-up__inner--open{
+  transition: 2s;
+  transform: scale(100%)
+  
+}
+.pop-up__inner--close{
+  transition: 1s;
+  transform: scale(0%)
 }
 
-h2 {
-	margin: 5px;
+
+
+
+
+
+
+
+.pop-up__close{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  right: 2px;
+  
+}
+.pop-up__close::before,
+.pop-up__close::after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background-color: black;
+  transform: rotate(-45deg)
+}
+.pop-up__close::after{
+  transform: rotate(45deg)
+}
+.pop-up__text{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.pop-up__btn{
+  width: 100px;
+  height: 35px;
+  margin-bottom: 25px;
+  
+}
+
+.container{
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.header{
+  text-align: center;
+  color: red;
+  
+}
+.header-title{
+
+}
+
+.authorization{
+  border: 1px solid black;
+  padding: 10px 0;
+}
+.authorization__form{
+}
+.form-inputs{
+  position: relative;;
+}
+.labels{
+  position: relative;
+}
+.required{
+  color: red;
+}
+.form-input{
+  float: right;
+  width: 190px;
+}
+.form-input[placeholder]{
+  font-style: italic;
+}
+.form-input[name="password"]{
+
+}
+.show-pass,
+.hide-pass{
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  background-image: url("../images/show-pass.png");
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size: cover;
+  right: 3px;
+}
+.error{
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  opacity: 0;
+  margin-bottom: 10px;
+}
+.form-btns{
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-login{
+  order: 2;
+  width: 97px;
+}
+.btn-reg{
+  order: 1;
+  margin-right: 5px;
+  width: 97px;
 }
