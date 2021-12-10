@@ -21,39 +21,33 @@ document.querySelector('.pop-up__btn').addEventListener('click', closeModal)
 document.querySelector('.pop-up__close').addEventListener('click', closeModal)
 //
 document.querySelector('.btn-reg').addEventListener('click', regUser)
+document.querySelector('.btn-login').addEventListener('click', login)
 
 
 
 // toggle pass vision 
 function togglePassVision(event) {
 	const btn = document.getElementById('inp-pass')
-	const img = event.target;
 	if (event.target.classList == 'show-pass') {
 		btn.setAttribute('type', 'text')
-		img.setAttribute('title', 'Скрыть пароль')
-		img.classList.add('hide-pass')
-		img.classList.remove('show-pass')
-		img.setAttribute('src', 'images/hide-pass.png')
+		event.target.classList.add('hide-pass')
+		event.target.classList.remove('show-pass')
+		event.target.setAttribute('src', '../images/hide-pass.png')
 	} else if (event.target.classList == 'hide-pass') {
 		btn.setAttribute('type', 'password')
-		img.setAttribute('title', 'Показать пароль')
-		img.classList.add('show-pass')
-		img.classList.remove('hide-pass')
-		img.setAttribute('src', 'images/show-pass.png')
+		event.target.classList.add('show-pass')
+		event.target.classList.remove('hide-pass')
+		event.target.setAttribute('src', '../images/show-pass.png')
 	}
 }
 
 
-
 // enabled btn login
 function enableBtnLogin() {
-	if (document.querySelectorAll('.form-input')[0].value.length > 0 && document.querySelectorAll('.form-input')[1].value.length > 0) {
+	if (document.querySelectorAll('.form-input')[0].value.length > 0 && document.querySelectorAll('.form-input')[1].value.length > 0)
 		document.querySelector('.btn-login').removeAttribute('disabled')
-		document.querySelector('.btn-login').style.cursor = "pointer"
-	} else {
+	else
 		document.querySelector('.btn-login').setAttribute('disabled', 'disabled')
-		document.querySelector('.btn-login').style.cursor = "default"
-	}
 }
 enableBtnLogin()
 
@@ -66,7 +60,7 @@ function regUser() {
 	}
 	const login = document.querySelectorAll('.form-input')[0].value
 	const password = document.querySelectorAll('.form-input')[1].value
-	// let popUp = document.querySelector('.pop-up')
+	let popUp = document.querySelector('.pop-up')
 	let popUpText = document.querySelector('.pop-up__text')
 	let errorLog = document.querySelector('.error-login')
 	let errorPass = document.querySelector('.error-password')
@@ -109,7 +103,36 @@ function regUser() {
 			'login': user.login,
 			'password': user.password,
 		}
-		console.log(users)
+	}
+}
+function login() {
+	const login = document.querySelectorAll('.form-input')[0].value
+	const password = document.querySelectorAll('.form-input')[1].value
+	let popUp = document.querySelector('.pop-up')
+	let popUpText = document.querySelector('.pop-up__text')
+
+	if (loginsUsedArr.some(val => val == login)) {
+		let curUser
+		for (let i = 1; i < countUsers + 1; i++) {
+			for (key in users['user' + i]) {
+				if (users['user' + i][key] == login) {
+					curUser = users['user' + i]
+					break
+				}
+			}
+		}
+		if (curUser['login'] == login && curUser['password'] == password) {
+			popUpText.innerHTML = `Приветствуем Вас <span class='loginName'>${login}</span>!`
+			document.querySelector('.loginName').style.color = 'green'
+			openModal()
+		} else {
+			popUpText.innerHTML = `Неверный пароль для <span class='loginName'>${login}</span>!`
+			document.querySelector('.loginName').style.color = 'red'
+			openModal()
+		}
+	} else {
+		popUpText.innerHTML = 'Такой пользователь не зарегистрирован!'
+		openModal()
 	}
 }
 
@@ -118,9 +141,12 @@ function closeModal() {
 	document.querySelector('.pop-up__inner').classList.remove('pop-up__inner--open')
 	document.querySelector('.pop-up__inner').classList.add('pop-up__inner--close')
 	document.querySelector('.pop-up').classList.remove('pop-up--open')
+	document.querySelector('.pop-up').classList.add('pop-up--close')
 }
 function openModal() {
+	document.querySelector('.pop-up__inner').classList.remove('pop-up__inner--close')
+	document.querySelector('.pop-up').classList.remove('pop-up--close')
 	document.querySelector('.pop-up__inner').classList.add('pop-up__inner--open')
 	document.querySelector('.pop-up').classList.add('pop-up--open')
-	document.querySelector('.pop-up__inner').classList.remove('pop-up__inner--close')
+
 }
