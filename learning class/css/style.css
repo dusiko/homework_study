@@ -53,20 +53,13 @@ body{
   transform: scale(0%)
 }
 
-
-
-
-
-
-
-
 .pop-up__close{
   position: absolute;
   width: 20px;
   height: 20px;
   top: 2px;
   right: 2px;
-  
+  cursor: pointer;
 }
 .pop-up__close::before,
 .pop-up__close::after{
@@ -77,7 +70,7 @@ body{
   width: 2px;
   height: 20px;
   background-color: black;
-  transform: rotate(-45deg)
+  transform: rotate(-45deg);
 }
 .pop-up__close::after{
   transform: rotate(45deg)
@@ -92,7 +85,7 @@ body{
   width: 100px;
   height: 35px;
   margin-bottom: 25px;
-  
+  cursor: pointer;
 }
 
 .container{
@@ -112,6 +105,8 @@ body{
 .authorization{
   border: 1px solid black;
   padding: 10px 0;
+  max-width: 320px;
+  margin: 0 auto;
 }
 .authorization__form{
 }
@@ -144,6 +139,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   right: 3px;
+  cursor: pointer;
 }
 .error{
   color: red;
@@ -159,12 +155,15 @@ body{
   display: flex;
   justify-content: flex-end;
 }
+.btn-login,
+.btn-reg {
+	width: 97px;
+}
 .btn-login{
   order: 2;
-  width: 97px;
 }
 .btn-reg{
   order: 1;
   margin-right: 5px;
-  width: 97px;
+  cursor: pointer;
 }
