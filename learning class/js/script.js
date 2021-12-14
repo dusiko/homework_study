@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 
 
 let countUsers = 0
@@ -27,7 +25,7 @@ document.querySelector('.btn-login').addEventListener('click',login)
 
 
 
-// toggle pass vision
+// toggle pass vision 
 function togglePassVision(event){
   const btn = document.getElementById('inp-pass')
   if (event.target.classList == 'show-pass'){
@@ -66,7 +64,7 @@ function regUser(){
   let popUpText = document.querySelector('.pop-up__text')
   let errorLog = document.querySelector('.error-login')
   let errorPass = document.querySelector('.error-password')
-
+  
   if (login == '' || login == undefined){
     errorLog.innerText = 'Введите логин!'
     errorLog.style.opacity = 1
@@ -98,7 +96,7 @@ function regUser(){
   //  popUp.style.opacity = 0.9
     openModal()
     popUpText.innerText = 'Пользователь успешно зарегистрирован!'
-
+    
     countUsers++
     let user = new User(login,password)
     users['user'+countUsers] = {
@@ -112,7 +110,7 @@ function login(){
   const password = document.querySelectorAll('.form-input')[1].value
   let popUp = document.querySelector('.pop-up')
   let popUpText = document.querySelector('.pop-up__text')
-
+  
   if (loginsUsedArr.some(val => val == login)) {
     let curUser
     for (let i = 1; i < countUsers+1; i++){
@@ -150,6 +148,5 @@ function openModal(){
      document.querySelector('.pop-up').classList.remove('pop-up--close')
    document.querySelector('.pop-up__inner').classList.add('pop-up__inner--open')
    document.querySelector('.pop-up').classList.add('pop-up--open')
-
+ 
 }
->>>>>>> f7c337e4a8ef48731244575c5582245af788ef99
