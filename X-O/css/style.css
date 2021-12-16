@@ -1,0 +1,77 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  background-color: skyblue;
+}
+h3{
+  margin: 0px;
+  padding: 0px;
+}
+.container{
+  max-width: 320px;
+  margin: 0 auto;
+}
+/*
+== reg players
+==================*/
+.intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.intro__form{
+  
+}
+.intro__form>h3{
+  color: red;
+  text-align: center;
+  text-transform: uppercase;
+}
+.intro__form-item{
+  
+}
+.intro__form-title{
+  
+}
+.intro__form-input{
+  
+}
+.intro__form-button{
+  width: 99%;
+  margin: 5px 2px;
+  height: 40px;
+}
+
+/*
+== game-board
+==================*/
+.game{
+}
+.game-inner{
+  
+}
+.game-inner>h3{
+  text-align: center;
+  
+}
+.board{
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  margin: 0 auto;
+}
+.board__item{
+  width: 33.33%;
+  height: 60px;
+  border: 1px solid black;
+  padding: 3px;
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-inner__info{
+  text-align: center;
+  margin: 5px 0 10px;
+}
