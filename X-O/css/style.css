@@ -70,7 +70,10 @@ h3{
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
+
+
 .game-inner__info{
   text-align: center;
   margin: 5px 0 10px;
