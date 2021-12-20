@@ -99,6 +99,7 @@ function createBoard() {
   btn.setAttribute('type','button')
   btn.setAttribute('disabled','disabled')
   btn.innerText = 'Next try'
+  btn.setAttribute('onclick','newTry()')
   inner.appendChild(btn)
   
   
@@ -133,7 +134,7 @@ function push(event) {
 			Player.step = false
 			player1.move.push(+event.target.getAttribute('id'))
 			if (check(player1) == true) {
-			  
+			 
 			
 			  let pos = Player.winCombination.filter(val => val.every(n => player1.move.includes(n)))
 			  crossWin(pos)
@@ -151,6 +152,7 @@ function push(event) {
 			 
 
 			} else if (check(player1) == 'draw') {
+			     document.getElementById('new-try').removeAttribute('disabled')
 				alert('draw!!!!!!!!')
 			}
 
@@ -160,9 +162,9 @@ function push(event) {
 			Player.step = true
 			player2.move.push(+event.target.getAttribute('id'))
 			if (check(player2) == true) {
+			  
 			   let pos = Player.winCombination.filter(val => val.every(n => player2.move.includes(n)))
 			  crossWin(pos)
-			  console.log(pos)
 				
 			const winPos = document.querySelector('#w')
 			 const losePos = document.querySelector('#l')
@@ -175,6 +177,7 @@ function push(event) {
 			 document.querySelector('#n').innerHTML = ''
 
 			} else if (check(player2) == 'draw') {
+			     document.getElementById('new-try').removeAttribute('disabled')
 				alert('draw!!!!!!!!')
 			}
 		}
