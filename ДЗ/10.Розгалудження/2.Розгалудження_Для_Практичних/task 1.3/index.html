@@ -5,27 +5,22 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>task 1.3</title>
-	<style>
-
-	</style>
+	<title>my first work</title>
 </head>
 
 <body>
-
+	<p id="text">
+		Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi maxime voluptas deleniti! Et consequatur
+		exercitationem accusamus ducimus assumenda iste unde dolorem voluptates modi ut asperiores eius voluptate vero,
+		dolorum magni?
+	</p>
 
 	<script>
-		var product = prompt("Product title") || "Product";
-		var year = parseInt(prompt("Year")) || 2017;
-		var count = parseInt(prompt("Count"));
-		if (count)
-			//document.write(product + " - " + year + " - " + count);
-			document.write(`${product} - ${year} - ${count}`);
-
-		else
-			document.write("Error");
+		const p = document.querySelector('#text').innerText
+		
 
 	</script>
+
 </body>
 
 </html>
