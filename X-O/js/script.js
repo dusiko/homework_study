@@ -31,7 +31,7 @@ function createBoard() {
 	inner.classList.add('game-inner')
 	div.appendChild(inner)
 
-	div = document.createElement('h3')
+	div = document.createElement('h1')
 	div.innerText = 'X - O'
 	inner.appendChild(div)
 
@@ -43,6 +43,9 @@ function createBoard() {
 		div.setAttribute('id', i)
 		board.appendChild(div)
 	}
+	div = document.createElement('DIV')
+	div.classList.add('cross')
+	board.append(div)
 	inner.appendChild(board)
 
 	const info = document.createElement('DIV')
@@ -51,57 +54,136 @@ function createBoard() {
 	div = document.createElement('DIV')
 	div.innerHTML = `Next move for: <span id="info-name">${player1.name} [ ${player1.type} ]</span>`
 	info.append(div)
-
+	div = document.createElement('DIV')
+	div.classList.add('info__table')
+	div.innerHTML = `
+	<div class="info__table-head">
+	<h2>winner</h2>
+	<h2>neutral</h2>
+	<h2>loser</h2>
+	</div>
+	<div class="info__table-body">
+	<p id="w"></p>
+	<p id="n">
+	<span id="p1"></span>
+	<span id="p2"></span>
+	</p>
+	<p id="l"></p>
+	</div>
+	`
+	info.append(div)
+	const p1 = document.querySelector('#p1')
+	p1.innerHTML = '[ p1 ] '+player1.name
+	const p2 = document.querySelector('#p2')
+	p2.innerHTML = '[ p2 ] '+player2.name
+	
+  const table = document.createElement('TABLE')
+  table.classList.add('table-wins')
+  inner.appendChild(table)
+  table.innerHTML=`
+  <tr">
+  <td colspan="2">WINS COUNT</td>
+  </tr>
+  <tr>
+  <td>${player1.name}</td>
+  <td>${player2.name}</td>
+  </tr>
+  
+  <tr>
+  <td class="table-count">${player1.count}</td>
+  <td class="table-count">${player2.count}</td>
+  </tr>
+  `
+  const btn = document.createElement('button')
+  btn.setAttribute('id','new-try')
+  btn.setAttribute('type','button')
+  btn.setAttribute('disabled','disabled')
+  btn.innerText = 'Next try'
+  btn.setAttribute('onclick','newTry()')
+  inner.appendChild(btn)
+  
+  
 
 	document.querySelector('.board').addEventListener('click', push)
 }
 function check(player) {
-	const winCombination = [[0, 1, 2], [0, 3, 6], [3, 4, 5], [6, 7, 8], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-	const win = winCombination.some(val => val.every(n => player.move.includes(n)))
-	if (win)
+		const win = Player.winCombination.some(val => val.every(n => player.move.includes(n)))
+	if (win){
 		return true
-	else if (Array.from(document.querySelectorAll('.board__item')).map(val => val.innerText).every(v => v != ''))
+		
+	} else if (Array.from(document.querySelectorAll('.board__item')).map(val => val.innerText).every(v => v != ''))
 		return 'draw'
 	else {
 		const n = document.getElementById('info-name')
-		if (Player.step == true)
+		if (Player.step == true){
 			n.innerText = player1.name + ` [ ${player1.type} ]`
-		else
+			n.style.color="orangered"
+		} else {
 			n.innerText = player2.name + ` [ ${player2.type} ]`
+			n.style.color="blue"
+		}
 	}
 }
 
 function push(event) {
 	if (!event.target.classList.contains('pushed')) {
+	  event.target.classList.add('pushed')
+		event.target.style.cursor = "default"
 		if (Player.step == true) {
-			event.target.classList.add('pushed')
-			event.target.style.cursor = "default"
 			event.target.innerText = 'X'
 			Player.step = false
 			player1.move.push(+event.target.getAttribute('id'))
 			if (check(player1) == true) {
-				alert(player1.name + ' win!')
+			 
+			
+			  let pos = Player.winCombination.filter(val => val.every(n => player1.move.includes(n)))
+			  crossWin(pos)
+			 
+			 const winPos = document.querySelector('#w')
+			 const losePos = document.querySelector('#l')
+			 const winPlayer = document.querySelector('#p1')
+			 const losePlayer = document.querySelector('#p2')
+			 player1.count++
+			 +document.getElementsByClassName('table-count')[0].innerText++
+			 winPos.append(winPlayer)
+			 losePos.append(losePlayer)
+			 document.querySelector('#n').innerHTML = ''
+			 
+			 
 
 			} else if (check(player1) == 'draw') {
+			     document.getElementById('new-try').removeAttribute('disabled')
 				alert('draw!!!!!!!!')
 			}
 
 
-
 		} else {
-			event.target.classList.add('pushed')
-			event.target.style.cursor = "default"
 			event.target.innerText = 'O'
 			Player.step = true
 			player2.move.push(+event.target.getAttribute('id'))
 			if (check(player2) == true) {
-				alert(player2.name + ' win!')
+			  
+			   let pos = Player.winCombination.filter(val => val.every(n => player2.move.includes(n)))
+			  crossWin(pos)
+				
+			const winPos = document.querySelector('#w')
+			 const losePos = document.querySelector('#l')
+			 const winPlayer = document.querySelector('#p2')
+			 const losePlayer = document.querySelector('#p1')
+			 player2.count++
+			 +document.getElementsByClassName('table-count')[1].innerText++
+			 winPos.append(winPlayer)
+			 losePos.append(losePlayer)
+			 document.querySelector('#n').innerHTML = ''
 
 			} else if (check(player2) == 'draw') {
+			     document.getElementById('new-try').removeAttribute('disabled')
 				alert('draw!!!!!!!!')
 			}
 		}
 	}
 }
+
+
 
 
