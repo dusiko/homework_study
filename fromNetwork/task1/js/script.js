@@ -35,9 +35,13 @@ console.log(sortVowels("Rnd Te5T"))
 
 */
 
+let listName = "Fred:Corwill;Wilfred:Corwill;Barney:Tornbull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill";
 
-function diffBig2(arr) {
-	return arr.sort((a, b) => b - a)[0] - arr.sort((a, b) => b - a)[1]
+function meeting(s) {
+	return s.split(';').map(val => val.split(':').join(', ').toUpperCase()).reduce((ress, val) => {
+		ress += '(' + val + ')'
+		return ress
+	}, '')
 }
 
-console.log(diffBig2([4, 2, 6, 2, 3]))
+console.log(meeting(listName))
